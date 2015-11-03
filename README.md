@@ -6,7 +6,7 @@ SpriterPlusPlus aims to be as quick as possible playing back animations, and ite
 Additional instances are flyweights that take up less ram than the initially the loaded model.
 Each flyweight instance minimizes cycles spent in random access and iteratating through containers using stored pointers and iterators wherever possible.
 
-## Example
+## Included example
 Sfml for display and sound playback
 TinyXml for loading
 
@@ -47,6 +47,7 @@ Character maps
 
 
 ### Creating an instance :
+* #include "spriterengine/spriterengine.h"
 * ScmlModel scmlModel(fileName, new customFileFactory, new customObjectFactory/*optional*/);
 
 * EntityInstance *entityInstance = scmlModel.getNewEntityInstance(entityName or entityIndex);
