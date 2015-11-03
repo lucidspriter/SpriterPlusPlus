@@ -108,4 +108,4 @@ Character maps
 
 
 ## Feedback
-To provide feedback, report errors, or give suggestions, please use the relevant Spriter [forum thread](http://brashmonkey.com/forum/index.php?/topic/4464-spriterplusplus-a-c-spriter-implementation/ "BrashMonkey forums")
+To provide feedback, report errors, or give suggestions, please use the relevant Spriter [forum thread](http://brashmonkey.com/forum/index.php?/topic/4464-spriterplusplus-a-c-spriter-implementation/ "BrashMonkey forums").
