@@ -1,5 +1,5 @@
 # SpriterPlusPlus
-C++ Implementation for Spriter animations
+a C++ Implementation for Spriter animations
 
 ## About
 SpriterPlusPlus aims to be as quick as possible playing back animations, and iterating additional characters once loaded.
