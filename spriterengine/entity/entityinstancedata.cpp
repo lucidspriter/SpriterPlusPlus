@@ -24,7 +24,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getObjectInstance(int objectId)
 	{
-		auto& it = objects.find(objectId);
+		auto it = objects.find(objectId);
 		if (it != objects.end())
 		{
 			return (*it).second;
@@ -38,7 +38,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getObjectInstance(std::string objectName)
 	{
-		auto& it = objectNameMap.find(objectName);
+		auto it = objectNameMap.find(objectName);
 		if (it != objectNameMap.end())
 		{
 			return (*it).second;
@@ -52,7 +52,7 @@ namespace SpriterEngine
 
 	TransformProcessor *EntityInstanceData::getTransformer(int id)
 	{
-		auto&  it = transformers.find(id);
+		auto  it = transformers.find(id);
 		if (it != transformers.end())
 		{
 			return &(*it).second;
@@ -84,7 +84,7 @@ namespace SpriterEngine
 
 	VariableInstanceNameAndIdMap *EntityInstanceData::getVariables(int objectId)
 	{
-		auto& it = variables.find(objectId);
+		auto it = variables.find(objectId);
 		if (it != variables.end())
 		{
 			return &(*it).second;
@@ -117,7 +117,7 @@ namespace SpriterEngine
 
 	VariableInstanceNameAndIdMap *EntityInstanceData::getVariables(std::string objectName)
 	{
-		auto&  it = variableObjectNameMap.find(objectName);
+		auto it = variableObjectNameMap.find(objectName);
 		if (it != variableObjectNameMap.end())
 		{
 			return (*it).second;
@@ -150,7 +150,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getTags(int objectId) const
 	{
-		auto& it = tags.find(objectId);
+		auto it = tags.find(objectId);
 		if (it != tags.end())
 		{
 			return (*it).second;
@@ -183,7 +183,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getTags(std::string objectName) const
 	{
-		auto& it = tagObjectNameMap.find(objectName);
+		auto it = tagObjectNameMap.find(objectName);
 		if (it != tagObjectNameMap.end())
 		{
 			return (*it).second;
@@ -211,7 +211,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getTriggerObject(int triggerId)
 	{
-		auto& it = triggers.find(triggerId);
+		auto it = triggers.find(triggerId);
 		if (it != triggers.end())
 		{
 			return (*it).second;
@@ -225,7 +225,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getTriggerObject(std::string triggerName)
 	{
-		auto& it = triggerNameMap.find(triggerName);
+		auto it = triggerNameMap.find(triggerName);
 		if (it != triggerNameMap.end())
 		{
 			return (*it).second;
@@ -239,7 +239,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getSoundObject(int soundId)
 	{
-		auto& it = sounds.find(soundId);
+		auto it = sounds.find(soundId);
 		if (it != sounds.end())
 		{
 			return (*it).second;
@@ -253,7 +253,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *EntityInstanceData::getSoundObject(std::string soundName)
 	{
-		auto& it = soundNameMap.find(soundName);
+		auto it = soundNameMap.find(soundName);
 		if (it != soundNameMap.end())
 		{
 			return (*it).second;
@@ -279,7 +279,7 @@ namespace SpriterEngine
 
 	void EntityInstanceData::setCurrentAnimation(const std::string & animationName, AnimationInstance **currentAnimation)
 	{
-		auto& it = animationNameMap.find(animationName);
+		auto it = animationNameMap.find(animationName);
 		if (it != animationNameMap.end())
 		{
 			*currentAnimation = (*it).second;
