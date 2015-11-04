@@ -3,7 +3,9 @@
 namespace SpriterEngine
 {
 
-	SpriteObjectInfo::SpriteObjectInfo()
+	SpriteObjectInfo::SpriteObjectInfo() :
+		scale(1, 1),
+		alpha(1)
 	{
 	}
 
