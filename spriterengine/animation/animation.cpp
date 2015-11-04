@@ -114,7 +114,7 @@ namespace SpriterEngine
 	Timeline *Animation::setVariableTimeline(int objectId, int variableId)
 	{
 		TimelineMap *objectVariables = &variableTimelines[objectId];
-		auto& it = objectVariables->find(variableId);
+		auto it = objectVariables->find(variableId);
 		if (it == objectVariables->end())
 		{
 			return (*objectVariables->insert(std::make_pair(variableId, new Timeline(objectId))).first).second;
