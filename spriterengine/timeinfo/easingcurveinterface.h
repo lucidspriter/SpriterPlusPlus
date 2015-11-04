@@ -10,6 +10,7 @@ namespace SpriterEngine
 	{
 	public:
 		EasingCurveInterface();
+		virtual ~EasingCurveInterface() = default;
 
 		virtual real adjustedTimeRatio(real timeRatio) = 0;
 
