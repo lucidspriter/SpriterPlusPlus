@@ -13,8 +13,8 @@ namespace SpriterEngine
 {
 
 	Entity::Entity(std::string initialName, int initialId, FileVector *initialFileVector) :
-		name(initialName),
 		entityId(initialId),
+		name(initialName),
 		files(initialFileVector)
 	{
 	}
@@ -63,7 +63,7 @@ namespace SpriterEngine
 
 	Object * Entity::getObject(int objectId)
 	{
-		auto& it = objectIdMap.find(objectId);
+		auto it = objectIdMap.find(objectId);
 		if (it != objectIdMap.end())
 		{
 			return (*it).second;
@@ -98,7 +98,7 @@ namespace SpriterEngine
 
 	Object * Entity::setSpatialObject(std::string objectName, Object::ObjectType objectType)
 	{
-		auto& it = objectNameMap.find(objectName);
+		auto it = objectNameMap.find(objectName);
 		if (it != objectNameMap.end())
 		{
 			return &(*it).second;
@@ -111,7 +111,7 @@ namespace SpriterEngine
 
 	Object * Entity::setSoundObject(std::string objectName)
 	{
-		auto& it = objectNameMap.find(objectName);
+		auto it = objectNameMap.find(objectName);
 		if (it != objectNameMap.end())
 		{
 			return &(*it).second;
@@ -124,7 +124,7 @@ namespace SpriterEngine
 
 	Object * Entity::setTriggerObject(std::string objectName)
 	{
-		auto& it = objectNameMap.find(objectName);
+		auto it = objectNameMap.find(objectName);
 		if (it != objectNameMap.end())
 		{
 			return &(*it).second;
@@ -137,7 +137,7 @@ namespace SpriterEngine
 
 	Object * Entity::setSubEntityObject(std::string objectName)
 	{
-		auto& it = objectNameMap.find(objectName);
+		auto it = objectNameMap.find(objectName);
 		if (it != objectNameMap.end())
 		{
 			return &(*it).second;
@@ -155,7 +155,7 @@ namespace SpriterEngine
 
 	void Entity::applyCharacterMap(std::string mapName, FileReferenceVector *mappedFiles)
 	{
-		auto& it = characterMaps.find(mapName);
+		auto it = characterMaps.find(mapName);
 		if (it != characterMaps.end())
 		{
 			(*it).second.applyCharacterMap(mappedFiles);
@@ -168,7 +168,7 @@ namespace SpriterEngine
 
 	void Entity::removeAllCharacterMaps(FileReferenceVector *mappedFiles)
 	{
-		auto& mappedFileIt = mappedFiles->begin();
+		auto mappedFileIt = mappedFiles->begin();
 		for (auto& it : *files)
 		{
 			(*mappedFileIt++)->setFile(it);
@@ -183,7 +183,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *Entity::getNewObjectInfoInstance(int objectId)
 	{
-		auto& it = objectIdMap.find(objectId);
+		auto it = objectIdMap.find(objectId);
 		if (it != objectIdMap.end())
 		{
 			return (*it).second->getNewObjectInfoInstance();
