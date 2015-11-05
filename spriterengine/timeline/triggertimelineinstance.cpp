@@ -11,16 +11,16 @@ namespace SpriterEngine
 
 	TriggerTimelineInstance::TriggerTimelineInstance(EntityInstanceData *entityInstanceData, Timeline *timeline, int objectId) :
 		TimelineInstance(timeline),
-		previousTime(0),
-		triggerCount(0)
+		triggerCount(0),
+		previousTime(0)
 	{	
 		resultObject = entityInstanceData->getTriggerObject(objectId);
 	}
 
 	TriggerTimelineInstance::TriggerTimelineInstance(EntityInstanceData * entityInstanceData, Timeline * timeline) :
 		TimelineInstance(timeline),
-		previousTime(0),
-		triggerCount(0)
+		triggerCount(0),
+		previousTime(0)
 	{
 		resultObject = 0;
 	}
@@ -47,7 +47,7 @@ namespace SpriterEngine
 	void TriggerTimelineInstance::findTimeForward(real newTime, real animationLength)
 	{
 		auto& currentIt = timelineKeyIterator;
-		auto& endIt = std::prev(timelineKeys->end());
+		auto endIt = std::prev(timelineKeys->end());
 
 		// if the time to find is below the current time
 		if (newTime < (*currentIt)->getTime())
@@ -109,7 +109,7 @@ namespace SpriterEngine
 	void TriggerTimelineInstance::findTimeBackward(real newTime, real animationLength)
 	{
 		auto& currentIt = timelineKeyIterator;
-		auto& endIt = timelineKeys->begin();
+		auto endIt = timelineKeys->begin();
 
 		// if the time to find is above the next time
 		if (newTime > (*currentIt)->getNextTime())

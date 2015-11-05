@@ -99,7 +99,7 @@ namespace SpriterEngine
 	void AnimationInstance::findMainlineKeyTimeForward(real newTime)
 	{
 		auto& currentIt = mainlineKeyIterator;
-		auto& endIt = std::prev(mainlineKeys.end());
+		auto endIt = std::prev(mainlineKeys.end());
 
 		// if the time to find is below the current time
 		if (newTime<(*currentIt)->getTime())
@@ -137,7 +137,7 @@ namespace SpriterEngine
 	void AnimationInstance::findMainlineKeyTimeBackward(real newTime)
 	{
 		auto& currentIt = mainlineKeyIterator;
-		auto& endIt = mainlineKeys.begin();
+		auto endIt = mainlineKeys.begin();
 
 		// if the time to find is above the next time
 		if (newTime > (*currentIt)->getNextTime())

@@ -34,7 +34,7 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *VariableInstanceNameAndIdMap::getVariable(std::string variableName)
 	{
-		auto& it = variableNameMap.find(variableName);
+		auto it = variableNameMap.find(variableName);
 		if (it != variableNameMap.end())
 		{
 			return (*it).second;

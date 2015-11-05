@@ -39,7 +39,7 @@ namespace SpriterEngine
 	void TimelineInstance::findTimeForward(real newTime)
 	{
 		auto& currentIt = timelineKeyIterator;
-		auto& endIt = std::prev(timelineKeys->end());
+		auto endIt = std::prev(timelineKeys->end());
 
 		// if the time to find is below the current time
 		if (newTime<(*currentIt)->getTime())
@@ -76,7 +76,7 @@ namespace SpriterEngine
 	void TimelineInstance::findTimeBackward(real newTime)
 	{
 		auto& currentIt = timelineKeyIterator;
-		auto& endIt = timelineKeys->begin();
+		auto endIt = timelineKeys->begin();
 
 		// if the time to find is above the next time
 		if (newTime > (*currentIt)->getNextTime())

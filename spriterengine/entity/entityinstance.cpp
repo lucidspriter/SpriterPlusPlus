@@ -14,25 +14,25 @@
 namespace SpriterEngine
 {
 	EntityInstance::EntityInstance() :
+		zOrder(0),
 		position(0, 0),
 		scale(1, 1),
 		alpha(1),
 		currentEntity(0),
 		currentAnimation(0),
 		characterMapInterface(0),
-		playbackSpeedRatio(1),
-		zOrder(0)
+		playbackSpeedRatio(1)
 	{
 	}
 	EntityInstance::EntityInstance(SpriterModel *model, Entity *entity, CharacterMapInterface *initialCharacterMapInterface, ObjectFactory *objectFactory) :
+		zOrder(0),
 		position(0, 0),
 		scale(1, 1),
 		alpha(1),
 		currentEntity(0),
 		currentAnimation(0),
 		characterMapInterface(initialCharacterMapInterface),
-		playbackSpeedRatio(1),
-		zOrder(0)
+		playbackSpeedRatio(1)
 	{
 		model->setupFileReferences(&files);
 		currentEntity = &(*entities.insert(std::make_pair(entity->getId(), EntityInstanceData(model, this, entity, objectFactory))).first).second;
@@ -234,7 +234,7 @@ namespace SpriterEngine
 
 	void EntityInstance::setCurrentEntity(int newEntityId)
 	{
-		auto& it = entities.find(newEntityId);
+		auto it = entities.find(newEntityId);
 		if (it != entities.end())
 		{
 			currentEntity = &(*it).second;
@@ -347,7 +347,7 @@ namespace SpriterEngine
 
 	EntityInstanceData * EntityInstance::getEntity(int entityId)
 	{
-		auto& it = entities.find(entityId);
+		auto it = entities.find(entityId);
 		if (it != entities.end())
 		{
 			return &(*it).second;

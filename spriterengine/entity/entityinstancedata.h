@@ -50,7 +50,7 @@ namespace SpriterEngine
 		UniversalObjectInterface *getObjectInstance(int objectId);
 		UniversalObjectInterface * getObjectInstance(std::string objectName);
 
-		TransformProcessor *EntityInstanceData::getTransformer(int id);
+		TransformProcessor *getTransformer(int id);
 
 		VariableInstanceNameAndIdMap *getVariables() override;
 		UniversalObjectInterface *getVariable(int variableId);
