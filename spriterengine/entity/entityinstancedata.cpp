@@ -22,6 +22,29 @@ namespace SpriterEngine
 		entity->setupInstance(model, entityInstance, this, objectFactory);
 	}
 
+	EntityInstanceData::~EntityInstanceData()
+	{
+		for (auto& it : animations)
+		{
+			delete it;
+		}
+
+		for (auto& it : objectNameMap)
+		{
+			delete it.second;
+		}
+
+		for (auto& it : triggerNameMap)
+		{
+			delete it.second;
+		}
+
+		for (auto& it : soundNameMap)
+		{
+			delete it.second;
+		}
+	}
+
 	UniversalObjectInterface *EntityInstanceData::getObjectInstance(int objectId)
 	{
 		auto it = objects.find(objectId);

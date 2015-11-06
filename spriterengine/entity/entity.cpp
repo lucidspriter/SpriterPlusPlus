@@ -19,6 +19,14 @@ namespace SpriterEngine
 	{
 	}
 
+	Entity::~Entity()
+	{
+		for (auto& it : animations)
+		{
+			delete it;
+		}
+	}
+
 	int Entity::getId()
 	{
 		return entityId;

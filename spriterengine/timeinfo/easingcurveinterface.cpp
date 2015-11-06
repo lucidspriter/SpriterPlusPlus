@@ -7,4 +7,8 @@ namespace SpriterEngine
 	{
 	}
 
+	EasingCurveInterface::~EasingCurveInterface()
+	{
+	}
+
 }

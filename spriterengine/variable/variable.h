@@ -19,6 +19,7 @@ namespace SpriterEngine
 		};
 
 		Variable(std::string initialName, VariableType initialVariableType);
+		~Variable();
 
 		std::string getName() const;
 

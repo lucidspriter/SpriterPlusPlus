@@ -15,10 +15,9 @@ namespace SpriterEngine
 
 	MainlineKeyInstance::~MainlineKeyInstance()
 	{
-		while (refs.size())
+		for (auto& it : refs)
 		{
-			delete refs.back();
-			refs.pop_back();
+			delete it;
 		}
 	}
 

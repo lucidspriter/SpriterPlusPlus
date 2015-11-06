@@ -46,6 +46,7 @@ namespace SpriterEngine
 	{
 	public:
 		EntityInstanceData(SpriterModel *model, EntityInstance *entityInstance, Entity *entity, ObjectFactory *objectFactory);
+		~EntityInstanceData();
 		
 		UniversalObjectInterface *getObjectInstance(int objectId);
 		UniversalObjectInterface * getObjectInstance(std::string objectName);

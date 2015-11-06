@@ -12,10 +12,9 @@ namespace SpriterEngine
 
 	Timeline::~Timeline()
 	{
-		while (keys.size())
+		for (auto& it : keys)
 		{
-			delete keys.back();
-			keys.pop_back();
+			delete it;
 		}
 	}
 

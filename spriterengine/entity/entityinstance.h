@@ -21,7 +21,7 @@ namespace SpriterEngine
 	class CharacterMapInterface;
 	class ObjectFactory;
 
-	typedef std::map<int, EntityInstanceData> EntityInstanceDataMap;
+	typedef std::map<int, EntityInstanceData*> EntityInstanceDataMap;
 	typedef std::vector<FileReference*> FileReferenceVector;
 	typedef std::list<std::string> StringList;
 

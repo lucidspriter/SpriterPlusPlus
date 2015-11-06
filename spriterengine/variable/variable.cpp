@@ -20,6 +20,11 @@ namespace SpriterEngine
 	{
 	}
 
+	Variable::~Variable()
+	{
+		delete defaultValue;
+	}
+
 	std::string Variable::getName() const
 	{
 		return name;

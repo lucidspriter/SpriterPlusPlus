@@ -30,6 +30,7 @@ namespace SpriterEngine
 	{
 	public:
 		Entity(std::string initialName, int initialId, FileVector *initialFileVector);
+		~Entity();
 
 		int getId();
 
