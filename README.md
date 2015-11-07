@@ -28,7 +28,7 @@ Character maps
 ### Extend (All of the following can be found in spriterengine/override) :
 #### FileFactory 
 ###### and pass to SpriterModel so it can use your own inherited versions of :
-* SpriterFileLoader to create parsing code.  You can specify a separate SpriterFileLoader for scml (xml) and scon (json), which will be automatically selected upon loading based on the file extension
+* SpriterFileDocumentWrapper (and Element and Attribute Wrappers) to create parsing code.  You can specify a separate SpriterFileDocumentWrapper for scml (xml) and scon (json), which will be automatically selected upon loading based on the file extension
 * ImageFile to store shared texture/image resources to be used by sprite objects
 * SoundFile to store shared sound resources to be used by sound objects, and create your custom extended version of SoundObjectInfoReference to playback and control volume of the shared sound resources
 
