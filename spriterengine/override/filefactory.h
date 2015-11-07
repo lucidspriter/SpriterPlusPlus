@@ -10,18 +10,19 @@ namespace SpriterEngine
 
 	class ImageFile;
 	class SoundFile;
-	class SpriterFileLoader;
+	class SpriterFileDocumentWrapper;
 
 	class FileFactory
 	{
 	public:
 		FileFactory();
+		virtual ~FileFactory();
 
 		virtual ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot);
 		virtual SoundFile *newSoundFile(const std::string &initialFilePath);
 
-		virtual SpriterFileLoader *newScmlLoader();
-		virtual SpriterFileLoader *newSconLoader();
+		virtual SpriterFileDocumentWrapper *newScmlDocumentWrapper();
+		virtual SpriterFileDocumentWrapper *newSconDocumentWrapper();
 	};
 
 }

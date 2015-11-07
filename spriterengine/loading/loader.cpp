@@ -4,9 +4,9 @@
 
 namespace SpriterEngine
 {
-	Loader::Loader(SpriterFileLoader * newScmlLoader, SpriterFileLoader * newSconLoader) :
-		scmlLoader(newScmlLoader),
-		sconLoader(newSconLoader)
+	Loader::Loader(SpriterFileDocumentWrapper * newScmlDocumentWrapper, SpriterFileDocumentWrapper * newSconDocumentWrapper) :
+		scmlDocumentWrapper(newScmlDocumentWrapper),
+		sconDocumentWrapper(newSconDocumentWrapper)
 	{
 	}
 
@@ -17,11 +17,25 @@ namespace SpriterEngine
 		switch (fileType)
 		{
 		case SPRITERFILETYPE_SCML:
-			scmlLoader->loadFile(model, fileName);
+			if (scmlDocumentWrapper)
+			{
+				spriterDocumentLoader.loadFile(model, scmlDocumentWrapper, fileName);
+			}
+			else
+			{
+				// error
+			}
 			break;
 
 		case SPRITERFILETYPE_SCON:
-			sconLoader->loadFile(model, fileName);
+			if (sconDocumentWrapper)
+			{
+				spriterDocumentLoader.loadFile(model, sconDocumentWrapper, fileName);
+			}
+			else
+			{
+				// error
+			}
 			break;
 
 		default:
@@ -46,6 +60,7 @@ namespace SpriterEngine
 				return SPRITERFILETYPE_SCON;
 			}
 		}
+		// error
 		return SPRITERFILETYPE_NONE;
 	}
 }

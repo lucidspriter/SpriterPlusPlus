@@ -12,6 +12,10 @@ namespace SpriterEngine
 	{
 	}
 
+	FileFactory::~FileFactory()
+	{
+	}
+
 	ImageFile * FileFactory::newImageFile(const std::string &initialFilePath, point initialDefaultPivot)
 	{
 		return new ImageFile(initialFilePath, initialDefaultPivot);
@@ -22,14 +26,14 @@ namespace SpriterEngine
 		return new SoundFile(initialFilePath);
 	}
 
-	SpriterFileLoader * FileFactory::newScmlLoader()
+	SpriterFileDocumentWrapper * FileFactory::newScmlDocumentWrapper()
 	{
-		return new SpriterFileLoader();
+		return 0;
 	}
 
-	SpriterFileLoader * FileFactory::newSconLoader()
+	SpriterFileDocumentWrapper * FileFactory::newSconDocumentWrapper()
 	{
-		return new SpriterFileLoader();
+		return 0;
 	}
 
 }

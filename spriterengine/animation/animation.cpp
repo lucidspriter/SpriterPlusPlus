@@ -35,7 +35,7 @@ namespace SpriterEngine
 		{
 			for (auto& innerIt : outerIt.second)
 			{
-				delete &innerIt;
+				delete innerIt.second;
 			}
 		}
 

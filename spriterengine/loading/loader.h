@@ -3,16 +3,18 @@
 
 #include <string>
 
+#include "spriterdocumentloader.h"
+
 namespace SpriterEngine
 {
 
-	class SpriterFileLoader;
+	class SpriterFileDocumentWrapper;
 	class SpriterModel;
 
 	class Loader
 	{
 	public:
-		Loader(SpriterFileLoader *newScmlLoader, SpriterFileLoader *newSconLoader);
+		Loader(SpriterFileDocumentWrapper *newScmlDocumentWrapper, SpriterFileDocumentWrapper *newSconDocumentWrapper);
 
 		void loadFile(SpriterModel *model, const std::string &fileName);
 
@@ -23,9 +25,11 @@ namespace SpriterEngine
 			SPRITERFILETYPE_SCML,
 			SPRITERFILETYPE_SCON
 		};
+		
+		SpriterDocumentLoader spriterDocumentLoader;
 
-		SpriterFileLoader *scmlLoader;
-		SpriterFileLoader *sconLoader;
+		SpriterFileDocumentWrapper *scmlDocumentWrapper;
+		SpriterFileDocumentWrapper *sconDocumentWrapper;
 
 		SpriterFileType extractFileTypeFromFileName(const std::string &fileName);
 	};

@@ -18,7 +18,7 @@ namespace SpriterEngine
 	class EntityInstance;
 	class EntityInstanceData;
 
-	typedef std::vector<Variable> VariableVector;
+	typedef std::vector<Variable*> VariableVector;
 	typedef std::vector<int> IdVector;
 
 	class Object : public VariableContainer

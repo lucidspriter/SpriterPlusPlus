@@ -12,12 +12,13 @@ namespace SpriterEngine
 
 	class VariableInstanceNameAndIdMap;
 
-	typedef std::vector<Variable> VariableVector;
+	typedef std::vector<Variable*> VariableVector;
 
 	class VariableContainer
 	{
 	public:
 		VariableContainer();
+		virtual ~VariableContainer();
 
 		Variable *getVariable(int variableIndex);
 

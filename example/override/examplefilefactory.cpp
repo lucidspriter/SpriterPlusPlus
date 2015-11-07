@@ -3,7 +3,7 @@
 #include "../../spriterengine/override/imagefile.h"
 #include "../../spriterengine/override/soundfile.h"
 
-#include "tinyxmlscmlloader.h"
+#include "tinyxmlspriterfiledocumentwrapper.h"
 #include "sfmlimagefile.h"
 #include "sfmlsoundfile.h"
 
@@ -25,8 +25,8 @@ namespace SpriterEngine
 		return new SfmlSoundFile(initialFilePath);
 	}
 
-	SpriterFileLoader * ExampleFileFactory::newScmlLoader()
+	SpriterFileDocumentWrapper * ExampleFileFactory::newScmlDocumentWrapper()
 	{
-		return new TinyXmlScmlLoader();
+		return new TinyXmlSpriterFileDocumentWrapper();
 	}
 }

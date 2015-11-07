@@ -11,11 +11,19 @@ namespace SpriterEngine
 	{
 	}
 
+	VariableContainer::~VariableContainer()
+	{
+		for (auto& it : variables)
+		{
+			delete it;
+		}
+	}
+
 	Variable *VariableContainer::getVariable(int variableIndex)
 	{
 		if (variableIndex<variables.size())
 		{
-			return &variables.at(variableIndex);
+			return variables.at(variableIndex);
 		}
 		else
 		{
@@ -26,20 +34,20 @@ namespace SpriterEngine
 
 	void VariableContainer::addStringVariable(std::string variableName, std::string defaultValue)
 	{
-		variables.push_back(Variable(variableName, Variable::VARIABLETYPE_STRING));
-		variables.back().getDefaultValue()->setStringValue(defaultValue);
+		variables.push_back(new Variable(variableName, Variable::VARIABLETYPE_STRING));
+		variables.back()->getDefaultValue()->setStringValue(defaultValue);
 	}
 
 	void VariableContainer::addIntVariable(std::string variableName, int defaultValue)
 	{
-		variables.push_back(Variable(variableName, Variable::VARIABLETYPE_INT));
-		variables.back().getDefaultValue()->setIntValue(defaultValue);
+		variables.push_back(new Variable(variableName, Variable::VARIABLETYPE_INT));
+		variables.back()->getDefaultValue()->setIntValue(defaultValue);
 	}
 
 	void VariableContainer::addRealVariable(std::string variableName, real defaultValue)
 	{
-		variables.push_back(Variable(variableName, Variable::VARIABLETYPE_REAL));
-		variables.back().getDefaultValue()->setRealValue(defaultValue);
+		variables.push_back(new Variable(variableName, Variable::VARIABLETYPE_REAL));
+		variables.back()->getDefaultValue()->setRealValue(defaultValue);
 	}
 
 	void VariableContainer::setupVariableInstances(VariableInstanceNameAndIdMap * variableMap)
@@ -48,7 +56,7 @@ namespace SpriterEngine
 		{
 			for (auto& it : variables)
 			{
-				variableMap->pushBackVariable(&it);
+				variableMap->pushBackVariable(it);
 			}
 		}
 	}
@@ -58,7 +66,7 @@ namespace SpriterEngine
 		int i = 0;
 		for (auto& it : variables)
 		{
-			it.setupDefaultInAnimation(animation, objectId, i);
+			it->setupDefaultInAnimation(animation, objectId, i);
 			++i;
 		}
 	}
