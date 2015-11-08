@@ -41,7 +41,7 @@ Character maps
 
 * spriterengine/objectinfo/TriggerObjectInfo if you want to be able to perform a function upon being triggering events
 ###### (Alternatively you can query a specific trigger for your instance using :
-* GetTriggerObject("triggerName")->getTriggerCount() // in case more than one event was triggered in the elapsed time
+* getTriggerObject("triggerName")->getTriggerCount() // in case more than one event was triggered in the elapsed time
 
 
 
