@@ -3,7 +3,7 @@
 
 #include "../../spriterengine/global/global.h"
 
-#include "../../spriterengine/override/spriterfileloader.h"
+#include "../../spriterengine/override/spriterfiledocumentwrapper.h"
 
 #include "../../spriterengine/loading/loadinghelpers.h"
 
@@ -77,4 +77,4 @@ namespace SpriterEngine
 
 }
 
-#endif // SPRITERDOCUMENTOADER_H
+#endif // SPRITERDOCUMENTLOADER_H
