@@ -3,7 +3,7 @@
 #include "imagefile.h"
 #include "soundfile.h"
 
-#include "spriterfileloader.h"
+#include "spriterfiledocumentwrapper.h"
 
 namespace SpriterEngine
 {
