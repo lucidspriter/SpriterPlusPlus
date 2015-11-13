@@ -2,6 +2,8 @@
 
 #include "../global/settings.h"
 
+#include "../override/spriterfiledocumentwrapper.h"
+
 namespace SpriterEngine
 {
 	Loader::Loader(SpriterFileDocumentWrapper * newScmlDocumentWrapper, SpriterFileDocumentWrapper * newSconDocumentWrapper) :

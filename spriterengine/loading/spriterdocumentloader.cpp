@@ -473,7 +473,7 @@ namespace SpriterEngine
 			}
 			else if (object->getType() == Object::OBJECTTYPE_BOX)
 			{
-				auto & it = defaultBoxPivotMap->find(object->getId());
+				PointMap::iterator it = defaultBoxPivotMap->find(object->getId());
 				if (it != defaultBoxPivotMap->end())
 				{
 					defaultBoxPivot = &(*it).second;
@@ -1064,7 +1064,7 @@ namespace SpriterEngine
 			}
 			else if (refElement->getName() == "object_ref")
 			{
-				auto& it = spriteKeyFileInfoMap->find(objectId);
+				SpriteKeyFileInfoObjectIdMap::iterator it = spriteKeyFileInfoMap->find(objectId);
 				if (it != spriteKeyFileInfoMap->end())
 				{
 					SpriteKeyFileInfoVector *spriteKeyInfoVector = &(*it).second;
@@ -1081,7 +1081,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					auto& it = subEntityKeyInfoMap->find(objectId);
+					SubEntityKeyInfoMap::iterator it = subEntityKeyInfoMap->find(objectId);
 					if (it != subEntityKeyInfoMap->end())
 					{
 						SubEntityKeyInfoVector *subEntityKeyInfoVector = &(*it).second;
