@@ -33,6 +33,11 @@ namespace SpriterEngine
 		return size;
 	}
 
+	real BoxInstanceInfo::getAlpha()
+	{
+		return 1;
+	}
+
 	void BoxInstanceInfo::setPosition(const point &newPosition)
 	{
 		position = newPosition;
@@ -53,6 +58,11 @@ namespace SpriterEngine
 		pivot = newPivot;
 	}
 
+	void BoxInstanceInfo::setAlpha(real newAlpha)
+	{
+		// ignore setAlpha commands without throwing an error
+	}
+
 	void BoxInstanceInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		resultObject->setAngle(angle.angleLinear(bObject->getAngle(), t));
@@ -63,7 +73,13 @@ namespace SpriterEngine
 
 	void BoxInstanceInfo::render()
 	{
+		// if (renderDebugBoxes)
 		// TODO: add drawing code here to enable bone debug rendering
+
+		// getPosition()
+		// getAngle();
+		// getScale();
+		// getPivot() * getSize();
 	}
 
 }

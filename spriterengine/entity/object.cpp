@@ -1,5 +1,7 @@
 #include "object.h"
 
+#include "../global/settings.h"
+
 #include "../override/objectfactory.h"
 
 #include "../objectinfo/pointobjectinfo.h"
@@ -9,6 +11,7 @@
 #include "../objectinfo/entityobjectinfo.h"
 #include "../objectinfo/soundobjectinfo.h"
 #include "../objectinfo/triggerobjectinfo.h"
+#include "../objectinfo/pointinstanceinfo.h"
 #include "../objectinfo/boneinstanceinfo.h"
 #include "../objectinfo/boxinstanceinfo.h"
 
@@ -61,39 +64,18 @@ namespace SpriterEngine
 		size = newSize;
 	}
 
-	UniversalObjectInterface *Object::getNewObjectInfoInstance(ObjectFactory *objectFactory)
+	UniversalObjectInterface *Object::getNewObjectInfoInstance()
 	{
 		switch (objectType)
 		{
 		case OBJECTTYPE_POINT:
-			if (objectFactory)
-			{
-				return objectFactory->newPointObjectInfo();
-			}
-			else
-			{
-				return new PointObjectInfo();
-			}
+			return new PointObjectInfo();
 
 		case OBJECTTYPE_BONE:
-			if (objectFactory)
-			{
-				return objectFactory->newBoneInstanceInfo(size);
-			}
-			else
-			{
-				return new BoneObjectInfo();
-			}
+			return new BoneObjectInfo();
 
 		case OBJECTTYPE_BOX:
-			if (objectFactory)
-			{
-				return objectFactory->newBoxInstanceInfo(size);
-			}
-			else
-			{
-				return new BoxObjectInfo();
-			}
+			return new BoxObjectInfo();
 
 		case OBJECTTYPE_SPRITE:
 			return new SpriteObjectInfo();
@@ -108,7 +90,7 @@ namespace SpriterEngine
 			return new TriggerObjectInfo();
 
 		default:
-			// error;
+			Settings::error("Object::getNewObjectInfoInstance - invalid object type");
 			return 0;
 		}
 	}
@@ -117,6 +99,17 @@ namespace SpriterEngine
 	{
 		switch (objectType)
 		{
+		case OBJECTTYPE_POINT:
+			if (objectFactory)
+			{
+				entityInstanceData->setObjectInstance(objectId, name, objectFactory->newPointInstanceInfo());
+			}
+			else
+			{
+				entityInstanceData->setObjectInstance(objectId, name, new PointInstanceInfo());
+			}
+			break;
+
 		case OBJECTTYPE_BONE:
 			if (objectFactory)
 			{
@@ -147,7 +140,7 @@ namespace SpriterEngine
 			if (initializationIds.size())
 			{
 				entityInstanceData->setSoundInstance(objectId, name, entityInstance->getFile(initializationIds.back()));
-			}			
+			}
 			break;
 
 		case OBJECTTYPE_TRIGGER:
@@ -162,7 +155,7 @@ namespace SpriterEngine
 			break;
 
 		default:
-			entityInstanceData->setObjectInstance(objectId, name, getNewObjectInfoInstance(objectFactory));
+			entityInstanceData->setObjectInstance(objectId, name, getNewObjectInfoInstance());
 			break;
 		}
 	}

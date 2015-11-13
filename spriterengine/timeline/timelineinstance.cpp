@@ -1,5 +1,7 @@
 #include "timelineinstance.h"
 
+#include "../global/settings.h"
+
 #include "../entity/entityinstance.h"
 
 #include "timeline.h"
@@ -67,7 +69,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("TimelineInstance::findTimeForward - could not find key at time " + std::to_string(newTime) + " : falling back on first key");
 			timelineKeyIterator = timelineKeys->begin();
 			return;
 		}
@@ -82,7 +84,7 @@ namespace SpriterEngine
 		if (newTime > (*currentIt)->getNextTime())
 		{
 			// if the time to find is after the last keyframe
-			if (newTime > timelineKeys->back()->getTime())
+			if (newTime >= timelineKeys->back()->getTime())
 			{
 				// then the last keyframe in the timeline is the correct result
 				timelineKeyIterator = --timelineKeys->end();
@@ -93,7 +95,6 @@ namespace SpriterEngine
 				// if not, start at the end of the timeline regardless of the startingPosition
 				// and end at the startingPosition
 				currentIt = --timelineKeys->end();
-				endIt = timelineKeyIterator;
 			}
 		}
 
@@ -114,7 +115,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("TimelineInstance::findTimeBackward - could not find key at time " + std::to_string(newTime) + " : falling back on first key");
 			timelineKeyIterator = timelineKeys->begin();
 			return;
 		}

@@ -8,7 +8,7 @@
 namespace SpriterEngine
 {
 
-	class PointObjectInfo;
+	class PointInstanceInfo;
 	class BoneInstanceInfo;
 	class BoxInstanceInfo;
 	class TriggerObjectInfo;
@@ -19,7 +19,7 @@ namespace SpriterEngine
 		ObjectFactory();
 		
 		// TODO: Override along with PointObjectInfo::render() to allow debug display of point objects;
-		virtual PointObjectInfo *newPointObjectInfo();
+		virtual PointInstanceInfo *newPointInstanceInfo();
 
 		// TODO: Override along with BoneObjectInfo::render() to allow debug display of bone objects;
 		virtual BoneInstanceInfo *newBoneInstanceInfo(point size);

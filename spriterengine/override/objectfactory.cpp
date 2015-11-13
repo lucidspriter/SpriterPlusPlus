@@ -1,6 +1,6 @@
 #include "objectfactory.h"
 
-#include "../objectinfo/pointobjectinfo.h"
+#include "../objectinfo/pointinstanceinfo.h"
 #include "../objectinfo/boneinstanceinfo.h"
 #include "../objectinfo/boxinstanceinfo.h"
 #include "../objectinfo/triggerobjectinfo.h"
@@ -12,9 +12,9 @@ namespace SpriterEngine
 	{
 	}
 
-	PointObjectInfo * ObjectFactory::newPointObjectInfo()
+	PointInstanceInfo * ObjectFactory::newPointInstanceInfo()
 	{
-		return new PointObjectInfo();
+		return new PointInstanceInfo();
 	}
 
 	BoneInstanceInfo * ObjectFactory::newBoneInstanceInfo(point size)

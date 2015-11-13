@@ -1,5 +1,7 @@
 #include "variable.h"
 
+#include "../global/settings.h"
+
 #include "../objectinfo/stringvariableinfo.h"
 #include "../objectinfo/stringvariableinforeference.h"
 #include "../objectinfo/intvariableinfo.h"
@@ -51,7 +53,7 @@ namespace SpriterEngine
 			return new RealVariableInfo();
 
 		default:
-			// error;
+			Settings::error("Variable::setupDefaultInAnimation - invalid variable type");
 			return 0;
 		}
 	}
@@ -87,7 +89,7 @@ namespace SpriterEngine
 				break;
 
 			default:
-				// error;
+				Settings::error("Variable::setupDefaultInAnimation - invalid variable type");
 				break;
 			}
 

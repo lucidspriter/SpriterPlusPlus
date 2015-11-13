@@ -1,5 +1,7 @@
 #include "entityref.h"
 
+#include "../global/settings.h"
+
 #include "../entity/entityinstance.h"
 
 #include "entityrefinstance.h"
@@ -20,7 +22,7 @@ namespace SpriterEngine
 		EntityInstanceData *initialEntity = objectInstance->getEntity(entityId);
 		if (!initialEntity)
 		{
-			// error
+			Settings::error("EntityRef::getNewSpecializedObjectRefInstance - entity instance data with id - " + std::to_string(entityId) + " not found");
 			return 0;
 		}
 		return new EntityRefInstance(objectInstance, initialParentTransformer, getKey(), initialEntity, initialEntity->getAnimation(animationIndex));

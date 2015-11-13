@@ -45,7 +45,7 @@ namespace SpriterEngine
 		void addInitializationId(int newId);
 		void setSize(point newSize);
 
-		UniversalObjectInterface *getNewObjectInfoInstance(ObjectFactory *objectFactory = 0);
+		UniversalObjectInterface *getNewObjectInfoInstance();
 
 		virtual void addObjectInstanceToEntityInstanceData(SpriterModel * model, EntityInstance * entityInstance, EntityInstanceData * entityInstanceData, ObjectFactory * objectFactory);
 

@@ -1,5 +1,7 @@
 #include "sfmlboxinstanceinfo.h"
 
+#include "../../spriterengine/global/settings.h"
+
 namespace SpriterEngine
 {
 
@@ -11,11 +13,14 @@ namespace SpriterEngine
 	}
 	void SfmlBoxInstanceInfo::render()
 	{
-		rectangle.setPosition(getPosition().x, getPosition().y);
-		rectangle.setRotation(toDegrees(getAngle()));
-		rectangle.setScale(getScale().x, getScale().y);
-		rectangle.setOrigin(getPivot().x*getSize().x, getPivot().y*getSize().y);
-		renderWindow->draw(rectangle);
+		if (Settings::renderDebugBoxes)
+		{
+			rectangle.setPosition(getPosition().x, getPosition().y);
+			rectangle.setRotation(toDegrees(getAngle()));
+			rectangle.setScale(getScale().x, getScale().y);
+			rectangle.setOrigin(getPivot().x*getSize().x, getPivot().y*getSize().y);
+			renderWindow->draw(rectangle);
+		}
 	}
 
 }

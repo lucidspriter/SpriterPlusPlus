@@ -1,5 +1,7 @@
 #include "loadinghelpers.h"
 
+#include "../global/settings.h"
+
 #include "../timeinfo/instanteasingcurve.h"
 #include "../timeinfo/lineareasingcurve.h"
 #include "../timeinfo/quadraticeasingcurve.h"
@@ -40,8 +42,11 @@ namespace SpriterEngine
 		{
 			return Object::OBJECTTYPE_TRIGGER;
 		}
-		// error;
-		return Object::OBJECTTYPE_NONE;
+		else
+		{
+			Settings::error("loadinghelpers - objectTypeNameToType - unrecognized object type name : \"" + typeName + "\"");
+			return Object::OBJECTTYPE_NONE;
+		}
 	}
 
 	CurveType curveTypeNameToType(std::string typeName)
@@ -74,8 +79,11 @@ namespace SpriterEngine
 		{
 			return CURVETYPE_BEZIER;
 		}
-		// error;
-		return CURVETYPE_NONE;
+		else
+		{
+			Settings::error("loadinghelpers - curveTypeNameToType - unrecognized curve type name : \"" + typeName + "\"");
+			return CURVETYPE_NONE;
+		}
 	}
 
 	EasingCurveInterface *getNewEasingCurve(CurveType curveType, ControlPointArray *controlPoints)
@@ -104,8 +112,8 @@ namespace SpriterEngine
 			return new BezierEasingCurve(*controlPoints[0], *controlPoints[1], *controlPoints[2], *controlPoints[3]);
 
 		default:
-			// error
-			return 0;
+			Settings::error("loadinghelpers - getNewEasingCurve - invalid curve type : falling back on linear easing curve");
+			return new LinearEasingCurve();
 		}
 	}
 
@@ -140,7 +148,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("FileFlatter::appendFile - attempting to append file when no folders exist yet");
 		}
 	}
 

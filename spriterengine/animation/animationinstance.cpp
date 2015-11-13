@@ -1,5 +1,7 @@
 #include "animationinstance.h"
 
+#include "../global/settings.h"
+
 #include "../timeline/timelineinstance.h"
 
 #include "animation.h"
@@ -128,7 +130,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("findMainlineKeyTimeForward - could not find key at time " + std::to_string(newTime) + " : falling back on first key");
 			mainlineKeyIterator = mainlineKeys.begin();
 			return;
 		}
@@ -143,7 +145,7 @@ namespace SpriterEngine
 		if (newTime > (*currentIt)->getNextTime())
 		{
 			// if the time to find is after the last keyframe
-			if (newTime > mainlineKeys.back()->getTime())
+			if (newTime >= mainlineKeys.back()->getTime())
 			{
 				// then the last keyframe in the timeline is the correct result
 				mainlineKeyIterator = --mainlineKeys.end();
@@ -154,7 +156,6 @@ namespace SpriterEngine
 				// if not, start at the end of the timeline regardless of the startingPosition
 				// and end at the startingPosition
 				currentIt = --mainlineKeys.end();
-				endIt = mainlineKeyIterator;
 			}
 		}
 
@@ -175,7 +176,7 @@ namespace SpriterEngine
 		else
 		{
 			mainlineKeyIterator = mainlineKeys.begin();
-			// error
+			Settings::error("AnimationInstance::findMainlineKeyTimeBackward - could not find key at time " + std::to_string(newTime) + " : falling back on first key");
 			return;
 		}
 	}

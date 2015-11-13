@@ -66,12 +66,12 @@ namespace SpriterEngine
 
 	void BoneInstanceInfo::render()
 	{
+		// if (renderDebugBones)
 		// TODO: override and add drawing code here to enable bone debug rendering
 
 		// getPosition()
 		// getAngle();
-		// getScale();
-		// getPivot().x * getSize().x;
+		// getScale() * getSize().x;
 	}
 
 }

@@ -1,6 +1,6 @@
 #include "loader.h"
 
-#include "../override/spriterfileloader.h"
+#include "../global/settings.h"
 
 namespace SpriterEngine
 {
@@ -23,7 +23,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("Loader::loadFile - attempting to load scml file \"" + fileName + "\" : no scml document wrapper found");
 			}
 			break;
 
@@ -34,12 +34,12 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("Loader::loadFile - attempting to load scon file \"" + fileName + "\" : no scon document wrapper found");
 			}
 			break;
 
 		default:
-			// error;
+			Settings::error("Loader::loadFile - attempting to load file \"" + fileName + "\" : unrecognized file type");
 			break;
 		}
 	}
@@ -59,8 +59,15 @@ namespace SpriterEngine
 			{
 				return SPRITERFILETYPE_SCON;
 			}
+			else
+			{
+				Settings::error("Loader::extractFileTypeFromFileName - file \"" + fileName + "\" : unrecognized file type");
+			}
 		}
-		// error
+		else
+		{
+			Settings::error("Loader::extractFileTypeFromFileName - file \"" + fileName + "\" : unable to extract extension from file name");
+		}
 		return SPRITERFILETYPE_NONE;
 	}
 }

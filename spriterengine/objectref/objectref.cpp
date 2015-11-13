@@ -1,5 +1,7 @@
 #include "objectref.h"
 
+#include "../global/settings.h"
+
 #include "../entity/entityinstance.h"
 
 #include "objectrefinstance.h"
@@ -19,13 +21,13 @@ namespace SpriterEngine
 		UniversalObjectInterface *initialResultObject = entityInstanceData->getObjectInstance(objectId);
 		if (!initialResultObject)
 		{
-			// error
+			Settings::error("ObjectRef::getNewObjectRefInstance - object instance for object id " + std::to_string(objectId) + " not found in entity instance data");
 			return 0;
 		}
 		TransformProcessor *initialParentTransformer = entityInstanceData->getTransformer(parentObjectId);
 		if (!initialParentTransformer)
 		{
-			// error
+			Settings::error("ObjectRef::getNewObjectRefInstance - transform processor for object id " + std::to_string(parentObjectId) + " not found in entity instance data");
 			return 0;
 		}
 		return getNewSpecializedObjectRefInstance(entityInstance, entityInstanceData, initialParentTransformer, initialResultObject);

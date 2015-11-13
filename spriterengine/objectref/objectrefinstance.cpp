@@ -1,5 +1,7 @@
 #include "objectrefinstance.h"
 
+#include "../global/settings.h"
+
 #include "../entity/entityinstance.h"
 #include "../timeline/timelinekey.h"
 
@@ -28,7 +30,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("ObjectRefInstance::process - parent transform processor missing");
 		}
 	}
 

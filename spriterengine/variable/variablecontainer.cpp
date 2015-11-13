@@ -1,5 +1,7 @@
 #include "variablecontainer.h"
 
+#include "../global/settings.h"
+
 #include "../objectinfo/universalobjectinterface.h"
 
 #include "variableinstancenameandidmap.h"
@@ -27,7 +29,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("VariableContainer::getVariable - variable index " + std::to_string(variableIndex) + " out of range");
 			return 0;
 		}
 	}

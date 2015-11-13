@@ -3,8 +3,6 @@
 
 #include "../../spriterengine/global/global.h"
 
-#include "../../spriterengine/override/spriterfileloader.h"
-
 #include "../../spriterengine/loading/loadinghelpers.h"
 
 namespace SpriterEngine

@@ -1,6 +1,6 @@
 #include "exampleobjectfactory.h"
 
-#include "sfmlpointobjectinfo.h"
+#include "sfmlpointinstanceinfo.h"
 #include "sfmlboxinstanceinfo.h"
 #include "sfmlsoundobjectinforeference.h"
 
@@ -12,9 +12,9 @@ namespace SpriterEngine
 	{
 	}
 
-	PointObjectInfo * ExampleObjectFactory::newPointObjectInfo()
+	PointInstanceInfo * ExampleObjectFactory::newPointInstanceInfo()
 	{
-		return new SfmlPointObjectInfo(renderWindow);
+		return new SfmlPointInstanceInfo(renderWindow);
 	}
 
 	BoxInstanceInfo * ExampleObjectFactory::newBoxInstanceInfo(point size)

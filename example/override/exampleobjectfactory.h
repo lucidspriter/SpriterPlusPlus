@@ -13,7 +13,7 @@ namespace SpriterEngine
 	public:
 		ExampleObjectFactory(sf::RenderWindow *validRenderWindow);
 		
-		PointObjectInfo *newPointObjectInfo() override;
+		PointInstanceInfo *newPointInstanceInfo() override;
 
 		BoxInstanceInfo *newBoxInstanceInfo(point size) override;
 

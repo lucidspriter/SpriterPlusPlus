@@ -1,5 +1,7 @@
 ﻿#include "entityinstance.h"
 
+#include "../global/settings.h"
+
 #include "../charactermap/charactermapinterface.h"
 #include "../objectinfo/tagobjectinforeference.h"
 #include "../objectinfo/triggerobjectinfo.h"
@@ -62,7 +64,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("EntityInstance::setTimeElapsed - current animation not set");
 		}
 	}
 
@@ -91,7 +93,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("EntityInstance::getFile - file id " + std::to_string(fileId) + " out of range");
 			return 0;
 		}
 	}
@@ -246,7 +248,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("EntityInstance::setCurrentEntity - entity with id " + std::to_string(newEntityId) + " not found");
 		}
 	}
 
@@ -278,7 +280,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("EntityInstance::setCurrentTime - current animation not set");
 		}
 	}
 
@@ -359,7 +361,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("EntityInstance::getEntity - entity instance data with id " + std::to_string(entityId) + " not found");
 			return 0;
 		}
 	}

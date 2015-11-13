@@ -1,5 +1,7 @@
 #include "spritermodel.h"
 
+#include "../global/settings.h"
+
 #include "../entity/entityinstance.h"
 
 #include "../override/imagefile.h"
@@ -55,6 +57,7 @@ namespace SpriterEngine
 		}
 		else
 		{
+			Settings::error("SpriterModel::getNewEntityInstance - entity id " + std::to_string(entityId) + " out of range");
 			return 0;
 		}
 	}
@@ -71,7 +74,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterModel::getNewEntityInstance - could not find entity with id " + std::to_string(it));
 			}
 		}
 		return newEntityInstance;
@@ -86,7 +89,7 @@ namespace SpriterEngine
 				return it->getNewEntityInstance(this, objectFactory);
 			}
 		}
-		// error
+		Settings::error("SpriterModel::getNewEntityInstance - could not find entity with name \"" + entityName + "\"");
 		return 0;
 	}
 
@@ -144,7 +147,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("SpriterModel::getTag - tag index " + std::to_string(tagIndex) + " out of range");
 			return 0;
 		}
 	}
@@ -162,7 +165,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("SpriterModel::getEntity - entity id " + std::to_string(entityId) + " out of range");
 			return 0;
 		}
 	}

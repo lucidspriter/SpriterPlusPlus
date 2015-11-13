@@ -1,5 +1,7 @@
 #include "sfmlimagefile.h"
 
+#include "../../spriterengine/global/settings.h"
+
 #include "../../spriterengine/objectinfo/universalobjectinterface.h"
 
 namespace SpriterEngine
@@ -21,7 +23,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::Settings::error("SfmlImageFile::initializeFile - sfml texture unable to load file from path \"" + path() + "\"");
 		}
 	}
 

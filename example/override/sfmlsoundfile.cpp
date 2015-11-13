@@ -1,5 +1,7 @@
 #include "sfmlsoundfile.h"
 
+#include "../../spriterengine/global/settings.h"
+
 #include "sfmlsoundobjectinforeference.h"
 
 namespace SpriterEngine
@@ -14,7 +16,7 @@ namespace SpriterEngine
 	{
 		if (!buffer.loadFromFile(path()))
 		{
-			// error
+			Settings::error("SfmlSoundFile::initializeFile - sfml sound buffer unable to load file from path \"" + path() + "\"");
 		}
 	}
 

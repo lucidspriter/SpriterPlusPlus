@@ -1,6 +1,8 @@
 #include "entity.h"
 #include "object.h"
 
+#include "../global/settings.h"
+
 #include "../animation/animationinstance.h"
 
 #include "../override/objectfactory.h"
@@ -78,7 +80,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("Entity::getObject - object with id " + std::to_string(objectId) + " not found");
 			return 0;
 		}
 	}
@@ -98,7 +100,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("Entity::getVariable - object with id " + std::to_string(variableId) + " not found");
 				return 0;
 			}
 		}
@@ -170,7 +172,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("Entity::applyCharacterMap - character map with name \"" + mapName + "\" not found");
 		}
 	}
 
@@ -198,7 +200,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("Entity::getNewObjectInfoInstance - object with id " + std::to_string(objectId) + " not found");
 			return 0;
 		}
 	}

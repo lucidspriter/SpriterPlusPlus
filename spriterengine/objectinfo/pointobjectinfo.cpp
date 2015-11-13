@@ -43,6 +43,7 @@ namespace SpriterEngine
 
 	void PointObjectInfo::render()
 	{
+		// if (renderDebugPoints)
 		// TODO: override and add drawing code here to enable point debug rendering
 	}
 

@@ -1,5 +1,5 @@
-#ifndef BOXINSTANCEINFO_H
-#define BOXINSTANCEINFO_H
+#ifndef POINTINSTANCEINFO_H
+#define POINTINSTANCEINFO_H
 
 #include "universalobjectinterface.h"
 
@@ -8,22 +8,21 @@
 namespace SpriterEngine
 {
 
-	class BoxInstanceInfo : public UniversalObjectInterface
+	class PointInstanceInfo : public UniversalObjectInterface
 	{
 	public:
-		BoxInstanceInfo(point initialSize);
+		PointInstanceInfo();
 
 		point getPosition() override;
 		real getAngle() override;
 		point getScale() override;
-		point getPivot() override;
-		point getSize() override;
 		real getAlpha() override;
 
 		void setPosition(const point &newPosition) override;
 		void setAngle(real newAngle) override;
+		void setSpin(int newSpin) override;
+
 		void setScale(const point &newScale) override;
-		void setPivot(const point &newPivot) override;
 		void setAlpha(real newAlpha) override;
 
 		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
@@ -33,12 +32,8 @@ namespace SpriterEngine
 	private:
 		point position;
 		AngleInfo angle;
-		point scale;
-		point pivot;
-
-		point size;
 	};
 
 }
 
-#endif // BOXINSTANCEINFO_H
+#endif // POINTINSTANCEINFO_H

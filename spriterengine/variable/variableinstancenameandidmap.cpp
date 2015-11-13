@@ -1,5 +1,7 @@
 #include "variableinstancenameandidmap.h"
 
+#include "../global/settings.h"
+
 #include "../objectinfo/universalobjectinterface.h"
 
 #include "variable.h"
@@ -21,13 +23,13 @@ namespace SpriterEngine
 
 	UniversalObjectInterface *VariableInstanceNameAndIdMap::getVariable(int variableIndex)
 	{
-		if(variableIndex<variables.size())
+		if(variableIndex < variables.size())
 		{
 			return variables.at(variableIndex);
 		}
 		else
 		{
-			// error
+			Settings::error("VariableInstanceNameAndIdMap::getVariable - variable instance index " + std::to_string(variableIndex) + " out of range");
 			return 0;
 		}
 	}
@@ -41,8 +43,8 @@ namespace SpriterEngine
 		}
 		else
 		{
+			Settings::error("VariableInstanceNameAndIdMap::getVariable - variable instance with name " + variableName + " not found");
 			return 0;
-			// error
 		}
 	}
 

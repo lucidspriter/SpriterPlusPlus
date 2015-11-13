@@ -1,5 +1,7 @@
 #include "spriterdocumentloader.h"
 
+#include "../global/settings.h"
+
 #include "../override/spriterfiledocumentwrapper.h"
 #include "../override/spriterfileelementwrapper.h"
 #include "../override/spriterfileattributewrapper.h"
@@ -39,7 +41,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("SpriterDocumentLoader::loadFile - invalid Spriter file : missing \"spriter_data\" element");
 			return;
 		}
 	}
@@ -65,7 +67,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getFolderFileStructureFromElement - \"file\" element missing \"name\" attribute");
 					return;
 				}
 
@@ -125,7 +127,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getTagListFromElement - \"tag_list\" element missing \"name\" attribute");
 					return;
 				}
 
@@ -153,7 +155,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getEntitiesFromElement - unable to create entity from invalid \"entity\" element");
 				return;
 			}
 
@@ -172,7 +174,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("SpriterDocumentLoader::getNewEntityFromEntityElement - \"entity\" element missing \"name\" attribute");
 			return 0;
 		}
 	}
@@ -229,12 +231,12 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getObjectInfoFromEntityElement - failed to create new object from \"obj_info\" element");
 				}
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getObjectInfoFromEntityElement - \"obj_info\" element missing \"name\" attribute");
 				return;
 			}
 
@@ -264,7 +266,7 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocumentLoader::getVarDefArrayFromElement - sub-element of \"var_defs\" element missing \"type\" attribute");
 						return;
 					}
 
@@ -285,13 +287,13 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocumentLoader::getVarDefArrayFromElement - sub-element of \"var_defs\" element missing \"default\" attribute");
 						return;
 					}
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getVarDefArrayFromElement - sub-element of \"var_defs\" element missing \"name\" attribute");
 					return;
 				}
 
@@ -314,7 +316,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"character_map\" element missing \"name\" attribute");
 				return;
 			}
 
@@ -332,7 +334,7 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element missing \"folder\" attribute");
 						return;
 					}
 
@@ -344,7 +346,7 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element missing \"file\" attribute");
 						return;
 					}
 
@@ -364,7 +366,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element has no attributes");
 					return;
 				}
 
@@ -393,7 +395,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getAnimationsFromEntityElement - unable to create animation from invalid \"animation\" element");
 				return;
 			}
 
@@ -409,17 +411,8 @@ namespace SpriterEngine
 		SpriterFileAttributeWrapper *att = animationElement->getFirstAttribute("name");
 		if (att->isValid())
 		{
-			std::string animationName = "";
-			if (att->getName() == "name")
-			{
-				animationName = att->getStringValue();
-				att->advanceToNextAttribute();
-			}
-			else
-			{
-				// error
-				return 0;
-			}
+			std::string animationName = att->getStringValue();
+			att->advanceToNextAttribute();
 
 			if (att->isValid() && att->getName() == "length")
 			{
@@ -428,7 +421,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getNewAnimationFromAnimationElement - \"animation\" element missing \"length\" attribute");
 				return 0;
 			}
 
@@ -442,7 +435,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("SpriterDocumentLoader::getNewAnimationFromAnimationElement - \"animation\" element missing \"name\" attribute");
 			return 0;
 		}
 	}
@@ -456,7 +449,7 @@ namespace SpriterEngine
 			Object *object = getObjectFromTimelineElement(timelineElement, entity);
 			if (!object)
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getTimelinesFromAnimationElement - unable to create object from invalid \"timeline\" element");
 				return;
 			}
 
@@ -510,7 +503,7 @@ namespace SpriterEngine
 
 				if (!objectInfo)
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getTimelinesFromAnimationElement - unable to create object info from invalid \"key\" element");
 					return;
 				}
 
@@ -528,7 +521,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getTimelinesFromAnimationElement - unable to create time info from invalid \"key\" element");
 					return;
 				}
 
@@ -555,7 +548,7 @@ namespace SpriterEngine
 			++timelineIndex;
 		}
 	}
-	
+
 	void SpriterDocumentLoader::createRedundantFirstKeys(Animation *animation, Timeline *timeline)
 	{
 		TimelineKey *firstKey = timeline->getKey(0);
@@ -584,7 +577,7 @@ namespace SpriterEngine
 			SpriterFileAttributeWrapper *att = varlineElement->getFirstAttribute("def");
 			if (!att->isValid())
 			{
-				// error
+				Settings::error("SpriterDocument::getVarlinesFromMetaDataElement - \"varline\" element missing \"def\" attribute");
 				return;
 			}
 
@@ -593,7 +586,7 @@ namespace SpriterEngine
 			Variable *variable = entity->getVariable(objectId, variableId);
 			if (!variable)
 			{
-				// error
+				Settings::error("SpriterDocument::getVarlinesFromMetaDataElement - unable to find variable with object id " + std::to_string(objectId) + " and variable id " + std::to_string(variableId));
 				return;
 			}
 
@@ -610,7 +603,7 @@ namespace SpriterEngine
 				UniversalObjectInterface *objectInfo = getObjectInfoFromVariableKeyElement(keyElement, variable);
 				if (!objectInfo)
 				{
-					// error
+					Settings::error("SpriterDocument::getVarlinesFromMetaDataElement - unable to create object info from invalid \"key\" element");
 					return;
 				}
 
@@ -628,7 +621,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocument::getVarlinesFromMetaDataElement - unable to create time info from invalid \"key\" element");
 					return;
 				}
 
@@ -657,14 +650,14 @@ namespace SpriterEngine
 		SpriterFileAttributeWrapper *valAtt = variableKeyElement->getFirstAttribute("val");
 		if (!valAtt->isValid())
 		{
-			// error
+			Settings::error("SpriterDocument::getObjectInfoFromVariableKeyElement - \"key\" element missing \"val\" attribute");
 			return 0;
 		}
 
 		UniversalObjectInterface *objectInfo = variable->getNewObjectInfoInstance();
 		if (!objectInfo)
 		{
-			// error
+			Settings::error("SpriterDocument::getObjectInfoFromVariableKeyElement - invalid variable unable to create object info");
 			return 0;
 		}
 
@@ -683,7 +676,7 @@ namespace SpriterEngine
 			break;
 
 		default:
-			// error;
+			Settings::error("SpriterDocument::getObjectInfoFromVariableKeyElement - variable has invalid type");
 			break;
 		}
 
@@ -705,17 +698,17 @@ namespace SpriterEngine
 				TimeInfo *timeInfo = getTimeInfoFromElement(keyElement, nextKeyElement, firstKeyElement, animation->getLength(), animation->getIsLooping());
 				if (!timeInfo)
 				{
-					// error
+					Settings::error("SpriterDocument::getTaglinesFromMetaDataElement - unable to create time info from invalid \"key\" element");
 					return;
 				}
 
 				UniversalObjectInterface *objectInfo = getObjectInfoFromTagKeyElement(keyElement, model);
 				if (!objectInfo)
 				{
-					// error
+					Settings::error("SpriterDocument::getTaglinesFromMetaDataElement - unable to create object info from invalid \"key\" element");
 					return;
 				}
-				
+
 				TimelineKey * newKey = newTimeline->pushBackKey(timeInfo, objectInfo);
 				newKey->setNextObjectInfo(newKey->getObjectInfo());
 
@@ -736,14 +729,14 @@ namespace SpriterEngine
 			SpriterFileAttributeWrapper *tagIdAtt = tagElement->getFirstAttribute("t");
 			if (!tagIdAtt->isValid())
 			{
-				// error
+				Settings::error("SpriterDocument::getObjectInfoFromTagKeyElement - \"tag\" element missing \"t\" attribute");
 				return tagInfo;
 			}
 
 			const std::string *tag = model->getTag(tagIdAtt->getIntValue());
 			if (!tag)
 			{
-				// error
+				Settings::error("SpriterDocument::getObjectInfoFromTagKeyElement - tag id " + std::to_string(tagIdAtt->getIntValue()) + " not found in model");
 				return tagInfo;
 			}
 
@@ -864,6 +857,7 @@ namespace SpriterEngine
 
 		UniversalObjectInterface *objectInfo = 0;
 		SpriterFileElementWrapper *objectInfoElement = keyElement->getFirstChildElement();
+
 		if (objectInfoElement->isValid())
 		{
 			if (object->getType() == Object::OBJECTTYPE_SPRITE)
@@ -888,7 +882,7 @@ namespace SpriterEngine
 			}
 
 			objectInfo->setSpin(spin);
-			
+
 			int folder = NO_FILE;
 			int file = NO_FILE;
 			int entityId = OUT_OF_RANGE;
@@ -959,11 +953,16 @@ namespace SpriterEngine
 					objectInfo->setTimeRatio(att->getRealValue());
 				}
 
-				objectInfo->setPosition(position);
-				objectInfo->setScale(scale);
-				objectInfo->setPivot(pivot);
 				att->advanceToNextAttribute();
 			}
+
+			Settings::suppressErrorOutput();
+
+			objectInfo->setPosition(position);
+			objectInfo->setScale(scale);
+			objectInfo->setPivot(pivot);
+
+			Settings::suppressErrorOutput(false);
 
 			if (spriteKeyFileInfo)
 			{
@@ -978,7 +977,11 @@ namespace SpriterEngine
 
 			return objectInfo;
 		}
-		return 0;
+		else
+		{
+			Settings::error("SpriterDocumentLoader::getObjectFromTimelineKeyElement - \"key\" element missing \"object\" or \"bone\" element");
+			return 0;
+		}
 	}
 
 	void SpriterDocumentLoader::getMainlineFromAnimationElement(SpriterFileElementWrapper *animationElement, Animation *animation, SpriteKeyFileInfoObjectIdMap *spriteKeyFileInfoMap, SubEntityKeyInfoMap *subEntityKeyInfoMap)
@@ -1023,7 +1026,7 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocument::getRefsFromMainlineKeyElement - ref index " + std::to_string(parentRefIndex) + " from \"parent\" attribute in \"" + refElement->getName() + "\" element  out of range");
 						return;
 					}
 				}
@@ -1044,14 +1047,14 @@ namespace SpriterEngine
 
 			if (timelineIndex == NOT_FOUND || keyIndex == NOT_FOUND || objectId == NOT_FOUND)
 			{
-				// error
+				Settings::error("SpriterDocument::getRefsFromMainlineKeyElement - \"" + refElement->getName() + "\" contains invalid or missing timeline or key data");
 				return;
 			}
 
 			TimelineKey *timelineKey = animation->getObjectTimelineKey(timelineIndex, keyIndex);
 			if (!timelineKey)
 			{
-				// error
+				Settings::error("SpriterDocument::getRefsFromMainlineKeyElement - \"" + refElement->getName() + "\" contains invalid or missing timeline or key data");
 				return;
 			}
 
@@ -1072,7 +1075,7 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocument::getRefsFromMainlineKeyElement - unable to find sprite key file info for object id " + std::to_string(objectId));
 						return;
 					}
 				}
@@ -1089,7 +1092,7 @@ namespace SpriterEngine
 						}
 						else
 						{
-							// error
+							Settings::error("SpriterDocument::getRefsFromMainlineKeyElement - unable to find sub-entity key info for object id " + std::to_string(objectId));
 							return;
 						}
 					}
@@ -1118,7 +1121,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getEventlinesFromAnimationElement - \"eventline\" element missing \"name\" attribute");
 				return;
 			}
 
@@ -1133,7 +1136,7 @@ namespace SpriterEngine
 				TimeInfo *timeInfo = getTimeInfoFromElement(keyElement, nextKeyElement, firstKeyElement, animation->getLength(), animation->getIsLooping());
 				if (!timeInfo)
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getEventlinesFromAnimationElement - unable to create time info from invalid \"key\" element");
 					return;
 				}
 
@@ -1161,7 +1164,7 @@ namespace SpriterEngine
 			}
 			else
 			{
-				// error
+				Settings::error("SpriterDocumentLoader::getSoundlinesFromAnimationElement - \"soundline\" element missing \"name\" attribute");
 				return;
 			}
 
@@ -1183,7 +1186,7 @@ namespace SpriterEngine
 				UniversalObjectInterface *objectInfo = getSoundObjectInfoFromSoundlineKey(keyElement, entity, object, fileFlattener, &soundFileFound);
 				if (!objectInfo)
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getSoundlinesFromAnimationElement - unable to create object info from invalid \"key\" element");
 					return;
 				}
 
@@ -1203,7 +1206,7 @@ namespace SpriterEngine
 				}
 				else
 				{
-					// error
+					Settings::error("SpriterDocumentLoader::getSoundlinesFromAnimationElement - unable to create time info from invalid \"key\" element");
 					return;
 				}
 
@@ -1262,7 +1265,7 @@ namespace SpriterEngine
 					}
 					else
 					{
-						// error
+						Settings::error("SpriterDocumentLoader::getSoundObjectInfoFromSoundlineKey - \"object\" element contains \"folder\" attribute, but missing \"file\" attribute");
 						return 0;
 					}
 				}
@@ -1278,7 +1281,7 @@ namespace SpriterEngine
 		}
 		else
 		{
-			// error
+			Settings::error("SpriterDocumentLoader::getSoundObjectInfoFromSoundlineKey - \"key\" missing \"object\" element");
 			return 0;
 		}
 	}
