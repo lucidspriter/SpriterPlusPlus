@@ -170,7 +170,7 @@ namespace SpriterEngine
 
 	void TriggerTimelineInstance::checkTrigger(TimelineKey *key, real aTime, real bTime)
 	{
-		if (aTime < key->getTime() && key->getTime() < bTime)
+		if (aTime <= key->getTime() && key->getTime() < bTime)
 		{
 			triggerCount++;
 		}

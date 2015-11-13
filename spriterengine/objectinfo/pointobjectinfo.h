@@ -22,8 +22,6 @@ namespace SpriterEngine
 
 		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
-		void render() override;
-
 	private:
 		point position;
 		AngleInfo angle;
