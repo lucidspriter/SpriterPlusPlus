@@ -108,20 +108,17 @@ int main()
 
 
 		// update all instances
+		float timeElapsed = spriterAnimTimer.restart().asSeconds() * 1000;
 		for (auto& it : instances)
 		{
 			if (it)
 			{
-				// tell the instance how much time has elapsed, and tell it to render (*1200 because SFML's clocks seem to run a bit slow) 
-				it->setTimeElapsed(spriterAnimTimer.getElapsedTime().asSeconds() * 1200);
+				// tell the instance how much time has elapsed
+				it->setTimeElapsed(timeElapsed);
 				it->render();
 				// it->playSoundTriggers();
 			}
-		}
-		
-		// restart our animation timer for the next
-		spriterAnimTimer.restart();
-		
+		}		
 
 		// render our text
 		window.draw(fpsText);
