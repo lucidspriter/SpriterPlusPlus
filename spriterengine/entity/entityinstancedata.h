@@ -91,6 +91,8 @@ namespace SpriterEngine
 		void playSoundTriggers();
 		void playEventTriggers();
 
+		void updateTransformProcessor();
+
 	protected:
 		AnimationInstanceIdMap animations;
 		AnimationInstanceNameMap animationNameMap;
@@ -111,6 +113,8 @@ namespace SpriterEngine
 
 		TriggerIdMap triggers;
 		TriggerNameMap triggerNameMap;
+
+		TransformProcessor *transformProcessor;
 	};
 
 }

@@ -221,6 +221,10 @@ namespace SpriterEngine
 	void EntityInstance::setAngle(real newAngle)
 	{
 		angle.angle = newAngle;
+		if (currentEntity)
+		{
+			currentEntity->updateTransformProcessor();
+		}
 	}
 
 	void EntityInstance::setScale(const point &newScale)
@@ -245,6 +249,7 @@ namespace SpriterEngine
 		if (it != entities.end())
 		{
 			currentEntity = (*it).second;
+			currentEntity->updateTransformProcessor();
 		}
 		else
 		{
@@ -255,6 +260,10 @@ namespace SpriterEngine
 	void EntityInstance::setCurrentEntity(EntityInstanceData * newCurrentEntity)
 	{
 		currentEntity = newCurrentEntity;
+		if (currentEntity)
+		{
+			currentEntity->updateTransformProcessor();
+		}
 	}
 
 	void EntityInstance::setCurrentAnimation(int newAnimationIndex)

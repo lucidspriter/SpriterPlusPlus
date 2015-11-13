@@ -112,8 +112,8 @@ int main()
 		{
 			if (it)
 			{
-				// tell the instance how much time has elapsed, and tell it to render 
-				it->setTimeElapsed(spriterAnimTimer.getElapsedTime().asSeconds() * 1000);
+				// tell the instance how much time has elapsed, and tell it to render (*1200 because SFML's clocks seem to run a bit slow) 
+				it->setTimeElapsed(spriterAnimTimer.getElapsedTime().asSeconds() * 1200);
 				it->render();
 				// it->playSoundTriggers();
 			}

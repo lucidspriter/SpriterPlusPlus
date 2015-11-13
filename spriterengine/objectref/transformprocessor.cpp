@@ -33,8 +33,6 @@ namespace SpriterEngine
 		childObject->setAlpha(childObject->getAlpha()*parentObject->getAlpha());
 		point childPosition = childObject->getPosition();
 		point preMult = multiply(childPosition, parentScale);
-		//real preMultX = childPosition.x*parentScale.x;
-		//real preMultY = childPosition.y*parentScale.y;
 		childPosition.x = (preMult.x * angleCos) - (preMult.y * angleSin);
 		childPosition.y = (preMult.x * angleSin) + (preMult.y * angleCos);
 		childObject->setPosition(add(childPosition, parentObject->getPosition()));
