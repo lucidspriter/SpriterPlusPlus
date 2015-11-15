@@ -13,7 +13,7 @@ namespace SpriterEngine
 	public:
 		TagObjectInfo();
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
 		void pushBackTag(const std::string *tag);
 

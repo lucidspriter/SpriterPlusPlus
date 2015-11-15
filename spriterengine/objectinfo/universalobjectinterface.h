@@ -87,7 +87,8 @@ namespace SpriterEngine
 		virtual void setTagList(TagList *newTagList);
 
 
-		virtual void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject);
+		virtual void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject);
+		virtual void setToBlendedLinear(UniversalObjectInterface * aObject, UniversalObjectInterface * bObject, real t, real blendRatio);
 
 		virtual void render();
 

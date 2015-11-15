@@ -17,6 +17,8 @@ namespace SpriterEngine
 
 		void process(real currentTime, UniversalObjectInterface *resultObject);
 
+		void blend(real currentTime, real blendRatio, UniversalObjectInterface * resultObject);
+
 		UniversalObjectInterface *getObjectInfo();
 
 		void setNextObjectInfo(UniversalObjectInterface *newNextObjectInfo);

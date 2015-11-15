@@ -62,7 +62,7 @@ namespace SpriterEngine
 		angle.spinDirection = newSpin;
 	}
 
-	void BoxObjectInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void BoxObjectInfo::setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		resultObject->setAngle(angle.angleLinear(bObject->getAngle(), t));
 		resultObject->setPosition(linear(position, bObject->getPosition(), t));

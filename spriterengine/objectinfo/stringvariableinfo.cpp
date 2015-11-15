@@ -17,7 +17,7 @@ namespace SpriterEngine
 		value = newValue;
 	}
 
-	void StringVariableInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void StringVariableInfo::setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		resultObject->setStringValue(&value);
 	}

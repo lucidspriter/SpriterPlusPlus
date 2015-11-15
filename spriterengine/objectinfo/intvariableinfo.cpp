@@ -18,7 +18,7 @@ namespace SpriterEngine
 		value = newValue;
 	}
 
-	void IntVariableInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void IntVariableInfo::setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		resultObject->setIntValue(int(linear(value, bObject->getIntValue(), t)));
 	}

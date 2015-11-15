@@ -14,7 +14,7 @@ namespace SpriterEngine
 		real getRealValue() override;
 		void setRealValue(real newValue) override;
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
 	private:
 		real value;

@@ -31,7 +31,7 @@ namespace SpriterEngine
 		void setImage(ImageFile *newImageFile) override;
 		void setSpin(int newSpin) override;
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setToBlendedLinear(UniversalObjectInterface * aObject, UniversalObjectInterface * bObject, real t, real blendRatio) override;
 
 		void render() override;
 

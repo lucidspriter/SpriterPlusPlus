@@ -21,7 +21,7 @@ namespace SpriterEngine
 		void setVolume(real newVolume) override;
 		void setPanning(real newPanning) override;
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
 	private:
 		real volume;

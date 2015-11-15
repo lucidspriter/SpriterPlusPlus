@@ -28,6 +28,31 @@ namespace SpriterEngine
 		return ((b - a)*t) + a;
 	}
 
+	inline real shortestAngleLinear(real a, real b, real t)
+	{
+		while (b - a < -(MAX_RADIANS /2.0))
+		{
+			a -= MAX_RADIANS;
+		}
+		while (b - a >(MAX_RADIANS / 2.0))
+		{
+			b -= MAX_RADIANS;
+		}
+
+		real result = linear(a, b, t);
+
+		while (result < 0)
+		{
+			result += MAX_RADIANS;
+		}
+		while (result > MAX_RADIANS)
+		{
+			result -= MAX_RADIANS;
+		}
+
+		return result;
+	}
+
 	inline real inverseLinear(real a, real b, real x)
 	{
 		return (x - a) / (b - a);

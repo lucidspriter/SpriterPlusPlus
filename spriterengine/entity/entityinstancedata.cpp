@@ -369,6 +369,20 @@ namespace SpriterEngine
 		}
 	}
 
+	AnimationInstance * EntityInstanceData::getAnimation(std::string animationName)
+	{
+		auto it = animationNameMap.find(animationName);
+		if (it != animationNameMap.end())
+		{
+			return (*it).second;
+		}
+		else
+		{
+			Settings::error("EntityInstanceData::getAnimation - animation with name \"" + animationName + "\" not found");
+			return 0;
+		}
+	}
+
 	void EntityInstanceData::playSoundTriggers()
 	{
 		for (auto& it : sounds)

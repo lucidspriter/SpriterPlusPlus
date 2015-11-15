@@ -23,14 +23,30 @@ namespace SpriterEngine
 
 	void ObjectRefInstance::process(real currentTime)
 	{
+		processKey(currentTime);
+		processTransform();
+	}
+
+	void ObjectRefInstance::processKey(real currentTime)
+	{
 		key->process(currentTime, resultObjectInterface);
+	}
+
+	void ObjectRefInstance::blendKey(real currentTime, real blendRatio)
+	{
+		key->blend(currentTime, blendRatio, resultObjectInterface);
+	}
+
+	void ObjectRefInstance::processTransform()
+	{
 		if (parentTransformer)
 		{
+			parentTransformer->setTrigFunctions();
 			parentTransformer->transformChildObject(resultObjectInterface);
 		}
 		else
 		{
-			Settings::error("ObjectRefInstance::process - parent transform processor missing");
+			Settings::error("ObjectRefInstance::processTransform - parent transform processor missing");
 		}
 	}
 

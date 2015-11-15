@@ -87,6 +87,7 @@ namespace SpriterEngine
 		void setTriggerInstance(int id, std::string name, TriggerObjectInfo *newCustomTriggerObject = 0);
 
 		AnimationInstance *getAnimation(int animationIndex);
+		AnimationInstance *getAnimation(std::string animationName);
 
 		void playSoundTriggers();
 		void playEventTriggers();
@@ -119,5 +120,5 @@ namespace SpriterEngine
 
 }
 
-#endif // ENTITYOBJECTINFO_H
+#endif // ENTITYINSTANCEDATA_H
 

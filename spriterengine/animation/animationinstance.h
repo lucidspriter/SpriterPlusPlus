@@ -28,10 +28,16 @@ namespace SpriterEngine
 		void findCurrentKeys(real newTime, bool forward);
 		void processCurrentKeys(real newTime, ObjectInterfaceVector **instanceZOrder);
 
+		bool looping();
 
 		real length();
 
 		real currentTime();
+
+		real processRefKeys(real newTime);
+		void blendRefKeys(real newTime, real blendRatio);
+		void setZOrder(ObjectInterfaceVector ** instanceZOrder);
+		void processRefTransforms();
 
 	private:
 		void findCurrentTimelineKeys(real newTime, bool forward);

@@ -54,11 +54,15 @@ namespace SpriterEngine
 	}
 
 
-	void PointInstanceInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void PointInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio)
 	{
-		resultObject->setPosition(linear(position, bObject->getPosition(), t));
-		resultObject->setAngle(angle.angleLinear(bObject->getAngle(), t));
-		resultObject->setPosition(linear(position, bObject->getPosition(), t));
+		real tempAngle = angle.angle;
+		point tempPosition = position;
+
+		aObject->setObjectToLinear(bObject, t, this);
+
+		setAngle(shortestAngleLinear(tempAngle, angle.angle, blendRatio));
+		setPosition(linear(tempPosition, position, blendRatio));
 	}
 
 	void PointInstanceInfo::render()

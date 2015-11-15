@@ -14,7 +14,7 @@ namespace SpriterEngine
 		std::string getStringValue() override;
 		void setStringValue(std::string newValue) override;
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
 	private:
 		std::string value;

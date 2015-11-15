@@ -37,7 +37,7 @@ namespace SpriterEngine
 		panning = newPanning;
 	}
 
-	void SoundObjectInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void SoundObjectInfo::setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		resultObject->setVolume(linear(volume, bObject->getVolume(), t));
 		resultObject->setPanning(linear(panning, bObject->getPanning(), t));

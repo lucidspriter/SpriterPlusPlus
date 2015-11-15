@@ -247,9 +247,14 @@ namespace SpriterEngine
 		Settings::error("UniversalObjectInterface::setTagList - object does not contain this component - no action taken");
 	}
 
-	void UniversalObjectInterface::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void UniversalObjectInterface::setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		Settings::error("UniversalObjectInterface::setObjectToLinear - object does not contain this component - no action taken");
+	}
+
+	void UniversalObjectInterface::setToBlendedLinear(UniversalObjectInterface * aObject, UniversalObjectInterface * bObject, real t, real blendRatio)
+	{
+		Settings::error("UniversalObjectInterface::setObjectToBlendedLinear - object does not contain this component - no action taken");
 	}
 
 	void UniversalObjectInterface::render()

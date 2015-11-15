@@ -20,7 +20,7 @@ namespace SpriterEngine
 		void setAngle(real newAngle) override;
 		void setSpin(int newSpin) override;
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
 	private:
 		point position;

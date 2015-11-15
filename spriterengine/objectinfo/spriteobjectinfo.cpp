@@ -75,14 +75,27 @@ namespace SpriterEngine
 		angle.spinDirection = newSpin;
 	}
 
-	void SpriteObjectInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void SpriteObjectInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio)
 	{
-		resultObject->setAngle(angle.angleLinear(bObject->getAngle(), t));
-		resultObject->setPosition(linear(position, bObject->getPosition(), t));
-		resultObject->setScale(linear(scale, bObject->getScale(), t));
-		resultObject->setAlpha(linear(alpha, bObject->getAlpha(), t));
-		resultObject->setPivot(pivot);
-		resultObject->setImage(imageFile);
+		real tempAngle = angle.angle;
+		point tempPosition = position;
+		point tempScale = scale;
+		real tempAlpha = alpha;
+		point tempPivot = pivot;
+		ImageFile *tempImageFile = imageFile;
+
+		aObject->setObjectToLinear(bObject, t, this);
+
+		setAngle(shortestAngleLinear(tempAngle, angle.angle, blendRatio));
+		setPosition(linear(tempPosition, position, blendRatio));
+		setScale(linear(tempScale, scale, blendRatio));
+		setAlpha(linear(tempAlpha, alpha, blendRatio));
+
+		if (blendRatio < 0.5)
+		{
+			setPivot(tempPivot);
+			setImage(tempImageFile);
+		}
 	}
 
 	void SpriteObjectInfo::render()

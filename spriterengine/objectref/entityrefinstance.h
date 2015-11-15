@@ -23,7 +23,6 @@ namespace SpriterEngine
 	private:
 		EntityInstanceData *entity;
 		AnimationInstance *animation;
-		real lastTime;
 	};
 
 }

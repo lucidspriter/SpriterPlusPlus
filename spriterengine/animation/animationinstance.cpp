@@ -46,6 +46,11 @@ namespace SpriterEngine
 		processCurrentTimelineKeys(newTime);
 	}
 
+	bool AnimationInstance::looping()
+	{
+		return isLooping;
+	}
+
 	real AnimationInstance::length()
 	{
 		return animationLength;
@@ -96,6 +101,26 @@ namespace SpriterEngine
 	real AnimationInstance::processCurrentMainlineKey(real newTime, ObjectInterfaceVector **instanceZOrder)
 	{
 		return (*mainlineKeyIterator)->process(newTime, instanceZOrder);
+	}
+
+	real AnimationInstance::processRefKeys(real newTime)
+	{
+		return (*mainlineKeyIterator)->processRefKeys(newTime);
+	}
+
+	void AnimationInstance::blendRefKeys(real newTime, real blendRatio)
+	{
+		return (*mainlineKeyIterator)->blendRefKeys(newTime, blendRatio);
+	}
+
+	void AnimationInstance::setZOrder(ObjectInterfaceVector ** instanceZOrder)
+	{
+		(*mainlineKeyIterator)->setZOrder(instanceZOrder);
+	}
+
+	void AnimationInstance::processRefTransforms()
+	{
+		(*mainlineKeyIterator)->processRefTransforms();
 	}
 
 	void AnimationInstance::findMainlineKeyTimeForward(real newTime)

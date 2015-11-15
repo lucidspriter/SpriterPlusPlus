@@ -83,6 +83,7 @@ namespace SpriterEngine
 		void setCurrentEntity(EntityInstanceData *newCurrentEntity) override;
 		void setCurrentAnimation(int newAnimationIndex) override;
 		void setCurrentAnimation(const std::string &animationName);
+		void setCurrentAnimation(const std::string &animationName, real blendTime);
 		void setCurrentAnimation(AnimationInstance *newCurrentAnimation) override;
 		void setCurrentTime(real newCurrentTime);
 		void setTimeRatio(real newCurrentTimeRatio) override;
@@ -119,6 +120,13 @@ namespace SpriterEngine
 
 		EntityInstanceData *currentEntity;
 		AnimationInstance *currentAnimation;
+
+		bool isPlaying;
+
+		AnimationInstance *blendedAnimation;
+		real blendTotalTime;
+		real blendCurrentTime;
+
 		CharacterMapInterface *characterMapInterface;
 
 		StringList appliedCharacterMaps;

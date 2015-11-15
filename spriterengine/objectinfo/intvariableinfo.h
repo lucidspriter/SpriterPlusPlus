@@ -14,7 +14,7 @@ namespace SpriterEngine
 		int getIntValue() override;
 		void setIntValue(int newValue) override;
 
-		void setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
+		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 
 	private:
 		int value;

@@ -23,7 +23,11 @@ namespace SpriterEngine
 		currentEntity(0),
 		currentAnimation(0),
 		characterMapInterface(0),
-		playbackSpeedRatio(1)
+		playbackSpeedRatio(1),
+		blendCurrentTime(0),
+		blendTotalTime(0),
+		blendedAnimation(0),
+		isPlaying(true)
 	{
 	}
 	EntityInstance::EntityInstance(SpriterModel *model, Entity *entity, CharacterMapInterface *initialCharacterMapInterface, ObjectFactory *objectFactory) :
@@ -34,7 +38,11 @@ namespace SpriterEngine
 		currentEntity(0),
 		currentAnimation(0),
 		characterMapInterface(initialCharacterMapInterface),
-		playbackSpeedRatio(1)
+		playbackSpeedRatio(1),
+		blendCurrentTime(0),
+		blendTotalTime(0),
+		blendedAnimation(0),
+		isPlaying(true)
 	{
 		model->setupFileReferences(&files);
 		currentEntity = (*entities.insert(std::make_pair(entity->getId(), new EntityInstanceData(model, this, entity, objectFactory))).first).second;
@@ -59,8 +67,70 @@ namespace SpriterEngine
 	{
 		if (currentAnimation)
 		{
-			timeElapsed *= playbackSpeedRatio;
-			currentAnimation->findAndProcessKeys(getCurrentTime() + timeElapsed, timeElapsed >= 0, &zOrder);
+			if (isPlaying)
+			{
+				timeElapsed *= playbackSpeedRatio;
+				real newTime = getCurrentTime() + timeElapsed;
+				
+				if (blendedAnimation)
+				{
+					blendCurrentTime += timeElapsed;
+
+					if (blendCurrentTime >= blendTotalTime)
+					{
+						blendCurrentTime = 0;
+						blendTotalTime = 0;
+
+						currentAnimation = blendedAnimation;
+						currentAnimation->findAndProcessKeys(newTime, timeElapsed >= 0, &zOrder);
+
+						blendedAnimation = 0;
+					}
+					else
+					{
+
+						real blendRatio = blendCurrentTime / blendTotalTime;
+
+						real currentT = getCurrentTime() / currentAnimation->length();
+						real currentAnimationT = newTime / currentAnimation->length();
+						real blendedAnimationT = ((currentT * blendedAnimation->length()) + timeElapsed) / blendedAnimation->length();
+
+						currentT = linear(currentAnimationT, blendedAnimationT, blendRatio);
+
+						bool forward = timeElapsed >= 0;
+
+						real newCurrentAnimationTime = currentT * currentAnimation->length();
+						currentAnimation->findCurrentKeys(newCurrentAnimationTime, forward);
+						currentAnimation->processRefKeys(currentAnimation->currentTime());
+
+						real newBlendedAnimationTime = currentT * blendedAnimation->length();
+						blendedAnimation->findCurrentKeys(newBlendedAnimationTime, forward);
+						blendedAnimation->blendRefKeys(blendedAnimation->currentTime(), blendRatio);
+
+						if (blendRatio < 0.5)
+						{
+							currentAnimation->setZOrder(&zOrder);
+							currentAnimation->processRefTransforms();
+						}
+						else
+						{
+							blendedAnimation->setZOrder(&zOrder);
+							blendedAnimation->processRefTransforms();
+						}
+					}
+				}
+				else
+				{
+					currentAnimation->findAndProcessKeys(newTime, timeElapsed >= 0, &zOrder);
+				}
+
+				if (!currentAnimation->looping() && newTime >= currentAnimation->length())
+				{
+					isPlaying = false;
+					newTime = currentAnimation->length();
+				}
+
+			}
 		}
 		else
 		{
@@ -269,16 +339,27 @@ namespace SpriterEngine
 	void EntityInstance::setCurrentAnimation(int newAnimationIndex)
 	{
 		currentEntity->setCurrentAnimation(newAnimationIndex, &currentAnimation);
+		isPlaying = true;
 	}
 
 	void EntityInstance::setCurrentAnimation(const std::string & animationName)
 	{
 		currentEntity->setCurrentAnimation(animationName, &currentAnimation);
+		isPlaying = true;
+	}
+
+	void EntityInstance::setCurrentAnimation(const std::string & animationName, real blendTime)
+	{
+		blendedAnimation = currentEntity->getAnimation(animationName);
+		blendCurrentTime = 0;
+		blendTotalTime = blendTime;
+		isPlaying = true;
 	}
 
 	void EntityInstance::setCurrentAnimation(AnimationInstance * newCurrentAnimation)
 	{
 		currentAnimation = newCurrentAnimation;
+		isPlaying = true;
 	}
 
 	void EntityInstance::setCurrentTime(real newCurrentTime)
@@ -327,9 +408,12 @@ namespace SpriterEngine
 
 	void EntityInstance::render()
 	{
-		for (auto& it : *zOrder)
+		if (zOrder)
 		{
-			it->render();
+			for (auto& it : *zOrder)
+			{
+				it->render();
+			}
 		}
 	}
 

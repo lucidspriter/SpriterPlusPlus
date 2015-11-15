@@ -14,8 +14,7 @@ namespace SpriterEngine
 		AnimationInstance *initialAnimation) :
 		ObjectRefInstance(initialResultObject, initialParentTransformer, initialKey),
 		entity(initialEntity),
-		animation(initialAnimation),
-		lastTime(0)
+		animation(initialAnimation)
 	{
 	}
 

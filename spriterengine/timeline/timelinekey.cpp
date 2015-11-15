@@ -28,7 +28,12 @@ namespace SpriterEngine
 
 	void TimelineKey::process(real currentTime, UniversalObjectInterface *resultObject)
 	{
-		objectInfo->setObjectTolinear(nextObjectInfo, time->getTimeRatio(currentTime), resultObject);
+		objectInfo->setObjectToLinear(nextObjectInfo, time->getTimeRatio(currentTime), resultObject);
+	}
+
+	void TimelineKey::blend(real currentTime, real blendRatio, UniversalObjectInterface *resultObject)
+	{
+		resultObject->setToBlendedLinear(objectInfo, nextObjectInfo, time->getTimeRatio(currentTime), blendRatio);
 	}
 
 	UniversalObjectInterface *TimelineKey::getObjectInfo()

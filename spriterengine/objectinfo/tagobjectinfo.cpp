@@ -7,7 +7,7 @@ namespace SpriterEngine
 	{
 	}
 
-	void TagObjectInfo::setObjectTolinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
+	void TagObjectInfo::setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject)
 	{
 		resultObject->setTagList(&tagList);
 	}

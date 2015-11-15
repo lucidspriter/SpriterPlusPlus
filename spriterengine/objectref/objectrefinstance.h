@@ -20,6 +20,10 @@ namespace SpriterEngine
 
 		virtual void process(real currentTime);
 
+		void processKey(real currentTime);
+		void blendKey(real currentTime, real blendRatio);
+		void processTransform();
+
 	protected:
 		UniversalObjectInterface *resultObject() const;
 
