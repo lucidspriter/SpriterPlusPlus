@@ -8,6 +8,7 @@ namespace SpriterEngine
 
 	class TimeInfo;
 	class UniversalObjectInterface;
+	class ObjectRefInstance;
 
 	class TimelineKey
 	{
@@ -17,7 +18,7 @@ namespace SpriterEngine
 
 		void process(real currentTime, UniversalObjectInterface *resultObject);
 
-		void blend(real currentTime, real blendRatio, UniversalObjectInterface * resultObject);
+		void blend(real currentTime, real blendRatio, UniversalObjectInterface * resultObject, ObjectRefInstance *refInstance = 0);
 
 		UniversalObjectInterface *getObjectInfo();
 

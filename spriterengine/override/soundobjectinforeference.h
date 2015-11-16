@@ -25,6 +25,8 @@ namespace SpriterEngine
 
 		// TODO: override playTrigger() to play back sound using getTriggerCount() to determine whether to play;
 
+		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0) override;
+
 	private:
 		virtual void setPlaybackVolume();
 		virtual void setPlaybackPanning();

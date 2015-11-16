@@ -1,5 +1,7 @@
 #include "boneinstanceinfo.h"
 
+#include "../objectref/objectrefinstance.h"
+
 namespace SpriterEngine
 {
 
@@ -56,7 +58,7 @@ namespace SpriterEngine
 		alpha = newAlpha;
 	}
 
-	void BoneInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio)
+	void BoneInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
 	{
 		real tempAngle = angle.angle;
 		point tempPosition = position;

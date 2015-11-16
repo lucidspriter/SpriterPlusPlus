@@ -54,7 +54,7 @@ namespace SpriterEngine
 	}
 
 
-	void PointInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio)
+	void PointInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
 	{
 		real tempAngle = angle.angle;
 		point tempPosition = position;

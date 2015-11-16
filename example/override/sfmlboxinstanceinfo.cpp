@@ -11,6 +11,7 @@ namespace SpriterEngine
 		rectangle(sf::Vector2f(initialSize.x, initialSize.y))
 	{
 	}
+
 	void SfmlBoxInstanceInfo::render()
 	{
 		if (Settings::renderDebugBoxes)

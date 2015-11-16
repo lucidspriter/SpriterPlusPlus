@@ -38,6 +38,11 @@ namespace SpriterEngine
 		(*timelineKeyIterator)->process(newTime, resultObject);
 	}
 
+	void TimelineInstance::blendCurrentTimelineKey(real newTime, real blendRatio)
+	{
+		(*timelineKeyIterator)->blend(newTime, blendRatio, resultObject);
+	}
+
 	void TimelineInstance::findTimeForward(real newTime)
 	{
 		auto& currentIt = timelineKeyIterator;

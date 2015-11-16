@@ -26,6 +26,8 @@ namespace SpriterEngine
 		virtual void findCurrentTimelineKey(real newTime, bool forward, real animationLength);
 		virtual void processCurrentTimelineKey(real newTime);
 
+		virtual void blendCurrentTimelineKey(real newTime, real blendRatio);
+
 	protected:
 		TimelineKeyVector *timelineKeys;
 		TimelineKeyVectorIterator timelineKeyIterator;

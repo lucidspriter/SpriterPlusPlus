@@ -18,6 +18,8 @@ namespace SpriterEngine
 
 		void setTagList(TagList *newTagList) override;
 
+		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0) override;
+
 	private:
 		const TagList *tagList;
 	};

@@ -37,6 +37,7 @@ namespace SpriterEngine
 		currentTime = timeInfo->getEasedTime(currentTime);
 		for (auto& it : refs)
 		{
+			it->preProcess();
 			it->processKey(currentTime);
 		}
 		return currentTime;

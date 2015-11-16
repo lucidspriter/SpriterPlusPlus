@@ -63,7 +63,7 @@ namespace SpriterEngine
 		// ignore setAlpha commands without throwing an error
 	}
 
-	void BoxInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio)
+	void BoxInstanceInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
 	{
 		real tempAngle = angle.angle;
 		point tempPosition = position;
@@ -75,11 +75,7 @@ namespace SpriterEngine
 		setAngle(shortestAngleLinear(tempAngle, angle.angle, blendRatio));
 		setPosition(linear(tempPosition, position, blendRatio));
 		setScale(linear(tempScale, scale, blendRatio));
-
-		if (blendRatio < 0.5)
-		{
-			setPivot(tempPivot);
-		}
+		setPivot(linear(tempPivot, pivot, blendRatio));
 	}
 
 	void BoxInstanceInfo::render()

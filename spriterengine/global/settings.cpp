@@ -10,7 +10,8 @@ namespace SpriterEngine
 	bool Settings::renderDebugPoints = false;
 	bool Settings::renderDebugBones = false;
 
-	const bool enableDebugBones = false;
+	// enableDebugBones must be true while creating a new instance in order for renderDebugBones to have an effect
+	bool Settings::enableDebugBones = false;
 
 	// set to &simpleError to use std::cerr to output errors, or use your own callback function
 	// to output to your authoring tool's or custom engine's debug

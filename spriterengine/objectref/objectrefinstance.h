@@ -18,11 +18,12 @@ namespace SpriterEngine
 			TransformProcessor *initialParentTransformer,
 			TimelineKey *initialKey);
 
+		virtual void preProcess();
 		virtual void process(real currentTime);
 
 		void processKey(real currentTime);
 		void blendKey(real currentTime, real blendRatio);
-		void processTransform();
+		virtual void processTransform();
 
 	protected:
 		UniversalObjectInterface *resultObject() const;

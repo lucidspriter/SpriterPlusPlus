@@ -18,10 +18,15 @@ namespace SpriterEngine
 	{
 	}
 
-	void EntityRefInstance::process(real currentTime)
+	void EntityRefInstance::preProcess()
 	{
 		resultObject()->setCurrentEntity(entity);
 		resultObject()->setCurrentAnimation(animation);
+	}
+
+	void EntityRefInstance::process(real currentTime)
+	{
+		preProcess();
 		ObjectRefInstance::process(currentTime);
 		resultObject()->reprocessCurrentTime();
 	}

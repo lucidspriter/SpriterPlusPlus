@@ -30,6 +30,7 @@ namespace SpriterEngine
 		real process(real currentTime, ObjectInterfaceVector **instanceZOrder);
 
 		real processRefKeys(real currentTime);
+
 		void blendRefKeys(real currentTime, real blendRatio);
 		void setZOrder(ObjectInterfaceVector ** instanceZOrder);
 		void processRefTransforms();

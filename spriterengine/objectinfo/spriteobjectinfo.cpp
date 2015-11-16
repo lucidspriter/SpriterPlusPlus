@@ -1,5 +1,7 @@
 #include "spriteobjectinfo.h"
 
+#include "../objectref/objectrefinstance.h"
+
 namespace SpriterEngine
 {
 
@@ -75,7 +77,7 @@ namespace SpriterEngine
 		angle.spinDirection = newSpin;
 	}
 
-	void SpriteObjectInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio)
+	void SpriteObjectInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
 	{
 		real tempAngle = angle.angle;
 		point tempPosition = position;
@@ -83,6 +85,8 @@ namespace SpriterEngine
 		real tempAlpha = alpha;
 		point tempPivot = pivot;
 		ImageFile *tempImageFile = imageFile;
+
+		blendedRefInstance->preProcess();
 
 		aObject->setObjectToLinear(bObject, t, this);
 

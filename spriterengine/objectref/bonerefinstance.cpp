@@ -16,10 +16,9 @@ namespace SpriterEngine
 	{
 	}
 
-	void BoneRefInstance::process(real currentTime)
+	void BoneRefInstance::processTransform()
 	{
-		ObjectRefInstance::process(currentTime);
+		ObjectRefInstance::processTransform();
 		transformProcessor->setTrigFunctions();
 	}
-
 }

@@ -16,6 +16,8 @@ namespace SpriterEngine
 	class TagList;
 	class VariableInstanceNameAndIdMap;
 	class TagObjectInfoReference;
+	class TimelineKey;
+	class ObjectRefInstance;
 
 	typedef std::vector<UniversalObjectInterface*> ObjectInterfaceVector;
 	
@@ -88,7 +90,7 @@ namespace SpriterEngine
 
 
 		virtual void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject);
-		virtual void setToBlendedLinear(UniversalObjectInterface * aObject, UniversalObjectInterface * bObject, real t, real blendRatio);
+		virtual void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0);
 
 		virtual void render();
 

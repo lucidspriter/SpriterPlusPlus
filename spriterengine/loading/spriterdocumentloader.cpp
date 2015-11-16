@@ -572,6 +572,10 @@ namespace SpriterEngine
 	void SpriterDocumentLoader::getVarlinesFromMetaDataElement(SpriterFileElementWrapper *animationElement, Entity *entity, Animation *animation, int objectId)
 	{
 		SpriterFileElementWrapper *varlineElement = animationElement->getFirstChildElement("varline");
+		if (!varlineElement)
+		{
+			varlineElement = animationElement->getFirstChildElement("valline");
+		}
 		while (varlineElement->isValid())
 		{
 			SpriterFileAttributeWrapper *att = varlineElement->getFirstAttribute("def");

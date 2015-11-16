@@ -23,4 +23,13 @@ namespace SpriterEngine
 		resultObject->setIntValue(int(linear(value, bObject->getIntValue(), t)));
 	}
 
+	void IntVariableInfo::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
+	{
+		int tempValue = value;
+
+		aObject->setObjectToLinear(bObject, t, this);
+
+		setIntValue(linear(tempValue, value, blendRatio));
+	}
+
 }

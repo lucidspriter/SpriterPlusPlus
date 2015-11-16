@@ -77,6 +77,14 @@ namespace SpriterEngine
 		}
 	}
 
+	void AnimationInstance::blendCurrentTimelineKeys(real newTime, real blendRatio)
+	{
+		for (auto& it : timelines)
+		{
+			it->blendCurrentTimelineKey(newTime, blendRatio);
+		}
+	}
+
 	void AnimationInstance::findCurrentMainlineKey(real newTime, bool forward)
 	{
 		while (newTime > animationLength)

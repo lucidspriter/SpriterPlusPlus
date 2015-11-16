@@ -1,5 +1,7 @@
 #include "mainlinekey.h"
 
+#include "../global/settings.h"
+
 #include "../timeinfo/timeinfo.h"
 #include "../objectref/objectref.h"
 #include "../entity/entityinstance.h"
@@ -37,6 +39,13 @@ namespace SpriterEngine
 		{
 			refInstances->push_back(it->getNewObjectRefInstance(entityInstance, entityInstanceData));
 			instanceZOrder->push_back(entityInstanceData->getObjectInstance(it->id()));
+		}
+		if (Settings::enableDebugBones)
+		{
+			for (auto& it : boneRefs)
+			{
+				instanceZOrder->push_back(entityInstanceData->getObjectInstance(it->id()));
+			}
 		}
 		instanceTimeInfo = timeInfo;
 	}

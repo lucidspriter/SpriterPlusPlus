@@ -14,6 +14,8 @@ namespace SpriterEngine
 		int getTriggerCount() override;
 		void setTriggerCount(int newTriggerCount) override;
 
+		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance * refInstance) override;
+
 		// TODO: override play trigger to enable triggers to perform an action based on getTriggerCount()
 
 	private:

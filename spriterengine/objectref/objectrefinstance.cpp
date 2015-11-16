@@ -21,6 +21,10 @@ namespace SpriterEngine
 	{
 	}
 
+	void ObjectRefInstance::preProcess()
+	{
+	}
+
 	void ObjectRefInstance::process(real currentTime)
 	{
 		processKey(currentTime);
@@ -34,14 +38,13 @@ namespace SpriterEngine
 
 	void ObjectRefInstance::blendKey(real currentTime, real blendRatio)
 	{
-		key->blend(currentTime, blendRatio, resultObjectInterface);
+		key->blend(currentTime, blendRatio, resultObjectInterface, this);
 	}
 
 	void ObjectRefInstance::processTransform()
 	{
 		if (parentTransformer)
 		{
-			parentTransformer->setTrigFunctions();
 			parentTransformer->transformChildObject(resultObjectInterface);
 		}
 		else

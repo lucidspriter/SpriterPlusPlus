@@ -252,7 +252,7 @@ namespace SpriterEngine
 		Settings::error("UniversalObjectInterface::setObjectToLinear - object does not contain this component - no action taken");
 	}
 
-	void UniversalObjectInterface::setToBlendedLinear(UniversalObjectInterface * aObject, UniversalObjectInterface * bObject, real t, real blendRatio)
+	void UniversalObjectInterface::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
 	{
 		Settings::error("UniversalObjectInterface::setObjectToBlendedLinear - object does not contain this component - no action taken");
 	}

@@ -26,7 +26,7 @@ namespace SpriterEngine
 		void setPivot(const point &newPivot) override;
 		void setAlpha(real newAlpha) override;
 
-		void setToBlendedLinear(UniversalObjectInterface * aObject, UniversalObjectInterface * bObject, real t, real blendRatio);
+		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0) override;
 
 		void render() override;
 

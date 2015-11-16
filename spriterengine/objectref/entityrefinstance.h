@@ -18,6 +18,7 @@ namespace SpriterEngine
 			EntityInstanceData *initialEntity,
 			AnimationInstance *initialAnimation);
 
+		void preProcess() override;
 		void process(real currentTime) override;
 
 	private:

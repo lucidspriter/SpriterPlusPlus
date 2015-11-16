@@ -16,7 +16,7 @@ namespace SpriterEngine
 			TransformProcessor *initialSelfTransformer,
 			TimelineKey *initialKey);
 
-		void process(real currentTime) override;
+		void processTransform() override;
 
 	private:
 		TransformProcessor *transformProcessor;

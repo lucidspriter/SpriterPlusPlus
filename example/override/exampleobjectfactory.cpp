@@ -2,6 +2,7 @@
 
 #include "sfmlpointinstanceinfo.h"
 #include "sfmlboxinstanceinfo.h"
+#include "sfmlboneinstanceinfo.h"
 #include "sfmlsoundobjectinforeference.h"
 
 namespace SpriterEngine
@@ -20,6 +21,11 @@ namespace SpriterEngine
 	BoxInstanceInfo * ExampleObjectFactory::newBoxInstanceInfo(point size)
 	{
 		return new SfmlBoxInstanceInfo(size, renderWindow);
+	}
+
+	BoneInstanceInfo * ExampleObjectFactory::newBoneInstanceInfo(point size)
+	{
+		return new SfmlBoneInstanceInfo(size, renderWindow);
 	}
 
 }

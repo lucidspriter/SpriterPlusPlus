@@ -25,4 +25,11 @@ namespace SpriterEngine
 		value = newValue;
 	}
 
+	void StringVariableInfoReference::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
+	{
+		if (blendRatio >= 0.5)
+		{
+			aObject->setObjectToLinear(bObject, t, this);
+		}
+	}
 }

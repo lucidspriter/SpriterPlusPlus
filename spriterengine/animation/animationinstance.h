@@ -39,9 +39,12 @@ namespace SpriterEngine
 		void setZOrder(ObjectInterfaceVector ** instanceZOrder);
 		void processRefTransforms();
 
+		void processCurrentTimelineKeys(real newTime);
+
+		void blendCurrentTimelineKeys(real newTime, real blendRatio);
+
 	private:
 		void findCurrentTimelineKeys(real newTime, bool forward);
-		void processCurrentTimelineKeys(real newTime);
 
 		void findCurrentMainlineKey(real newTime, bool forward);
 		real processCurrentMainlineKey(real newTime, ObjectInterfaceVector **instanceZOrder);

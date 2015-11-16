@@ -18,14 +18,19 @@ namespace SpriterEngine
 	{
 	}
 
-	void SpriteRefInstance::process(real currentTime)
+	void SpriteRefInstance::preProcess()
 	{
-		ObjectRefInstance::process(currentTime);
 		resultObject()->setImage(imageRef->image());
 		if (useDefaultPivot && imageRef->image())
 		{
 			resultObject()->setPivot(imageRef->image()->defaultPivot);
 		}
+	}
+
+	void SpriteRefInstance::process(real currentTime)
+	{
+		preProcess();
+		ObjectRefInstance::process(currentTime);	
 	}
 
 }

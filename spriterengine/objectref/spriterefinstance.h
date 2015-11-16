@@ -17,6 +17,7 @@ namespace SpriterEngine
 			FileReference *initialImageRef,
 			bool initialUseDefaultPivotPoint);
 
+		void preProcess() override;
 		void process(real currentTime) override;
 
 	private:

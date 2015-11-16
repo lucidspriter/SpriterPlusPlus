@@ -34,6 +34,11 @@ namespace SpriterEngine
 
 		void setTimeElapsed(real timeElapsed);
 
+		void startResumePlayback();
+		void pausePlayback();
+
+		void blend(real blendRatio, real timeRatio);
+
 		void reprocessCurrentTime() override;
 
 
@@ -57,6 +62,14 @@ namespace SpriterEngine
 		UniversalObjectInterface *getVariable(std::string variableName);
 		VariableInstanceNameAndIdMap *getVariables(std::string objectName);
 		UniversalObjectInterface *getVariable(std::string objectName, std::string variableName);
+
+		virtual real getRealValue(std::string variableName);
+		virtual int getIntValue(std::string variableName);
+		virtual std::string getStringValue(std::string variableName);
+
+		virtual real getRealValue(std::string objectName, std::string variableName);
+		virtual int getIntValue(std::string objectName, std::string variableName);
+		virtual std::string getStringValue(std::string objectName, std::string variableName);
 
 		UniversalObjectInterface *getTags() const override;
 		UniversalObjectInterface *getTags(int objectId) const;
@@ -105,6 +118,8 @@ namespace SpriterEngine
 		void appendEntity(SpriterModel *model, Entity *entity, ObjectFactory *objectFactory);
 
 		EntityInstanceData *getEntity(int entityId) override;
+
+		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0) override;
 
 	private:
 		EntityInstanceDataMap entities;

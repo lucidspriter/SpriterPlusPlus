@@ -17,6 +17,8 @@ namespace SpriterEngine
 
 		BoxInstanceInfo *newBoxInstanceInfo(point size) override;
 
+		BoneInstanceInfo *newBoneInstanceInfo(point size) override;
+
 	private:
 		sf::RenderWindow *renderWindow;
 	};

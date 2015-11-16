@@ -2,6 +2,7 @@
 
 #include "../global/settings.h"
 
+#include "../objectref/objectrefinstance.h"
 #include "../charactermap/charactermapinterface.h"
 #include "../objectinfo/tagobjectinforeference.h"
 #include "../objectinfo/triggerobjectinfo.h"
@@ -72,6 +73,12 @@ namespace SpriterEngine
 				timeElapsed *= playbackSpeedRatio;
 				real newTime = getCurrentTime() + timeElapsed;
 				
+				if (!currentAnimation->looping() && newTime >= currentAnimation->length())
+				{
+					isPlaying = false;
+					newTime = currentAnimation->length();
+				}
+
 				if (blendedAnimation)
 				{
 					blendCurrentTime += timeElapsed;
@@ -81,60 +88,75 @@ namespace SpriterEngine
 						blendCurrentTime = 0;
 						blendTotalTime = 0;
 
-						currentAnimation = blendedAnimation;
-						currentAnimation->findAndProcessKeys(newTime, timeElapsed >= 0, &zOrder);
+						real currentT = getCurrentTime() / currentAnimation->length();
+						newTime = (currentT * blendedAnimation->length()) + timeElapsed;
 
+						currentAnimation = blendedAnimation;
 						blendedAnimation = 0;
+
+						currentAnimation->findAndProcessKeys(newTime, timeElapsed >= 0, &zOrder);
 					}
 					else
 					{
-
 						real blendRatio = blendCurrentTime / blendTotalTime;
 
 						real currentT = getCurrentTime() / currentAnimation->length();
+
 						real currentAnimationT = newTime / currentAnimation->length();
 						real blendedAnimationT = ((currentT * blendedAnimation->length()) + timeElapsed) / blendedAnimation->length();
 
 						currentT = linear(currentAnimationT, blendedAnimationT, blendRatio);
 
-						bool forward = timeElapsed >= 0;
-
-						real newCurrentAnimationTime = currentT * currentAnimation->length();
-						currentAnimation->findCurrentKeys(newCurrentAnimationTime, forward);
-						currentAnimation->processRefKeys(currentAnimation->currentTime());
-
-						real newBlendedAnimationTime = currentT * blendedAnimation->length();
-						blendedAnimation->findCurrentKeys(newBlendedAnimationTime, forward);
-						blendedAnimation->blendRefKeys(blendedAnimation->currentTime(), blendRatio);
-
-						if (blendRatio < 0.5)
-						{
-							currentAnimation->setZOrder(&zOrder);
-							currentAnimation->processRefTransforms();
-						}
-						else
-						{
-							blendedAnimation->setZOrder(&zOrder);
-							blendedAnimation->processRefTransforms();
-						}
+						blend(blendRatio, currentT);
 					}
 				}
 				else
 				{
 					currentAnimation->findAndProcessKeys(newTime, timeElapsed >= 0, &zOrder);
 				}
-
-				if (!currentAnimation->looping() && newTime >= currentAnimation->length())
-				{
-					isPlaying = false;
-					newTime = currentAnimation->length();
-				}
-
 			}
 		}
 		else
 		{
 			Settings::error("EntityInstance::setTimeElapsed - current animation not set");
+		}
+	}
+
+	void EntityInstance::startResumePlayback()
+	{
+		isPlaying = true;
+		if (getCurrentTime() >= currentAnimation->length())
+		{
+			setCurrentTime(0);
+		}
+	}
+
+	void EntityInstance::pausePlayback()
+	{
+		isPlaying = false;
+	}
+
+	void EntityInstance::blend(real blendRatio, real timeRatio)
+	{
+		real newCurrentAnimationTime = timeRatio * currentAnimation->length();
+		currentAnimation->findCurrentKeys(newCurrentAnimationTime, newCurrentAnimationTime > currentAnimation->currentTime());
+		currentAnimation->processRefKeys(currentAnimation->currentTime());
+		currentAnimation->processCurrentTimelineKeys(currentAnimation->currentTime());
+
+		real newBlendedAnimationTime = timeRatio * blendedAnimation->length();
+		blendedAnimation->findCurrentKeys(newBlendedAnimationTime, newBlendedAnimationTime > blendedAnimation->currentTime());
+		blendedAnimation->blendRefKeys(blendedAnimation->currentTime(), blendRatio);
+		blendedAnimation->blendCurrentTimelineKeys(blendedAnimation->currentTime(), blendRatio);
+
+		if (blendRatio < 0.5)
+		{
+			currentAnimation->setZOrder(&zOrder);
+			currentAnimation->processRefTransforms();
+		}
+		else
+		{
+			blendedAnimation->setZOrder(&zOrder);
+			blendedAnimation->processRefTransforms();
 		}
 	}
 
@@ -231,6 +253,90 @@ namespace SpriterEngine
 	UniversalObjectInterface *EntityInstance::getVariable(std::string objectName, std::string variableName)
 	{
 		return currentEntity->getVariable(objectName, variableName);
+	}
+
+	real EntityInstance::getRealValue(std::string variableName)
+	{
+		UniversalObjectInterface *variable = getVariable(variableName);
+		if (variable)
+		{
+			return variable->getRealValue();
+		}
+		else
+		{
+			Settings::error("EntityInstance::getRealValue - variable instance with name " + variableName + " not found");
+			return 0;
+		}
+	}
+
+	int EntityInstance::getIntValue(std::string variableName)
+	{
+		UniversalObjectInterface *variable = getVariable(variableName);
+		if (variable)
+		{
+			return variable->getIntValue();
+		}
+		else
+		{
+			Settings::error("EntityInstance::getIntValue - variable instance with name " + variableName + " not found");
+			return 0;
+		}
+	}
+
+	std::string EntityInstance::getStringValue(std::string variableName)
+	{
+		UniversalObjectInterface *variable = getVariable(variableName);
+		if (variable)
+		{
+			return variable->getStringValue();
+		}
+		else
+		{
+			Settings::error("EntityInstance::getStringValue - variable instance with name " + variableName + " not found");
+			return 0;
+		}
+	}
+
+	real EntityInstance::getRealValue(std::string objectName, std::string variableName)
+	{
+		UniversalObjectInterface *variable = getVariable(objectName, variableName);
+		if (variable)
+		{
+			return variable->getRealValue();
+		}
+		else
+		{
+			Settings::error("EntityInstance::getRealValue - object instance with name " + objectName + " or variable instance with name " + variableName + " not found");
+			return 0;
+		}
+	}
+
+	int EntityInstance::getIntValue(std::string objectName, std::string variableName)
+	{
+		UniversalObjectInterface *variable = getVariable(objectName, variableName);
+		if (variable)
+		{
+			return variable->getIntValue();
+		}
+		else
+		{
+			Settings::error("EntityInstance::getIntValue - object instance with name " + objectName + " or variable instance with name " + variableName + " not found");
+			return 0;
+		}
+	}
+
+	std::string EntityInstance::getStringValue(std::string objectName, std::string variableName)
+	{
+		UniversalObjectInterface *variable = getVariable(objectName, variableName);
+		if (variable)
+		{
+			return variable->getStringValue();
+		}
+		else
+		{
+			Settings::error("EntityInstance::getStringValue - object instance with name " + objectName + " or variable instance with name " + variableName + " not found");
+			return 0;
+		}
 	}
 
 	UniversalObjectInterface *EntityInstance::getTags() const
@@ -459,4 +565,37 @@ namespace SpriterEngine
 		}
 	}
 
+	void EntityInstance::setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance)
+	{
+		real tempAngle = angle.angle;
+		point tempPosition = position;
+		point tempScale = scale;
+		real tempAlpha = alpha;
+		real tempTimeRatio = getCurrentTime() / currentAnimation->length();
+		EntityInstanceData *tempCurrentEntity = currentEntity;
+		AnimationInstance *tempCurrentAnimation = currentAnimation;
+
+		blendedRefInstance->preProcess();
+
+		aObject->setObjectToLinear(bObject, t, this);
+
+		setAngle(shortestAngleLinear(tempAngle, angle.angle, blendRatio));
+		setPosition(linear(tempPosition, position, blendRatio));
+		setScale(linear(tempScale, scale, blendRatio));
+		setAlpha(linear(tempAlpha, alpha, blendRatio));
+
+		blendedRefInstance->processTransform();
+
+		real timeRatio = linear(tempTimeRatio, getCurrentTime() / currentAnimation->length(), blendRatio);
+
+		if (currentEntity == tempCurrentEntity)
+		{
+			blendedAnimation = currentAnimation;
+			currentAnimation = tempCurrentAnimation;
+
+			blend(blendRatio, timeRatio);;
+		}
+
+		blendedAnimation = 0;
+	}
 }
