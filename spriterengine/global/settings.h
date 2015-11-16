@@ -29,6 +29,10 @@ namespace SpriterEngine
 
 		static void suppressErrorOutput(bool suppress = true);
 
+		static bool reverseYOnLoad;
+		static bool reversePivotYOnLoad;
+		static bool reverseAngleOnLoad;
+
 	private:
 		static ErrorFunctionPointer errFunction;
 		static ErrorFunctionPointer previousErrorFunction;

@@ -17,6 +17,11 @@ namespace SpriterEngine
 	// to output to your authoring tool's or custom engine's debug
 	ErrorFunctionPointer Settings::errFunction = &nullError; 
 	
+	// loading options - set these if your engine requires the y, pivotY, or angle to be reversed to display properly
+	bool Settings::reverseYOnLoad = true;
+	bool Settings::reversePivotYOnLoad = true;
+	bool Settings::reverseAngleOnLoad = true;
+
 	// end of program initial settings
 
 

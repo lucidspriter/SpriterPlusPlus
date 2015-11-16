@@ -80,7 +80,8 @@ namespace SpriterEngine
 				}
 				else
 				{
-					point pivot(0, 1);
+					point pivot(0, 0);
+
 					if (att->isValid() && att->getName() == "width")
 					{
 						// TODO: if you need the width of the file for your implementation retrieve it here;
@@ -98,8 +99,13 @@ namespace SpriterEngine
 					}
 					if (att->isValid() && att->getName() == "pivot_y")
 					{
-						pivot.y = 1 - att->getRealValue();
+						pivot.y = att->getRealValue();
 						att->advanceToNextAttribute();
+					}
+
+					if (Settings::reversePivotYOnLoad)
+					{
+						pivot.y = 1 - pivot.y;
 					}
 
 					model->pushBackImageFile(filePath + fileName, pivot);
@@ -220,8 +226,8 @@ namespace SpriterEngine
 							att->advanceToNextAttribute();
 						}
 						if (att->isValid() && att->getName() == "pivot_y")
-						{
-							(*defaultBoxPivotMap)[newObject->getId()].y = 1 - att->getRealValue();
+						{							
+							(*defaultBoxPivotMap)[newObject->getId()].y = att->getRealValue();;
 							att->advanceToNextAttribute();
 						}
 						newObject->setSize(size);
@@ -894,7 +900,7 @@ namespace SpriterEngine
 
 			point position(0, 0);
 			point scale(1, 1);
-			point pivot(0, 1);
+			point pivot(0, 0);
 
 			if (defaultBoxPivot)
 			{
@@ -910,11 +916,22 @@ namespace SpriterEngine
 				}
 				else if (att->getName() == "y")
 				{
-					position.y = -att->getRealValue();
+					position.y = att->getRealValue();
+					if (Settings::reverseYOnLoad)
+					{
+						position.y *= -1;
+					}
 				}
 				else if (att->getName() == "angle")
 				{
-					objectInfo->setAngle(toRadians(360 - att->getRealValue()));
+					real angle = att->getRealValue();
+
+					if (Settings::reverseAngleOnLoad)
+					{
+						angle = 360 - angle;
+					}
+
+					objectInfo->setAngle(toRadians(angle));
 				}
 				else if (att->getName() == "scale_x")
 				{
@@ -930,7 +947,7 @@ namespace SpriterEngine
 				}
 				else if (att->getName() == "pivot_y")
 				{
-					pivot.y = 1 - att->getRealValue();
+					pivot.y = att->getRealValue();
 				}
 				else if (att->getName() == "a")
 				{
@@ -958,6 +975,11 @@ namespace SpriterEngine
 				}
 
 				att->advanceToNextAttribute();
+			}
+
+			if (Settings::reversePivotYOnLoad)
+			{
+				pivot.y = 1 - pivot.y;
 			}
 
 			Settings::suppressErrorOutput();
