@@ -101,11 +101,6 @@ Character maps
 * bool myTagIsActive = entityInstance->tagIsActive("tagName");
 
 
-## TODO:
-*Add animation blending
-*Add helper functions to retrieve a tag or variable and check it's value with one command
-*Add error handling 
-
 
 ## Feedback
 To provide feedback, report errors, or give suggestions, please use the relevant Spriter [forum thread](http://brashmonkey.com/forum/index.php?/topic/4464-spriterplusplus-a-c-spriter-implementation/ "BrashMonkey forums").
