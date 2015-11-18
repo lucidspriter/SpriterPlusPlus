@@ -26,6 +26,8 @@ Animation Blending
 
 ## How to use
 
+##### All necessary files are in the 'spriterengine' folder.  The other included files are for example purposes.
+
 ### Extend (All of the following can be found in spriterengine/override) :
 #### FileFactory 
 ###### and pass to SpriterModel so it can use your own inherited versions of :
