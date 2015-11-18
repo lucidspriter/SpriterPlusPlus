@@ -5,10 +5,12 @@ include_directories("${PROJECT_SOURCE_DIR}/SFML-2.3.2/include")
 file(GLOB_RECURSE spp_SRC 
 	${PROJECT_SOURCE_DIR}/example/*.h
 	${PROJECT_SOURCE_DIR}/spriterengine/*.h
-	${PROJECT_SOURCE_DIR}/tinyxml2*.h
+	${PROJECT_SOURCE_DIR}/tinyxml2/*.h
+	${PROJECT_SOURCE_DIR}/pugixml/*.hpp
 	${PROJECT_SOURCE_DIR}/example/*.cpp
 	${PROJECT_SOURCE_DIR}/spriterengine/*.cpp
-	${PROJECT_SOURCE_DIR}/tinyxml2*.cpp)
+	${PROJECT_SOURCE_DIR}/tinyxml2/*.cpp
+	${PROJECT_SOURCE_DIR}/pugixml/*.cpp)
 
 link_directories("${PROJECT_SOURCE_DIR}/SFML-2.3.2/lib")
 

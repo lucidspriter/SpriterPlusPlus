@@ -3,14 +3,20 @@
 #include "../../spriterengine/override/imagefile.h"
 #include "../../spriterengine/override/soundfile.h"
 
+// #define __USE_PUGIXML
+#if not defined(__USE_PUGIXML)
 #include "tinyxmlspriterfiledocumentwrapper.h"
+#else
+#include "pugixmlspriterfiledocumentwrapper.h"
+#endif
+
 #include "sfmlimagefile.h"
 #include "sfmlsoundfile.h"
 
 namespace SpriterEngine
 {
 
-	ExampleFileFactory::ExampleFileFactory(sf::RenderWindow *validRenderWindow):
+	ExampleFileFactory::ExampleFileFactory(sf::RenderWindow *validRenderWindow) :
 		renderWindow(validRenderWindow)
 	{
 	}
@@ -27,6 +33,10 @@ namespace SpriterEngine
 
 	SpriterFileDocumentWrapper * ExampleFileFactory::newScmlDocumentWrapper()
 	{
+#if not defined(__USE_PUGIXML)
 		return new TinyXmlSpriterFileDocumentWrapper();
+#else
+		return new PugiXmlSpriterFileDocumentWrapper();		
+#endif
 	}
 }
