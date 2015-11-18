@@ -45,9 +45,9 @@ namespace SpriterEngine
 		void getAnimationsFromEntityElement(SpriterFileElementWrapper * entityElement, SpriterModel * model, Entity * entity, FileFlattener * fileFlattener, PointMap *defaultBoxPivotMap);
 		Animation * getNewAnimationFromAnimationElement(SpriterFileElementWrapper * animationElement, Entity * entity);
 
-		void getTimelinesFromAnimationElement(SpriterFileElementWrapper * animationElement, SpriterModel * model, Entity * entity, Animation * animation, FileFlattener * fileFlattener, SpriteKeyFileInfoObjectIdMap * spriteKeyFileInfoMap, SubEntityKeyInfoMap * subEntityKeyInfoMap, PointMap *defaultBoxPivotMap);
+		void getTimelinesFromAnimationElement(SpriterFileElementWrapper * animationElement, SpriterModel * model, Entity * entity, Animation * animation, FileFlattener * fileFlattener, SpriteKeyFileInfoObjectIdMap * spriteKeyFileInfoMap, SubEntityKeyInfoMap * subEntityKeyInfoMap, PointMap *defaultBoxPivotMap, BooleanVector *timelineRedunantKeyedVector);
 
-		void createRedundantFirstKeys(Animation * animation, Timeline * timeline);
+		bool createRedundantFirstKeys(Animation * animation, Timeline * timeline);
 
 		void getMetaDataFromElement(SpriterFileElementWrapper *parentObjectElement, SpriterModel *model, Entity *entity, Animation *animation, int objectId);
 
@@ -66,8 +66,8 @@ namespace SpriterEngine
 
 		UniversalObjectInterface * getObjectInfoFromTimelineKeyElement(SpriterFileElementWrapper * keyElement, Entity * entity, Object * object, Timeline * timeline, FileFlattener * fileFlattener, SpriteKeyFileInfo * spriteKeyFileInfo, SubEntityKeyInfo *subEntityKeyInfo, point *defaultBoxPivot);
 
-		void getMainlineFromAnimationElement(SpriterFileElementWrapper * animationElement, Animation * animation, SpriteKeyFileInfoObjectIdMap * spriteKeyFileInfoMap, SubEntityKeyInfoMap *subEntityKeyInfoMap);
-		void getRefsFromMainlineKeyElement(SpriterFileElementWrapper * keyElement, Animation * animation, MainlineKey * mainlineKey, SpriteKeyFileInfoObjectIdMap * spriteKeyFileInfoMap, SubEntityKeyInfoMap *subEntityKeyInfoMap);
+		void getMainlineFromAnimationElement(SpriterFileElementWrapper * animationElement, Animation * animation, SpriteKeyFileInfoObjectIdMap * spriteKeyFileInfoMap, SubEntityKeyInfoMap *subEntityKeyInfoMap, BooleanVector *timelineRedunantKeyedVector);
+		void getRefsFromMainlineKeyElement(SpriterFileElementWrapper * keyElement, Animation * animation, MainlineKey * mainlineKey, SpriteKeyFileInfoObjectIdMap * spriteKeyFileInfoMap, SubEntityKeyInfoMap *subEntityKeyInfoMap, BooleanVector *timelineRedunantKeyedVector);
 
 		void getEventlinesFromAnimationElement(SpriterFileElementWrapper * animationElement, Entity * entity, Animation * animation);
 

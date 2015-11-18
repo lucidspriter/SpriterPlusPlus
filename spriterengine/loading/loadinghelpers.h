@@ -36,6 +36,8 @@ namespace SpriterEngine
 
 	typedef std::map<int, point> PointMap;
 
+	typedef std::vector<bool> BooleanVector;
+
 	const int MAX_CONTROL_POINTS = 4;
 	typedef real ControlPointArray[MAX_CONTROL_POINTS];
 

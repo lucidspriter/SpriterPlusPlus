@@ -5,7 +5,10 @@
 namespace SpriterEngine
 {
 
-	SoundObjectInfoReference::SoundObjectInfoReference()
+	SoundObjectInfoReference::SoundObjectInfoReference() :
+		triggerCount(0),
+		volume(1),
+		panning(0)
 	{
 	}
 

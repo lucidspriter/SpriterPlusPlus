@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "../global/global.h"
+
 namespace SpriterEngine
 {
 
@@ -29,6 +31,8 @@ namespace SpriterEngine
 
 		void pushBackBoneRef(ObjectRef *ref);
 		void pushBackZOrderRef(ObjectRef *ref);
+
+		real getTime();
 
 	private:
 		TimeInfo *timeInfo;
