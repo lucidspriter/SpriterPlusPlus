@@ -125,8 +125,8 @@ enableDebugBones must be true while creating a new instance in order for renderD
 
 ### Additional options
 #### Error output
-In Settings.cpp there is a function pointer to a callback function to display error messages
-ErrorFunctionPointer Settings::errFunction; 
+In Settings.cpp there is a function pointer to a callback function to display error messages:
+* ErrorFunctionPointer Settings::errFunction; 
 
 Any function with the signature void myErrorFunction(const std::string &errorMessage) can be used here. 
 
@@ -134,7 +134,7 @@ Two basic error functions are provided:
 * nullError is the default, and takes no action
 * simpleError outputs the error message to std::cerr
 
-In most cases, there should be no errors, unless you are loading an invalid file, or attempt to retrieve the wrong type of data from an object or variable (myStringVariable->getIntValue()), or attempt to access a missing variable or object
+In most cases, there should be no errors, unless you are loading an invalid file, attempting to retrieve the wrong type of data from an object or variable (myStringVariable->getIntValue()), or attempting to access a missing variable or object
 
 
 	
