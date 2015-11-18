@@ -21,7 +21,8 @@ Events (Triggers)
 Sounds
 Variables
 Tags
-Character maps
+Character Maps
+Animation Blending
 
 ## How to use
 
@@ -34,10 +35,18 @@ Character maps
 
 #### ObjectFactory 
 ###### and pass to SpriterModel to enable debug rendering:
-* spriterengine/objectinfo/PointObjectInfo 
-
+* spriterengine/objectinfo/PointInstanceInfo 
 * spriterengine/objectinfo/BoneInstanceInfo
 * spriterengine/objectinfo/BoxInstanceInfo 
+ 
+Settings.cpp has static variables to control the display of points, bones, and boxes:
+
+* bool Settings::renderDebugPoints;
+* bool Settings::renderDebugBones;
+* bool Settings::renderDebugBoxes;
+
+enableDebugBones must be true while creating a new instance in order for renderDebugBones to have an effect:
+* bool Settings::enableDebugBones;
 
 * spriterengine/objectinfo/TriggerObjectInfo if you want to be able to perform a function upon being triggering events
 ###### (Alternatively you can query a specific trigger for your instance using :
@@ -55,7 +64,11 @@ Character maps
 
 ### Controlling playback :
 * entityInstance->setCurrentAnimation(animationName); // defaults to first animation
-* entityInstance->setTimeElapsed(inMilliseconds);
+* entityInstance->setCurrentAnimation(animationName, blendTimeInMilliseconds); // blends the current animation to the new one over time
+* entityInstance->setTimeElapsed(inMilliseconds); 
+
+* entityInstance->pausePlayback(); // playback is automatically paused at the end of a non-looping animation
+* entityInstance->startResumePlayback(); // playback automatically resumes on a setCurrentAnimation() command
 
 
 ##### after setting the elapsed Time:
@@ -88,11 +101,20 @@ Character maps
 
 
 #### Metadata
-##### to retrieve a variable from an object :
-* entityInstance->getVariable("objectName","varName")->getRealValue(); // or getIntValue, or getStringValue
+##### to retrieve a variable value from an object :
+* entityInstance->getRealValue("objectName","varName"); // or getIntValue, or getStringValue
 
 ##### to retrieve a variable from the entity itself :
-* entityInstance->getVariable("varName")->getIntValue(); 
+* entityInstance->getRealValue("varName"); // or getIntValue, or getStringValue
+
+##### if you would like to store the variable to avoid repeated retrieval for performance reasons (should normally not be necessary):
+* UniversalObjectInterface *myVariable = entityInstance->getVariable("objectName", "varName"); // to retrieve from an object or
+* UniversalObjectInterface *myVariable = entityInstance->getVariable("varName"); // to retrieve from the entity itself
+ 
+######      and then use
+
+* myVariable->getRealValue(); // or getIntValue, or getStringValue
+
 
 ##### to check if a tag is active :
 * bool myTagIsActive = entityInstance->tagIsActive("objectName", "tagName");
@@ -101,10 +123,29 @@ Character maps
 * bool myTagIsActive = entityInstance->tagIsActive("tagName");
 
 
-## TODO:
-*Add animation blending
-*Add helper functions to retrieve a tag or variable and check it's value with one command
-*Add error handling 
+### Additional options
+#### Error output
+In Settings.cpp there is a function pointer to a callback function to display error messages
+ErrorFunctionPointer Settings::errFunction; 
+
+Any function with the signature void myErrorFunction(const std::string &errorMessage) can be used here. 
+
+Two basic error functions are provided:
+* nullError is the default, and takes no action
+* simpleError outputs the error message to std::cerr
+
+In most cases, there should be no errors, unless you are loading an invalid file, or attempt to retrieve the wrong type of data from an object or variable (myStringVariable->getIntValue()), or attempt to access a missing variable or object
+
+
+	
+
+#### Loading options
+In Settings.cpp you can set loading option, if your engine requires the y, pivotY, or angle to be reversed to display properly (you attempt to load a character in your engine and the positions, pivots, or angles seem reversed).
+These are all defaulted to true, which is the setting that should work correctly for most engines.
+
+*	Settings::reverseYOnLoad;
+*	Settings::reversePivotYOnLoad;
+*	Settings::reverseAngleOnLoad;
 
 
 ## Feedback
