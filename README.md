@@ -7,7 +7,7 @@ Additional instances are flyweights that take up less ram than the initially the
 Each flyweight instance minimizes cycles spent in random access and iteratating through containers using stored pointers and iterators wherever possible.
 
 ## Included example
-Sfml for display and sound playback. 
+Sfml for display and sound playback
 
 Two examples for loading: TinyXml and PugiXml
 
