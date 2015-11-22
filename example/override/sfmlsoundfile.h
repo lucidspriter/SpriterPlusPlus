@@ -3,7 +3,7 @@
 
 #include "../../spriterengine/override/soundfile.h"
 
-#include "SFML/audio.hpp"
+#include "SFML/Audio.hpp"
 
 namespace SpriterEngine
 {
