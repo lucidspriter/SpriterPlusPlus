@@ -1,0 +1,9 @@
+project(SPRITER_ENGINE CXX)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+file(GLOB_RECURSE SPRITER_ENGINE_SRCS *.cpp)
+file(GLOB_RECURSE SPRITER_ENGINE_HDRS *.h)
+
+add_library(spriterengine STATIC
+    ${SPRITER_ENGINE_SRCS})
