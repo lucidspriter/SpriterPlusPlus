@@ -170,7 +170,7 @@ namespace SpriterEngine
 		return currentEntity->getObjectInstance(objectId);
 	}
 
-	UniversalObjectInterface *EntityInstance::getObjectInstance(std::string objectName)
+	UniversalObjectInterface *EntityInstance::getObjectInstance(const std::string &objectName)
 	{
 		return currentEntity->getObjectInstance(objectName);
 	}
@@ -240,22 +240,22 @@ namespace SpriterEngine
 		return currentEntity->getVariable(objectId, variableId);
 	}
 
-	UniversalObjectInterface *EntityInstance::getVariable(std::string variableName)
+	UniversalObjectInterface *EntityInstance::getVariable(const std::string &variableName)
 	{
 		return currentEntity->getVariable(variableName);
 	}
 
-	VariableInstanceNameAndIdMap *EntityInstance::getVariables(std::string objectName)
+	VariableInstanceNameAndIdMap *EntityInstance::getVariables(const std::string &objectName)
 	{
 		return currentEntity->getVariables(objectName);
 	}
 
-	UniversalObjectInterface *EntityInstance::getVariable(std::string objectName, std::string variableName)
+	UniversalObjectInterface *EntityInstance::getVariable(const std::string &objectName, const std::string &variableName)
 	{
 		return currentEntity->getVariable(objectName, variableName);
 	}
 
-	real EntityInstance::getRealValue(std::string variableName)
+	real EntityInstance::getRealValue(const std::string &variableName)
 	{
 		UniversalObjectInterface *variable = getVariable(variableName);
 		if (variable)
@@ -269,7 +269,7 @@ namespace SpriterEngine
 		}
 	}
 
-	int EntityInstance::getIntValue(std::string variableName)
+	int EntityInstance::getIntValue(const std::string &variableName)
 	{
 		UniversalObjectInterface *variable = getVariable(variableName);
 		if (variable)
@@ -283,7 +283,7 @@ namespace SpriterEngine
 		}
 	}
 
-	std::string EntityInstance::getStringValue(std::string variableName)
+	std::string EntityInstance::getStringValue(const std::string &variableName)
 	{
 		UniversalObjectInterface *variable = getVariable(variableName);
 		if (variable)
@@ -297,7 +297,7 @@ namespace SpriterEngine
 		}
 	}
 
-	real EntityInstance::getRealValue(std::string objectName, std::string variableName)
+	real EntityInstance::getRealValue(const std::string &objectName, const std::string &variableName)
 	{
 		UniversalObjectInterface *variable = getVariable(objectName, variableName);
 		if (variable)
@@ -311,7 +311,7 @@ namespace SpriterEngine
 		}
 	}
 
-	int EntityInstance::getIntValue(std::string objectName, std::string variableName)
+	int EntityInstance::getIntValue(const std::string &objectName, const std::string &variableName)
 	{
 		UniversalObjectInterface *variable = getVariable(objectName, variableName);
 		if (variable)
@@ -325,7 +325,7 @@ namespace SpriterEngine
 		}
 	}
 
-	std::string EntityInstance::getStringValue(std::string objectName, std::string variableName)
+	std::string EntityInstance::getStringValue(const std::string &objectName, const std::string &variableName)
 	{
 		UniversalObjectInterface *variable = getVariable(objectName, variableName);
 		if (variable)
@@ -349,22 +349,22 @@ namespace SpriterEngine
 		return currentEntity->getTags(objectId);
 	}
 
-	bool EntityInstance::tagIsActive(int objectId, std::string tagToCheck) const
+	bool EntityInstance::tagIsActive(int objectId, const std::string &tagToCheck) const
 	{
 		return currentEntity->tagIsActive(objectId, tagToCheck);
 	}
 
-	bool EntityInstance::tagIsActive(std::string tagToCheck) const
+	bool EntityInstance::tagIsActive(const std::string &tagToCheck) const
 	{
 		return currentEntity->tagIsActive("", tagToCheck);
 	}
 
-	UniversalObjectInterface *EntityInstance::getTags(std::string objectName) const
+	UniversalObjectInterface *EntityInstance::getTags(const std::string &objectName) const
 	{
 		return currentEntity->getTags(objectName);
 	}
 
-	bool EntityInstance::tagIsActive(std::string objectName, std::string tagToCheck) const
+	bool EntityInstance::tagIsActive(const std::string &objectName, const std::string &tagToCheck) const
 	{
 		return currentEntity->tagIsActive(objectName, tagToCheck);
 	}
@@ -374,7 +374,7 @@ namespace SpriterEngine
 		return currentEntity->getTriggerObject(triggerId);
 	}
 
-	UniversalObjectInterface *EntityInstance::getTriggerObject(std::string triggerName)
+	UniversalObjectInterface *EntityInstance::getTriggerObject(const std::string &triggerName)
 	{
 		return currentEntity->getTriggerObject(triggerName);
 	}
@@ -384,7 +384,7 @@ namespace SpriterEngine
 		return currentEntity->getSoundObject(soundId);
 	}
 
-	UniversalObjectInterface *EntityInstance::getSoundObject(std::string soundName)
+	UniversalObjectInterface *EntityInstance::getSoundObject(const std::string &soundName)
 	{
 		return currentEntity->getSoundObject(soundName);
 	}
@@ -490,13 +490,13 @@ namespace SpriterEngine
 		playbackSpeedRatio = newPlaybackSpeedRatio;
 	}
 
-	void EntityInstance::applyCharacterMap(std::string mapName)
+	void EntityInstance::applyCharacterMap(const std::string &mapName)
 	{
 		characterMapInterface->applyCharacterMap(mapName, &files);
 		appliedCharacterMaps.push_back(mapName);
 	}
 
-	void EntityInstance::removeCharacterMap(std::string mapName)
+	void EntityInstance::removeCharacterMap(const std::string &mapName)
 	{
 		characterMapInterface->removeAllCharacterMaps(&files);
 		appliedCharacterMaps.remove(mapName);

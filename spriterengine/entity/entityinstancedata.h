@@ -47,9 +47,9 @@ namespace SpriterEngine
 	public:
 		EntityInstanceData(SpriterModel *model, EntityInstance *entityInstance, Entity *entity, ObjectFactory *objectFactory);
 		~EntityInstanceData();
-		
+
 		UniversalObjectInterface *getObjectInstance(int objectId);
-		UniversalObjectInterface * getObjectInstance(std::string objectName);
+		UniversalObjectInterface * getObjectInstance(const std::string &objectName);
 
 		TransformProcessor *getTransformer(int id);
 
@@ -58,36 +58,36 @@ namespace SpriterEngine
 		VariableInstanceNameAndIdMap *getVariables(int objectId);
 		UniversalObjectInterface *getVariable(int objectId, int variableId);
 
-		UniversalObjectInterface *getVariable(std::string variableName);
-		VariableInstanceNameAndIdMap *getVariables(std::string objectName);
-		UniversalObjectInterface *getVariable(std::string objectName, std::string variableName);
+		UniversalObjectInterface *getVariable(const std::string &variableName);
+		VariableInstanceNameAndIdMap *getVariables(const std::string &objectName);
+		UniversalObjectInterface *getVariable(const std::string &objectName, const std::string &variableName);
 
 		UniversalObjectInterface *getTags() const override;
 		UniversalObjectInterface *getTags(int objectId) const;
-		bool tagIsActive(int objectId, std::string tagToCheck) const;
+		bool tagIsActive(int objectId, const std::string &tagToCheck) const;
 
-		bool tagIsActive(std::string tagToCheck) const override;
-		UniversalObjectInterface *getTags(std::string objectName) const;
-		bool tagIsActive(std::string objectName, std::string tagToCheck) const;
+		bool tagIsActive(const std::string &tagToCheck) const override;
+		UniversalObjectInterface *getTags(const std::string &objectName) const;
+		bool tagIsActive(const std::string &objectName, const  std::string &tagToCheck) const;
 
 		UniversalObjectInterface *getTriggerObject(int triggerId);
-		UniversalObjectInterface *getTriggerObject(std::string triggerName);
+		UniversalObjectInterface *getTriggerObject(const std::string &triggerName);
 
 		UniversalObjectInterface *getSoundObject(int soundId);
-		UniversalObjectInterface *getSoundObject(std::string soundName);
+		UniversalObjectInterface *getSoundObject(const std::string &soundName);
 
 		void setCurrentAnimation(int newAnimationIndex, AnimationInstance **currentAnimation);
 		void setCurrentAnimation(const std::string &animationName, AnimationInstance **currentAnimation);
 
-		void pushBackAnimationInstance(std::string name, AnimationInstance *newAnimationInstance);
-		void setObjectInstance(int id, std::string name, UniversalObjectInterface *newObjectInstance);
-		VariableInstanceNameAndIdMap *getVariableInstanceMap(int objectId, std::string objectName);
-		void setTagInstance(int objectId, std::string objectName);
-		void setSoundInstance(int id, std::string name, FileReference * soundRef);
-		void setTriggerInstance(int id, std::string name, TriggerObjectInfo *newCustomTriggerObject = 0);
+		void pushBackAnimationInstance(const std::string &name, AnimationInstance *newAnimationInstance);
+		void setObjectInstance(int id, const  std::string &name, UniversalObjectInterface *newObjectInstance);
+		VariableInstanceNameAndIdMap *getVariableInstanceMap(int objectId, const std::string &objectName);
+		void setTagInstance(int objectId, const std::string &objectName);
+		void setSoundInstance(int id, const std::string &name, FileReference * soundRef);
+		void setTriggerInstance(int id, const std::string &name, TriggerObjectInfo *newCustomTriggerObject = 0);
 
 		AnimationInstance *getAnimation(int animationIndex);
-		AnimationInstance *getAnimation(std::string animationName);
+		AnimationInstance *getAnimation(const std::string &animationName);
 
 		void playSoundTriggers();
 		void playEventTriggers();

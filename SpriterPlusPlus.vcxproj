@@ -156,6 +156,10 @@
     <ClCompile Include="example\main.cpp" />
     <ClCompile Include="example\override\examplefilefactory.cpp" />
     <ClCompile Include="example\override\exampleobjectfactory.cpp" />
+    <ClCompile Include="example\override\pugixmlspriterfileattributewrapper.cpp" />
+    <ClCompile Include="example\override\pugixmlspriterfiledocumentwrapper.cpp" />
+    <ClCompile Include="example\override\pugixmlspriterfileelementwrapper.cpp" />
+    <ClCompile Include="example\override\sfmlboneinstanceinfo.cpp" />
     <ClCompile Include="example\override\sfmlboxinstanceinfo.cpp" />
     <ClCompile Include="example\override\sfmlimagefile.cpp" />
     <ClCompile Include="example\override\sfmlpointinstanceinfo.cpp" />
@@ -164,6 +168,7 @@
     <ClCompile Include="example\override\tinyxmlspriterfileattributewrapper.cpp" />
     <ClCompile Include="example\override\tinyxmlspriterfiledocumentwrapper.cpp" />
     <ClCompile Include="example\override\tinyxmlspriterfileelementwrapper.cpp" />
+    <ClCompile Include="pugixml\pugixml.cpp" />
     <ClCompile Include="spriterengine\animation\animation.cpp" />
     <ClCompile Include="spriterengine\animation\animationinstance.cpp" />
     <ClCompile Include="spriterengine\animation\mainlinekey.cpp" />
@@ -242,6 +247,10 @@
   <ItemGroup>
     <ClInclude Include="example\override\examplefilefactory.h" />
     <ClInclude Include="example\override\exampleobjectfactory.h" />
+    <ClInclude Include="example\override\pugixmlspriterfileattributewrapper.h" />
+    <ClInclude Include="example\override\pugixmlspriterfiledocumentwrapper.h" />
+    <ClInclude Include="example\override\pugixmlspriterfileelementwrapper.h" />
+    <ClInclude Include="example\override\sfmlboneinstanceinfo.h" />
     <ClInclude Include="example\override\sfmlboxinstanceinfo.h" />
     <ClInclude Include="example\override\sfmlimagefile.h" />
     <ClInclude Include="example\override\sfmlpointinstanceinfo.h" />
@@ -250,6 +259,8 @@
     <ClInclude Include="example\override\tinyxmlspriterfileattributewrapper.h" />
     <ClInclude Include="example\override\tinyxmlspriterfiledocumentwrapper.h" />
     <ClInclude Include="example\override\tinyxmlspriterfileelementwrapper.h" />
+    <ClInclude Include="pugixml\pugiconfig.hpp" />
+    <ClInclude Include="pugixml\pugixml.hpp" />
     <ClInclude Include="spriterengine\animation\animation.h" />
     <ClInclude Include="spriterengine\animation\animationinstance.h" />
     <ClInclude Include="spriterengine\animation\mainlinekey.h" />

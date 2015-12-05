@@ -43,7 +43,7 @@ namespace SpriterEngine
 
 
 		UniversalObjectInterface *getObjectInstance(int objectId);
-		UniversalObjectInterface * getObjectInstance(std::string objectName);
+		UniversalObjectInterface * getObjectInstance(const std::string &objectName);
 		FileReference *getFile(int fileId);
 
 		point getPosition() override;
@@ -59,31 +59,31 @@ namespace SpriterEngine
 		VariableInstanceNameAndIdMap *getVariables(int objectId);
 		UniversalObjectInterface *getVariable(int objectId, int variableId);
 
-		UniversalObjectInterface *getVariable(std::string variableName);
-		VariableInstanceNameAndIdMap *getVariables(std::string objectName);
-		UniversalObjectInterface *getVariable(std::string objectName, std::string variableName);
+		UniversalObjectInterface *getVariable(const std::string &variableName);
+		VariableInstanceNameAndIdMap *getVariables(const std::string &objectName);
+		UniversalObjectInterface *getVariable(const std::string &objectName, const std::string &variableName);
 
-		virtual real getRealValue(std::string variableName);
-		virtual int getIntValue(std::string variableName);
-		virtual std::string getStringValue(std::string variableName);
+		virtual real getRealValue(const std::string &variableName);
+		virtual int getIntValue(const std::string &variableName);
+		virtual std::string getStringValue(const std::string &variableName);
 
-		virtual real getRealValue(std::string objectName, std::string variableName);
-		virtual int getIntValue(std::string objectName, std::string variableName);
-		virtual std::string getStringValue(std::string objectName, std::string variableName);
+		virtual real getRealValue(const std::string &objectName, const std::string &variableName);
+		virtual int getIntValue(const std::string &objectName, const std::string &variableName);
+		virtual std::string getStringValue(const std::string &objectName, const std::string &variableName);
 
 		UniversalObjectInterface *getTags() const override;
 		UniversalObjectInterface *getTags(int objectId) const;
-		bool tagIsActive(int objectId, std::string tagToCheck) const;
+		bool tagIsActive(int objectId, const std::string &tagToCheck) const;
 
-		bool tagIsActive(std::string tagToCheck) const override;
-		UniversalObjectInterface *getTags(std::string objectName) const;
-		bool tagIsActive(std::string objectName, std::string tagToCheck) const;
+		bool tagIsActive(const std::string &tagToCheck) const override;
+		UniversalObjectInterface *getTags(const std::string &objectName) const;
+		bool tagIsActive(const std::string &objectName, const std::string &tagToCheck) const;
 
 		UniversalObjectInterface *getTriggerObject(int triggerId);
-		UniversalObjectInterface *getTriggerObject(std::string triggerName);
+		UniversalObjectInterface *getTriggerObject(const std::string &triggerName);
 
 		UniversalObjectInterface *getSoundObject(int soundId);
-		UniversalObjectInterface *getSoundObject(std::string soundName);
+		UniversalObjectInterface *getSoundObject(const std::string &soundName);
 
 
 		void setPosition(const point &newPosition) override;
@@ -103,8 +103,8 @@ namespace SpriterEngine
 
 		void setPlaybackSpeedRatio(real newPlaybackSpeedRatio);
 
-		void applyCharacterMap(std::string mapName);
-		void removeCharacterMap(std::string mapName);
+		void applyCharacterMap(const std::string &mapName);
+		void removeCharacterMap(const std::string &mapName);
 		void removeAllCharacterMaps();
 
 		void render() override;

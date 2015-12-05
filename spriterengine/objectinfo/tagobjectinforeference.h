@@ -14,7 +14,7 @@ namespace SpriterEngine
 	public:
 		TagObjectInfoReference();
 
-		bool tagIsActive(std::string tagToCheck) const override;
+		bool tagIsActive(const std::string &tagToCheck) const override;
 
 		void setTagList(TagList *newTagList) override;
 

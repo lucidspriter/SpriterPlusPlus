@@ -12,7 +12,7 @@ namespace SpriterEngine
 		StringVariableInfo();
 
 		std::string getStringValue() override;
-		void setStringValue(std::string newValue) override;
+		void setStringValue(const std::string &newValue) override;
 
 		void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject) override;
 

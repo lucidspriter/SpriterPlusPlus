@@ -10,7 +10,7 @@ namespace SpriterEngine
 	{
 	}
 
-	bool TagObjectInfoReference::tagIsActive(std::string tagToCheck) const
+	bool TagObjectInfoReference::tagIsActive(const std::string &tagToCheck) const
 	{
 		if (tagList)
 		{

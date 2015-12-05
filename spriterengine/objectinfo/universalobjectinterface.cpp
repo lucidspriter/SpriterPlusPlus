@@ -133,7 +133,7 @@ namespace SpriterEngine
 		return 0;
 	}
 
-	bool UniversalObjectInterface::tagIsActive(std::string tagToCheck) const
+	bool UniversalObjectInterface::tagIsActive(const std::string &tagToCheck) const
 	{
 		Settings::error("UniversalObjectInterface::tagIsActive - object does not contain this component - falling back on default value");
 		return false;
@@ -212,7 +212,7 @@ namespace SpriterEngine
 		Settings::error("UniversalObjectInterface::setIntValue - object does not contain this component - no action taken");
 	}
 
-	void UniversalObjectInterface::setStringValue(std::string newValue)
+	void UniversalObjectInterface::setStringValue(const std::string &newValue)
 	{
 		Settings::error("UniversalObjectInterface::setStringValue - object does not contain this component - no action taken");
 	}

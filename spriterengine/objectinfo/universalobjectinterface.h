@@ -57,7 +57,7 @@ namespace SpriterEngine
 		virtual VariableInstanceNameAndIdMap *getVariables();
 		virtual UniversalObjectInterface *getTags() const;
 
-		virtual bool tagIsActive(std::string tagToCheck) const;
+		virtual bool tagIsActive(const std::string &tagToCheck) const;
 
 		virtual void setPosition(const point &newPosition);
 		virtual void setAngle(real newAngle);
@@ -76,7 +76,7 @@ namespace SpriterEngine
 
 		virtual void setRealValue(real newValue);
 		virtual void setIntValue(int newValue);
-		virtual void setStringValue(std::string newValue);
+		virtual void setStringValue(const std::string &newValue);
 		virtual void setStringValue(std::string *newValue);
 
 		virtual void setTriggerCount(int newTriggerCount);
