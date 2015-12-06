@@ -63,7 +63,6 @@ namespace SpriterEngine
 				if (att->isValid())
 				{
 					fileName = att->getStringValue();
-					att->advanceToNextAttribute();
 				}
 				else
 				{
@@ -71,7 +70,8 @@ namespace SpriterEngine
 					return;
 				}
 
-				if (att->isValid() && att->getName() == "type")
+				att = fileElement->getFirstAttribute("type");
+				if (att->isValid())
 				{
 					if (att->getStringValue() == "sound")
 					{
@@ -81,26 +81,26 @@ namespace SpriterEngine
 				else
 				{
 					point pivot(0, 0);
+					att = fileElement->getFirstAttribute("width");
 
-					if (att->isValid() && att->getName() == "width")
+					if (att->isValid())
 					{
 						// TODO: if you need the width of the file for your implementation retrieve it here;
-						att->advanceToNextAttribute();
 					}
-					if (att->isValid() && att->getName() == "height")
+					att = fileElement->getFirstAttribute("heigt");
+					if (att->isValid())
 					{
 						// TODO: if you need the height of the file for your implementation retrieve it here;
-						att->advanceToNextAttribute();
 					}
-					if (att->isValid() && att->getName() == "pivot_x")
+					att = fileElement->getFirstAttribute("pivot_x");
+					if (att->isValid())
 					{
 						pivot.x = att->getRealValue();
-						att->advanceToNextAttribute();
 					}
-					if (att->isValid() && att->getName() == "pivot_y")
+					att = fileElement->getFirstAttribute("pivot_y");
+					if (att->isValid())
 					{
 						pivot.y = att->getRealValue();
-						att->advanceToNextAttribute();
 					}
 
 					if (Settings::reversePivotYOnLoad)
@@ -194,13 +194,12 @@ namespace SpriterEngine
 			if (att->isValid())
 			{
 				std::string objectName = att->getStringValue();
-				att->advanceToNextAttribute();
+				att = objInfoElement->getFirstAttribute("type");
 
 				Object::ObjectType objectType = Object::OBJECTTYPE_SPRITE;
-				if (att->isValid() && att->getName() == "type")
+				if (att->isValid())
 				{
 					objectType = objectTypeNameToType(att->getStringValue());
-					att->advanceToNextAttribute();
 				}
 
 				Object *newObject = entity->setObject(objectName, objectType);
@@ -210,25 +209,25 @@ namespace SpriterEngine
 					if (objectType == Object::OBJECTTYPE_BONE || objectType == Object::OBJECTTYPE_BOX)
 					{
 						point size;
-						if (att->isValid() && att->getName() == "w")
+						att = objInfoElement->getFirstAttribute("w");
+						if (att->isValid())
 						{
 							size.x = att->getRealValue();
-							att->advanceToNextAttribute();
 						}
-						if (att->isValid() && att->getName() == "h")
+						att = objInfoElement->getFirstAttribute("h");
+						if (att->isValid())
 						{
 							size.y = att->getRealValue();
-							att->advanceToNextAttribute();
 						}
-						if (att->isValid() && att->getName() == "pivot_x")
+						att = objInfoElement->getFirstAttribute("pivot_x");
+						if (att->isValid())
 						{
 							(*defaultBoxPivotMap)[newObject->getId()].x = att->getRealValue();
-							att->advanceToNextAttribute();
 						}
-						if (att->isValid() && att->getName() == "pivot_y")
+						att = objInfoElement->getFirstAttribute("pivot_y");
+						if (att->isValid())
 						{
 							(*defaultBoxPivotMap)[newObject->getId()].y = att->getRealValue();;
-							att->advanceToNextAttribute();
 						}
 						newObject->setSize(size);
 					}
@@ -262,13 +261,12 @@ namespace SpriterEngine
 				if (att->isValid())
 				{
 					std::string varName = att->getStringValue();
-					att->advanceToNextAttribute();
 
 					std::string varType = "";
-					if (att->isValid() && att->getName() == "type")
+					att = varDefElement->getFirstAttribute("type");
+					if (att->isValid())
 					{
 						varType = att->getStringValue();
-						att->advanceToNextAttribute();
 					}
 					else
 					{
@@ -276,7 +274,8 @@ namespace SpriterEngine
 						return;
 					}
 
-					if (att->isValid() && att->getName() == "default")
+					att = varDefElement->getFirstAttribute("default");
+					if (att->isValid())
 					{
 						if (varType == "float")
 						{
@@ -329,52 +328,45 @@ namespace SpriterEngine
 			SpriterFileElementWrapper *mapElement = characterMapElement->getFirstChildElement();
 			while (mapElement->isValid())
 			{
-				SpriterFileAttributeWrapper *att = mapElement->getFirstAttribute();
+				SpriterFileAttributeWrapper *att = mapElement->getFirstAttribute("folder");
+
+				int sourceFolderIndex = NO_FILE;
 				if (att->isValid())
 				{
-					int sourceFolderIndex = NO_FILE;
-					if (att->isValid() && att->getName() == "folder")
-					{
-						sourceFolderIndex = att->getIntValue();
-						att->advanceToNextAttribute();
-					}
-					else
-					{
-						Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element missing \"folder\" attribute");
-						return;
-					}
-
-					int sourceFileIndex = NO_FILE;
-					if (att->isValid() && att->getName() == "file")
-					{
-						sourceFileIndex = att->getIntValue();
-						att->advanceToNextAttribute();
-					}
-					else
-					{
-						Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element missing \"file\" attribute");
-						return;
-					}
-
-					int targetFolderIndex = NO_FILE;
-					int targetFileIndex = NO_FILE;
-					if (att->isValid() && att->getName() == "target_folder")
-					{
-						targetFolderIndex = att->getIntValue();
-						att->advanceToNextAttribute();
-						if (att && att->getName() == "target_file")
-						{
-							targetFileIndex = att->getIntValue();
-						}
-					}
-
-					newCharacterMap->appendMapInstruction(fileFlattener->getFlattenedIndex(sourceFolderIndex, sourceFileIndex), model->getFileAtIndex(fileFlattener->getFlattenedIndex(targetFolderIndex, targetFileIndex)));
+					sourceFolderIndex = att->getIntValue();
 				}
 				else
 				{
-					Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element has no attributes");
+					Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element missing \"folder\" attribute");
 					return;
 				}
+
+				int sourceFileIndex = NO_FILE;
+				att = mapElement->getFirstAttribute("file");
+				if (att->isValid())
+				{
+					sourceFileIndex = att->getIntValue();
+				}
+				else
+				{
+					Settings::error("SpriterDocumentLoader::getCharacterMapsFromEntityElement - \"map\" element missing \"file\" attribute");
+					return;
+				}
+
+				int targetFolderIndex = NO_FILE;
+				int targetFileIndex = NO_FILE;
+				att = mapElement->getFirstAttribute("target_folder");
+				if (att->isValid())
+				{
+					targetFolderIndex = att->getIntValue();
+					att = mapElement->getFirstAttribute("target_file");
+					if (att->isValid())
+					{
+						targetFileIndex = att->getIntValue();
+					}
+				}
+
+				newCharacterMap->appendMapInstruction(fileFlattener->getFlattenedIndex(sourceFolderIndex, sourceFileIndex), model->getFileAtIndex(fileFlattener->getFlattenedIndex(targetFolderIndex, targetFileIndex)));
 
 				mapElement->advanceToNextSiblingElementOfSameName();
 			}
@@ -419,12 +411,11 @@ namespace SpriterEngine
 		if (att->isValid())
 		{
 			std::string animationName = att->getStringValue();
-			att->advanceToNextAttribute();
 
-			if (att->isValid() && att->getName() == "length")
+			att = animationElement->getFirstAttribute("length");
+			if (att->isValid())
 			{
 				animationLength = att->getRealValue();
-				att->advanceToNextAttribute();
 			}
 			else
 			{
@@ -773,8 +764,8 @@ namespace SpriterEngine
 		if (att->isValid())
 		{
 			timelineName = att->getStringValue();
-			att->advanceToNextAttribute();
-			if (att->isValid() && att->getName() == "object_type")
+			att = timelineElement->getFirstAttribute("object_type");
+			if (att->isValid())
 			{
 				timelineType = objectTypeNameToType(att->getStringValue());
 			}
@@ -821,18 +812,18 @@ namespace SpriterEngine
 			easingCurve = new InstantEasingCurve();
 		}
 
-		SpriterFileAttributeWrapper *att = validCurrentKeyElement->getFirstAttribute();
-		while (att->isValid())
+		SpriterFileAttributeWrapper *att = validCurrentKeyElement->getFirstAttribute("time");
+		if (att->isValid())
 		{
-			if (att->getName() == "time")
+			time = att->getRealValue();
+		}
+		if (!easingCurve)
+		{
+			att = validCurrentKeyElement->getFirstAttribute("curve_type");
+			if(att->isValid())
 			{
-				time = att->getRealValue();
+				easingCurve = getEasingCurveFromKeyElement(validCurrentKeyElement);
 			}
-			else if (!easingCurve && att->getName() == "curve_type")
-			{
-				easingCurve = getEasingCurveFromAttributes(att);
-			}
-			att->advanceToNextAttribute();
 		}
 
 		if (!easingCurve)
@@ -843,21 +834,29 @@ namespace SpriterEngine
 		return new TimeInfo(time, nextTime, easingCurve);
 	}
 
-	EasingCurveInterface *SpriterDocumentLoader::getEasingCurveFromAttributes(SpriterFileAttributeWrapper *att)
+	EasingCurveInterface *SpriterDocumentLoader::getEasingCurveFromKeyElement(SpriterFileElementWrapper *element)
 	{
 		CurveType curveType = CURVETYPE_NONE;
 		ControlPointArray controlPoints = { 0 };
-		curveType = curveTypeNameToType(att->getStringValue());
-		if (curveType > CURVETYPE_LINEAR)
+		SpriterFileAttributeWrapper *att = element->getFirstAttribute("curve_type");
+		if(att->isValid())
 		{
-			att->advanceToNextAttribute();
-			int i = 0;
-			while (att->isValid() && i < MAX_CONTROL_POINTS)
+			curveType = curveTypeNameToType(att->getStringValue());
+			if (curveType > CURVETYPE_LINEAR)
 			{
-				controlPoints[i] = att->getIntValue();
-				++i;
-				att->advanceToNextAttribute();
+				//TODO: check
+				int i = 0;
+				while (att->isValid() && i < MAX_CONTROL_POINTS)
+				{
+					att = element->getFirstAttribute("c"+std::to_string(i));
+					if(att->isValid()) {
+						controlPoints[i] = att->getIntValue();
+					}
+				}
 			}
+		}
+		else {
+			Settings::error("SpriterDocumentLoader::getEasingCurveFromKeyElement - \"curve_type\" attribute missing");
 		}
 
 		return getNewEasingCurve(curveType, &controlPoints);

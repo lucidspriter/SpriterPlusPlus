@@ -62,7 +62,7 @@ namespace SpriterEngine
 		Object * getObjectFromTimelineElement(SpriterFileElementWrapper * timelineElement, Entity * entity);
 
 		TimeInfo * getTimeInfoFromElement(SpriterFileElementWrapper * validCurrentKeyElement, SpriterFileElementWrapper * nextKeyElement, SpriterFileElementWrapper * validFirstKeyElement, real animationLength, bool animationLooping);
-		EasingCurveInterface * getEasingCurveFromAttributes(SpriterFileAttributeWrapper * att);
+		EasingCurveInterface * getEasingCurveFromKeyElement(SpriterFileElementWrapper *element);
 
 		UniversalObjectInterface * getObjectInfoFromTimelineKeyElement(SpriterFileElementWrapper * keyElement, Entity * entity, Object * object, Timeline * timeline, FileFlattener * fileFlattener, SpriteKeyFileInfo * spriteKeyFileInfo, SubEntityKeyInfo *subEntityKeyInfo, point *defaultBoxPivot);
 
