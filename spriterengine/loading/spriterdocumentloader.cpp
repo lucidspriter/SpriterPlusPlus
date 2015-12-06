@@ -846,9 +846,9 @@ namespace SpriterEngine
 			{
 				//TODO: check
 				int i = 0;
-				while (att->isValid() && i < MAX_CONTROL_POINTS)
+				while (i < MAX_CONTROL_POINTS)
 				{
-					att = element->getFirstAttribute("c"+std::to_string(i));
+					att = element->getFirstAttribute("c"+std::to_string(i+1));
 					if(att->isValid()) {
 						controlPoints[i] = att->getIntValue();
 					}
