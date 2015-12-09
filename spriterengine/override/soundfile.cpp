@@ -9,6 +9,8 @@ namespace SpriterEngine
 	{
 	}
 
+	SoundFile::~SoundFile() {}
+
 	SoundFile *SoundFile::soundFile()
 	{
 		return this;

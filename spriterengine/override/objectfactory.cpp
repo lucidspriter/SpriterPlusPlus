@@ -12,6 +12,8 @@ namespace SpriterEngine
 	{
 	}
 
+	ObjectFactory::~ObjectFactory() {}
+
 	PointInstanceInfo * ObjectFactory::newPointInstanceInfo()
 	{
 		return new PointInstanceInfo();

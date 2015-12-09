@@ -12,6 +12,8 @@ namespace SpriterEngine
 	{
 	}
 
+	SoundObjectInfoReference::~SoundObjectInfoReference() {}
+
 	int SoundObjectInfoReference::getTriggerCount()
 	{
 		return triggerCount;

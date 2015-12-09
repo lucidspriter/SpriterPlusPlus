@@ -15,6 +15,7 @@ namespace SpriterEngine
 	{
 	public:
 		ImageFile(std::string initialFilePath, point initialDefaultPivot);
+		virtual ~ImageFile();
 
 		ImageFile *imageFile() override;
 
