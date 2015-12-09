@@ -10,6 +10,8 @@
 
 int main()
 {
+	SpriterEngine::Settings::setErrorFunction(SpriterEngine::Settings::simpleError);
+
 	// setup Sfml Render Window
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML Spriter Test");
 
