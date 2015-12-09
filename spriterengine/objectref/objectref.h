@@ -15,6 +15,7 @@ namespace SpriterEngine
 	{
 	public:
 		ObjectRef(int initialObjectId, int initialParentObjectId, TimelineKey *initialKey);
+		virtual ~ObjectRef() {}
 
 		ObjectRefInstance *getNewObjectRefInstance(EntityInstance *entityInstance, EntityInstanceData *entityInstanceData);
 		int id();

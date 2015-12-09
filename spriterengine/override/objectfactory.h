@@ -17,6 +17,7 @@ namespace SpriterEngine
 	{
 	public:
 		ObjectFactory();
+		virtual ~ObjectFactory() {}
 		
 		// TODO: Override along with PointObjectInfo::render() to allow debug display of point objects;
 		virtual PointInstanceInfo *newPointInstanceInfo();

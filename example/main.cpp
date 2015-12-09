@@ -6,6 +6,7 @@
 
 // include to use Spriter animations
 #include "../spriterengine/spriterengine.h"
+#include "../spriterengine/global/settings.h"
 
 int main()
 {
@@ -127,6 +128,11 @@ int main()
 
 		// update the sfml window 
 		window.display();
+	}
+
+	for (auto& it : instances)
+	{
+		delete it;
 	}
 
 	return 0;

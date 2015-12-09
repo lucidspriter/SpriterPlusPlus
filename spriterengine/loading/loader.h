@@ -15,6 +15,7 @@ namespace SpriterEngine
 	{
 	public:
 		Loader(SpriterFileDocumentWrapper *newScmlDocumentWrapper, SpriterFileDocumentWrapper *newSconDocumentWrapper);
+		~Loader();
 
 		void loadFile(SpriterModel *model, const std::string &fileName);
 
