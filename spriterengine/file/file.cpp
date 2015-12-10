@@ -9,6 +9,8 @@ namespace SpriterEngine
 
 	}
 
+	File::~File() {}
+
 	ImageFile *File::imageFile()
 	{
 		return 0;
@@ -23,5 +25,4 @@ namespace SpriterEngine
 	{
 		return filePath;
 	}
-
 }

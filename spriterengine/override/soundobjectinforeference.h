@@ -12,6 +12,7 @@ namespace SpriterEngine
 	{
 	public:
 		SoundObjectInfoReference();
+		virtual ~SoundObjectInfoReference();
 
 		int getTriggerCount() override;
 

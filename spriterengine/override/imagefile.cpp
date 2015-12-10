@@ -11,6 +11,8 @@ namespace SpriterEngine
 	{
 	}
 
+	ImageFile::~ImageFile() {}
+
 	ImageFile *ImageFile::imageFile()
 	{
 		return this;

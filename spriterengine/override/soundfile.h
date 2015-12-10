@@ -10,6 +10,7 @@ namespace SpriterEngine
 	{
 	public:
 		SoundFile(std::string initialFilePath);
+		virtual ~SoundFile();
 
 		SoundFile *soundFile();
 
