@@ -3,31 +3,32 @@
 #include "../global/settings.h"
 
 #include "../override/spriterfiledocumentwrapper.h"
+#include "../override/filefactory.h"
 
 namespace SpriterEngine
 {
-	Loader::Loader(SpriterFileDocumentWrapper * newScmlDocumentWrapper, SpriterFileDocumentWrapper * newSconDocumentWrapper) :
-		scmlDocumentWrapper(newScmlDocumentWrapper),
-		sconDocumentWrapper(newSconDocumentWrapper)
+	Loader::Loader(FileFactory * newFileFactory) :
+		fileFactory(newFileFactory)
 	{
 	}
 
 	Loader::~Loader()
 	{
-		delete scmlDocumentWrapper;
-		delete sconDocumentWrapper;
 	}
 
 	void Loader::loadFile(SpriterModel * model, const std::string &fileName)
 	{
+		SpriterDocumentLoader spriterDocumentLoader;
+		SpriterFileDocumentWrapper * wrapper = nullptr;
 
 		SpriterFileType fileType = extractFileTypeFromFileName(fileName);
 		switch (fileType)
 		{
 		case SPRITERFILETYPE_SCML:
-			if (scmlDocumentWrapper)
+			wrapper = fileFactory->newScmlDocumentWrapper();
+			if (wrapper)
 			{
-				spriterDocumentLoader.loadFile(model, scmlDocumentWrapper, fileName);
+				spriterDocumentLoader.loadFile(model, wrapper, fileName);
 			}
 			else
 			{
@@ -36,9 +37,10 @@ namespace SpriterEngine
 			break;
 
 		case SPRITERFILETYPE_SCON:
-			if (sconDocumentWrapper)
+			wrapper = fileFactory->newSconDocumentWrapper();
+			if (wrapper)
 			{
-				spriterDocumentLoader.loadFile(model, sconDocumentWrapper, fileName);
+				spriterDocumentLoader.loadFile(model, wrapper, fileName);
 			}
 			else
 			{
@@ -50,6 +52,7 @@ namespace SpriterEngine
 			Settings::error("Loader::loadFile - attempting to load file \"" + fileName + "\" : unrecognized file type");
 			break;
 		}
+		delete wrapper;
 	}
 
 	Loader::SpriterFileType Loader::extractFileTypeFromFileName(const std::string &fileName)

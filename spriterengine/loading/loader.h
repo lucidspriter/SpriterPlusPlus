@@ -10,11 +10,12 @@ namespace SpriterEngine
 
 	class SpriterFileDocumentWrapper;
 	class SpriterModel;
+	class FileFactory;
 
 	class Loader
 	{
 	public:
-		Loader(SpriterFileDocumentWrapper *newScmlDocumentWrapper, SpriterFileDocumentWrapper *newSconDocumentWrapper);
+		Loader(FileFactory *newFileFactory);
 		~Loader();
 
 		void loadFile(SpriterModel *model, const std::string &fileName);
@@ -26,11 +27,8 @@ namespace SpriterEngine
 			SPRITERFILETYPE_SCML,
 			SPRITERFILETYPE_SCON
 		};
-		
-		SpriterDocumentLoader spriterDocumentLoader;
 
-		SpriterFileDocumentWrapper *scmlDocumentWrapper;
-		SpriterFileDocumentWrapper *sconDocumentWrapper;
+		FileFactory *fileFactory;
 
 		SpriterFileType extractFileTypeFromFileName(const std::string &fileName);
 	};

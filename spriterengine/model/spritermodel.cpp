@@ -23,7 +23,7 @@ namespace SpriterEngine
 	SpriterModel::SpriterModel(FileFactory * newFileFactory, ObjectFactory * newObjectFactory) :
 		fileFactory(newFileFactory),
 		objectFactory(newObjectFactory),
-		loader(newFileFactory->newScmlDocumentWrapper(), newFileFactory->newSconDocumentWrapper())
+		loader(newFileFactory)
 	{
 	}
 
