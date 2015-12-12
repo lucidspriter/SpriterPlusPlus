@@ -31,17 +31,22 @@ namespace SpriterEngine
 			delete it;
 		}
 
-		for (auto& it : objectNameMap)
+		for (auto& it : objects)
 		{
 			delete it.second;
 		}
 
-		for (auto& it : triggerNameMap)
+		for (auto& it : tags)
 		{
 			delete it.second;
 		}
 
-		for (auto& it : soundNameMap)
+		for (auto& it : sounds)
+		{
+			delete it.second;
+		}
+
+		for (auto& it : triggers)
 		{
 			delete it.second;
 		}
@@ -324,6 +329,14 @@ namespace SpriterEngine
 
 	void EntityInstanceData::setObjectInstance(int id, const std::string &name, UniversalObjectInterface * newObjectInstance)
 	{
+		if(objects.count(id)) {
+			//TODO: what to do here?
+			// Delete newObjectInstance or delete the current value in objects?
+			// before this change newObjectInstance was just ignored, so I'll remove it.
+			Settings::error("EntityInstanceData::setObjectInstance - object with id \"" + std::to_string(id) + "\" already exists");
+			delete newObjectInstance;
+			return;
+		}
 		objectNameMap[name] = (*objects.insert(std::make_pair(id, newObjectInstance)).first).second;
 	}
 
@@ -334,6 +347,10 @@ namespace SpriterEngine
 
 	void EntityInstanceData::setTagInstance(int objectId, const std::string &objectName)
 	{
+		if(tags.count(objectId)) {
+			Settings::error("EntityInstanceData::setTagInstance - tag with id \"" + std::to_string(objectId) + "\" already exists");
+			return;
+		}
 		tagObjectNameMap[objectName] = (*tags.insert(std::make_pair(objectId, new TagObjectInfoReference())).first).second;
 	}
 
@@ -342,12 +359,20 @@ namespace SpriterEngine
 		SoundFile *soundFile = soundRef->sound();
 		if (soundFile)
 		{
+			if(sounds.count(id)) {
+				Settings::error("EntityInstanceData::setSoundInstance - sounds with id \"" + std::to_string(id) + "\" already exists");
+				return;
+			}
 			soundNameMap[name] = (*sounds.insert(std::make_pair(id, soundFile->newSoundInfoReference())).first).second;
 		}
 	}
 
 	void EntityInstanceData::setTriggerInstance(int id, const std::string &name, TriggerObjectInfo *newCustomTriggerObject)
 	{
+		if(triggers.count(id)) {
+			Settings::error("EntityInstanceData::setTriggerInstance - sounds with id \"" + std::to_string(id) + "\" already exists");
+			return;
+		}
 		TriggerObjectInfo *newTriggerObject = newCustomTriggerObject;
 		if (!newTriggerObject)
 		{

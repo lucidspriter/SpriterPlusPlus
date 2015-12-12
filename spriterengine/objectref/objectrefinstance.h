@@ -17,6 +17,7 @@ namespace SpriterEngine
 		ObjectRefInstance(UniversalObjectInterface *initialResultObject,
 			TransformProcessor *initialParentTransformer,
 			TimelineKey *initialKey);
+		virtual ~ObjectRefInstance() {}
 
 		virtual void preProcess();
 		virtual void process(real currentTime);

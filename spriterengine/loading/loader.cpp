@@ -12,6 +12,12 @@ namespace SpriterEngine
 	{
 	}
 
+	Loader::~Loader()
+	{
+		delete scmlDocumentWrapper;
+		delete sconDocumentWrapper;
+	}
+
 	void Loader::loadFile(SpriterModel * model, const std::string &fileName)
 	{
 

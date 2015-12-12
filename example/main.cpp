@@ -6,9 +6,12 @@
 
 // include to use Spriter animations
 #include "../spriterengine/spriterengine.h"
+#include "../spriterengine/global/settings.h"
 
 int main()
 {
+	SpriterEngine::Settings::setErrorFunction(SpriterEngine::Settings::simpleError);
+
 	// setup Sfml Render Window
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML Spriter Test");
 
@@ -127,6 +130,11 @@ int main()
 
 		// update the sfml window 
 		window.display();
+	}
+
+	for (auto& it : instances)
+	{
+		delete it;
 	}
 
 	return 0;

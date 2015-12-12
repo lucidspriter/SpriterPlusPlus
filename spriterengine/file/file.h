@@ -13,6 +13,7 @@ namespace SpriterEngine
 	{
 	public:
 		File(std::string initialFilePath);
+		virtual ~File() {}
 
 		virtual ImageFile *imageFile();
 		virtual SoundFile *soundFile();
