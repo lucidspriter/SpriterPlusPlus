@@ -10,11 +10,16 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wno-sign-compare -Wno-reorder -Wno-unused-variable")
 
+option(SKIP_EXAMPLES "Only build the spriterengine and skip all examples" OFF)
+
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Release/GreyGuy
     ${CMAKE_CURRENT_SOURCE_DIR}/Release/PT-Sans
     DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
-add_subdirectory(pugixml)
-add_subdirectory(tinyxml2)
 add_subdirectory(spriterengine)
-add_subdirectory(example)
+
+if(NOT SKIP_EXAMPLES)
+    add_subdirectory(pugixml)
+    add_subdirectory(tinyxml2)
+    add_subdirectory(example)
+endif(NOT SKIP_EXAMPLES)
