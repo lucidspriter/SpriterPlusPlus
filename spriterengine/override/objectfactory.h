@@ -30,6 +30,9 @@ namespace SpriterEngine
 
 		// TODO: Override along with TriggerObjectInfo::playTrigger() to allow for triggering actions;
 		virtual TriggerObjectInfo *newTriggerObjectInfo(std::string triggerName);
+
+		// TODO: Override along with SpriteObjectInfo::render() if you need to manage sprite as objects;
+		virtual SpriteObjectInfo *newSpriteObjectinfo();
 	};
 
 }

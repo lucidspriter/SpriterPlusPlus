@@ -99,6 +99,17 @@ namespace SpriterEngine
 	{
 		switch (objectType)
 		{
+		case OBJECTTYPE_SPRITE:
+			if (objectFactory)
+			{
+				entityInstanceData->setObjectInstance(objectId, name, objectFactory->newSpriteObjectinfo());
+			}
+			else
+			{
+				entityInstanceData->setObjectInstance(objectId, name, new SpriteObjectInfo());
+			}
+			break;
+
 		case OBJECTTYPE_POINT:
 			if (objectFactory)
 			{

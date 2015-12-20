@@ -4,6 +4,7 @@
 #include "../objectinfo/boneinstanceinfo.h"
 #include "../objectinfo/boxinstanceinfo.h"
 #include "../objectinfo/triggerobjectinfo.h"
+#include "../objectinfo/spriteobjectinfo.h"
 
 namespace SpriterEngine
 {
@@ -32,4 +33,8 @@ namespace SpriterEngine
 		return new TriggerObjectInfo();
 	}
 
+	SpriteObjectInfo *ObjectFactory::newSpriteObjectinfo()
+	{
+		return new SpriteObjectInfo();
+	}
 }
