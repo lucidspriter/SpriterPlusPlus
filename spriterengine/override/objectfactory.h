@@ -7,11 +7,11 @@
 
 namespace SpriterEngine
 {
-
 	class PointInstanceInfo;
 	class BoneInstanceInfo;
 	class BoxInstanceInfo;
 	class TriggerObjectInfo;
+	class SpriteObjectInfo;
 
 	class ObjectFactory
 	{
