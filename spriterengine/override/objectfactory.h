@@ -12,6 +12,7 @@ namespace SpriterEngine
 	class BoneInstanceInfo;
 	class BoxInstanceInfo;
 	class TriggerObjectInfo;
+	class SpriteObjectInfo;
 
 	class ObjectFactory
 	{
