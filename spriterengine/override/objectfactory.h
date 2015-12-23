@@ -7,7 +7,6 @@
 
 namespace SpriterEngine
 {
-
 	class PointInstanceInfo;
 	class BoneInstanceInfo;
 	class BoxInstanceInfo;

@@ -4,7 +4,7 @@
 #include "../../spriterengine/override/soundfile.h"
 
 // #define __USE_PUGIXML
-#if not defined(__USE_PUGIXML)
+#ifndef __USE_PUGIXML
 #include "tinyxmlspriterfiledocumentwrapper.h"
 #else
 #include "pugixmlspriterfiledocumentwrapper.h"
@@ -33,7 +33,7 @@ namespace SpriterEngine
 
 	SpriterFileDocumentWrapper * ExampleFileFactory::newScmlDocumentWrapper()
 	{
-#if not defined(__USE_PUGIXML)
+#ifndef __USE_PUGIXML
 		return new TinyXmlSpriterFileDocumentWrapper();
 #else
 		return new PugiXmlSpriterFileDocumentWrapper();		
