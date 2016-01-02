@@ -87,7 +87,7 @@ namespace SpriterEngine
 					{
 						// TODO: if you need the width of the file for your implementation retrieve it here;
 					}
-					att = fileElement->getFirstAttribute("heigt");
+					att = fileElement->getFirstAttribute("height");
 					if (att->isValid())
 					{
 						// TODO: if you need the height of the file for your implementation retrieve it here;
