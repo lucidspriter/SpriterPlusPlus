@@ -47,7 +47,6 @@ namespace SpriterEngine
 	{
 		model->setupFileReferences(&files);
 		currentEntity = (*entities.insert(std::make_pair(entity->getId(), new EntityInstanceData(model, this, entity, objectFactory))).first).second;
-		entity->setupInstance(model, this, currentEntity, objectFactory);
 		setCurrentAnimation(0);
 	}
 
