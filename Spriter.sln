@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Spriter", "Spriter.vcxproj", "{3BCB4C73-71F6-43B6-803D-41411F92652A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Edit Unicode|Win32 = Debug Edit Unicode|Win32
+		Debug Unicode|Win32 = Debug Unicode|Win32
+		Edittime Unicode|Win32 = Edittime Unicode|Win32
+		Runtime Unicode|Win32 = Runtime Unicode|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Debug Edit Unicode|Win32.ActiveCfg = Debug Edit Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Debug Edit Unicode|Win32.Build.0 = Debug Edit Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Debug Unicode|Win32.ActiveCfg = Debug Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Debug Unicode|Win32.Build.0 = Debug Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Edittime Unicode|Win32.ActiveCfg = Edittime Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Edittime Unicode|Win32.Build.0 = Edittime Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Runtime Unicode|Win32.ActiveCfg = Runtime Unicode|Win32
+		{3BCB4C73-71F6-43B6-803D-41411F92652A}.Runtime Unicode|Win32.Build.0 = Runtime Unicode|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -174,9 +174,7 @@ namespace SpriterEngine
 	{
 		return currentEntity->getObjectInstance(objectName);
 	}
-
-
-
+	
 	FileReference *EntityInstance::getFile(int fileId)
 	{
 		if (fileId < files.size())
@@ -218,6 +216,11 @@ namespace SpriterEngine
 	real EntityInstance::getTimeRatio()
 	{
 		return getCurrentTime() / currentAnimation->length();
+	}
+
+	bool EntityInstance::isAnimationPlaying()
+	{
+		return ((getCurrentTime() - currentAnimation->length())< 0.0001 && !currentAnimation->looping());
 	}
 
 	VariableInstanceNameAndIdMap *EntityInstance::getVariables()

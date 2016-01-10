@@ -33,8 +33,11 @@ namespace SpriterEngine
 		childObject->setAlpha(childObject->getAlpha()*parentObject->getAlpha());
 		point childPosition = childObject->getPosition();
 		point preMult = multiply(childPosition, parentScale);
-		childPosition.x = (preMult.x * angleCos) - (preMult.y * angleSin);
-		childPosition.y = (preMult.x * angleSin) + (preMult.y * angleCos);
+		// Left Handed rotation in CF2.5 (Direct3D convention)
+		// p'x = p.x * c + p.y * s;
+		// p'y = -p.x * s + p.y * c;
+		childPosition.x = (preMult.x * angleCos) + (preMult.y * angleSin);
+		childPosition.y = -(preMult.x * angleSin) + (preMult.y * angleCos);
 		childObject->setPosition(add(childPosition, parentObject->getPosition()));
 	}
 

@@ -11,7 +11,7 @@ namespace SpriterEngine
 	bool Settings::renderDebugBones = false;
 
 	// enableDebugBones must be true while creating a new instance in order for renderDebugBones to have an effect
-	bool Settings::enableDebugBones = false;
+	bool Settings::enableDebugBones = true;
 
 	// set to &simpleError to use std::cerr to output errors, or use your own callback function
 	// to output to your authoring tool's or custom engine's debug
@@ -20,7 +20,7 @@ namespace SpriterEngine
 	// loading options - set these if your engine requires the y, pivotY, or angle to be reversed to display properly
 	bool Settings::reverseYOnLoad = true;
 	bool Settings::reversePivotYOnLoad = true;
-	bool Settings::reverseAngleOnLoad = true;
+	bool Settings::reverseAngleOnLoad = false;
 
 	// end of program initial settings
 
