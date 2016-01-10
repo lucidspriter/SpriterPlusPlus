@@ -1,6 +1,20 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+//With Android NDK & gnustl, std::to_string is not defined so fill it in here
+#if defined(ANDROID) && defined(__GXX_EXPERIMENTAL_CXX0X__) && !defined(_GLIBCXX_USE_C99)
+#include <sstream>
+namespace std {
+	template <typename T>
+	inline std::string to_string(T value)
+	{
+		std::ostringstream os;
+		os << value;
+		return os.str();
+	}
+}
+#endif //ANDROID
+
 namespace SpriterEngine
 {
 

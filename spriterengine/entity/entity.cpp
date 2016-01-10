@@ -115,7 +115,8 @@ namespace SpriterEngine
 		}
 		else
 		{
-			return objectIdMap[objectNameMap.size()] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, objectNameMap.size(), objectType))).first).second);
+			int size = objectNameMap.size();
+			return objectIdMap[size] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, size, objectType))).first).second);
 		}
 	}
 
@@ -128,7 +129,8 @@ namespace SpriterEngine
 		}
 		else
 		{
-			return soundIdMap[objectNameMap.size()] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, objectNameMap.size(), Object::OBJECTTYPE_SOUND))).first).second);
+			int size = objectNameMap.size();
+			return soundIdMap[size] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, size, Object::OBJECTTYPE_SOUND))).first).second);
 		}
 	}
 
@@ -141,7 +143,8 @@ namespace SpriterEngine
 		}
 		else
 		{
-			return triggerIdMap[objectNameMap.size()] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, objectNameMap.size(), Object::OBJECTTYPE_TRIGGER))).first).second);
+			int size = objectNameMap.size();
+			return triggerIdMap[size] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, size, Object::OBJECTTYPE_TRIGGER))).first).second);
 		}
 	}
 
@@ -154,7 +157,8 @@ namespace SpriterEngine
 		}
 		else
 		{
-			return subEntityIdMap[objectNameMap.size()] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, objectNameMap.size(), Object::OBJECTTYPE_ENTITY))).first).second);
+			int size = objectNameMap.size();
+			return subEntityIdMap[size] = (&(*objectNameMap.insert(std::make_pair(objectName, Object(objectName, size, Object::OBJECTTYPE_ENTITY))).first).second);
 		}
 	}
 
