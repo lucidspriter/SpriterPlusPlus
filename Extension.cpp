@@ -81,6 +81,7 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	flipX = false;
 	speedRatio = 1.0f;
 	displayRect = { 0, 0, 0, 0 };
+	currentAnimationName = "";
 		
 	scmlObj = scmlModel.getNewEntityInstance(0);//assume first entity at start
 }
@@ -181,14 +182,6 @@ short Extension::Display()
 				colBox = scmlObj->getObjectInstance(it->first);
 				if (colBox != nullptr)
 				{
-					if (it->second->roHo.hoImgWidth != colBox->getSize().x || it->second->roHo.hoImgHeight != colBox->getSize().y)
-					{
-						//it->second->roc.rcScaleX = (colBox->getSize().x / it->second->roHo.hoImgWidth);
-						//it->second->roc.rcScaleY = (colBox->getSize().y / it->second->roHo.hoImgHeight);
-						it->second->roHo.hoImgXSpot = colBox->getSize().x*colBox->getPivot().x;
-						it->second->roHo.hoImgYSpot = colBox->getSize().y*colBox->getPivot().y;
-						//it->second->roHo.hoRect
-					}
 					float w = colBox->getSize().x;
 					float h = colBox->getSize().y;
 					float pivx = colBox->getPivot().x;
@@ -197,12 +190,12 @@ short Extension::Display()
 					float scaley = colBox->getScale().y;
 					LPRO testObj = it->second;
 					it->second->roc.rcAngle = SpriterEngine::toDegrees(colBox->getAngle());
-					it->second->roc.rcScaleX = scalex;
-					it->second->roc.rcScaleY = scaley;
-					it->second->roHo.hoX = /*-(it->second->roHo.hoImgXSpot - w*pivx)*(w / it->second->roHo.hoImgWidth)*/ + colBox->getPosition().x + rhPtr->rhWindowX;
-					it->second->roHo.hoY = /*-(it->second->roHo.hoImgYSpot - h*pivy)*(h / it->second->roHo.hoImgHeight)*/ + colBox->getPosition().y + rhPtr->rhWindowY;
-					//it->second->roHo.hoImgXSpot = w*pivx;
-					//it->second->roHo.hoImgYSpot = h*pivy;
+					it->second->roc.rcScaleX = (w / it->second->roHo.hoImgWidth)*scalex;
+					it->second->roc.rcScaleY = (h / it->second->roHo.hoImgHeight)*scaley;
+					float positionX = w*pivx * scalex * std::cos(colBox->getAngle()) + h*pivy * scaley * std::sin(colBox->getAngle());
+					float positionY = -w*pivx * scalex * std::sin(colBox->getAngle()) + h*pivy * scaley * std::cos(colBox->getAngle());
+					it->second->roHo.hoX = colBox->getPosition().x - positionX + rhPtr->rhWindowX;
+					it->second->roHo.hoY = colBox->getPosition().y - positionY + rhPtr->rhWindowY;
 					it->second->roc.rcChanged = true;
 				}
 			}

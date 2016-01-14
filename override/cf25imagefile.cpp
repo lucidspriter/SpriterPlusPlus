@@ -33,15 +33,17 @@ namespace SpriterEngine
 		float posX = spriteInfo->getPivot().x*w;
 		float posY = spriteInfo->getPivot().y*h;
 		POINT center = { (LONG)posX, (LONG)posY };
-		// DWORD flags = STRF_RESAMPLE;// | STRF_RESAMPLE_TRANSP;// 0UL;
+		float alp = spriteInfo->getAlpha();
+		int alpha = 128*abs(1-spriteInfo->getAlpha());
 		DWORD flags = rdPtr->rs->rsEffect & EFFECTFLAG_ANTIALIAS ? (STRF_RESAMPLE_TRANSP) : 0UL;
 		LPSURFACE psw = WinGetSurface((int)rdPtr->rHo.hoAdRunHeader->rhIdEditWin);
+		//LPARAM bParam = (rdPtr->rs->rsEffectParam & 0xffffff) | (int(max(0, min(255, 128 - alpha*128.0 / 255))) << 24);
 		sprite.BlitEx(*psw, spriteInfo->getPosition().x, spriteInfo->getPosition().y,
 			spriteInfo->getScale().x, spriteInfo->getScale().y, 0, 0,
 			w, h, &center, (float)toDegrees(spriteInfo->getAngle()),
 			(rdPtr->rs->rsEffect & EFFECTFLAG_TRANSPARENT) ? BMODE_TRANSP : BMODE_OPAQUE,
-			BlitOp(rdPtr->rs->rsEffect & EFFECT_MASK),
-			rdPtr->rs->rsEffectParam, flags);
+			BlitOp((rdPtr->rs->rsEffect & EFFECT_MASK)|BOP_BLEND),
+			alpha, flags);
 		
 		//calculate collision rectangle
 		RECT minR = { 0, 0, 0, 0 };

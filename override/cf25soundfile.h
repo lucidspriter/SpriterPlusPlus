@@ -18,7 +18,7 @@ namespace SpriterEngine
 	private:
 		LPRDATA rdPtr; //pointer to runtime data, required to interact with sound manager in CF25
 		Extension *ext;// pointer to extension
-		UINT soundId; //sound id in CF25 sound bank
+		int soundId; //sound id in CF25 sound bank (-1 for unknown)
 		string name;
 	};
 

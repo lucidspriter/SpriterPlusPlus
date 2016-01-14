@@ -12,7 +12,7 @@ namespace SpriterEngine
 	class Cf25SoundObjectInfoReference : public SoundObjectInfoReference
 	{
 	public:
-		Cf25SoundObjectInfoReference(Extension* ext, LPRDATA rdPtr, string name, UINT SoundId);
+		Cf25SoundObjectInfoReference(Extension* ext, LPRDATA rdPtr, string name, int SoundId);
 
 		void playTrigger() override;
 
@@ -23,7 +23,7 @@ namespace SpriterEngine
 		Extension* ext;
 		LPRDATA rdPtr;
 		string name;
-		UINT soundId;
+		int soundId;
 	};
 
 }

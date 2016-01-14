@@ -43,6 +43,10 @@
                 "Change Animation by name"
             ],
             [
+                12,
+                "Change Animation by name with blending"
+            ],
+            [
                 3,
                 "Change Animation Time"
             ],
@@ -53,10 +57,6 @@
             [
                 5,
                 "Set speed ratio"
-            ],
-            [
-                12,
-                "Change Animation by name with blending"
             ]
         ],
         [
@@ -316,15 +316,6 @@
                 [
                     "Integer",
                     "Animation number of object to load from"
-                ]
-            ]
-        },
-        {
-            "Title": "Change Animation to %0",
-            "Parameters": [
-                [
-                    "Integer",
-                    "Animation Number"
                 ]
             ]
         },
