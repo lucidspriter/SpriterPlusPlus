@@ -1,14 +1,42 @@
 
 #include "Common.h"
 
+/*!
+* \file Actions.cpp
+* \brief Actions available in Spriter object
+* \author conceptgame
+* \version 0.8
+*/
+
+
+/*!
+*  \brief Stop animation
+*
+*  Freeze the time of the current animation
+*/
 void Extension::StopAnimation()
 {
 	animPlaying = false;
 }
+
+/*!
+*  \brief Start animation
+*
+*  Elapsed time affects the renderer
+*/
 void Extension::StartAnimation()
 {
 	animPlaying = true;
 }
+
+/*!
+*  \brief ChangeAnimationByName
+*
+*  Change the current animation to the specified animation
+*  lecture
+*
+*  \param name : animation name to set
+*/
 void Extension::ChangeAnimationByName(TCHAR* name)
 {
 	if (IsScmlObjectValid())
@@ -24,6 +52,14 @@ void Extension::ChangeAnimationByName(TCHAR* name)
 	}
 }
 
+/*!
+*  \brief ChangeAnimationByNameWithBlending
+*
+*  Change the current animation to the specified animation
+*  lecture
+*
+*  \param name : animation name to set
+*/
 void Extension::ChangeAnimationByNameWithBlending(TCHAR* name, int blendingTime)
 {
 	if (IsScmlObjectValid())
@@ -171,7 +207,7 @@ void Extension::LoadSpriteFromActive(string spriteName, LPRO pObj, int nAnim, in
 	}
 }
 
-void Extension::LoadOrderedSprites(LPRO pObj, int nAnim)
+void Extension::LoadOrderedSpritesPerAnimation(LPRO pObj, int nAnim)
 {
 	tinyxml2::XMLDocument doc;
 	int nFolder = 0;
@@ -190,6 +226,27 @@ void Extension::LoadOrderedSprites(LPRO pObj, int nAnim)
 				}
 				nFolder++;
 				nFile = 0;
+			}
+		}
+	}
+}
+
+void Extension::LoadOrderedSpritesPerDirection(LPRO pObj, int nAnim, int nDir)
+{
+	tinyxml2::XMLDocument doc;
+	int nFile = 0;
+	if (doc.LoadFileFromBuffer(scmlFileString.c_str()) == tinyxml2::XML_SUCCESS)
+	{
+		tinyxml2::XMLElement* root = doc.FirstChildElement("spriter_data");
+		if (root != NULL)
+		{
+			for (tinyxml2::XMLElement* folderChild = root->FirstChildElement("folder"); folderChild != NULL; folderChild = folderChild->NextSiblingElement("folder"))
+			{
+				for (tinyxml2::XMLElement* fileChild = folderChild->FirstChildElement("file"); fileChild != NULL; fileChild = fileChild->NextSiblingElement("file"))
+				{
+					LoadSpriteFromActive(fileChild->Attribute("name"), pObj, nAnim, nDir, nFile);
+					nFile++;
+				}
 			}
 		}
 	}

@@ -82,7 +82,11 @@
             ],
             [
                 10,
-                "Load Ordered Sprites from Active"
+                "Load Ordered Sprites from active per animation"
+            ],
+            [
+                18,
+                "Load Ordered Sprites from active per direction"
             ]
         ],
         [
@@ -391,7 +395,24 @@
                     "Show Points (0=hide, >0=display)"
                 ]
             ]
-        }
+        },
+        {
+            "Title": "Load ordered sprites from %0 by animation %1 and direction %2",
+            "Parameters": [
+                [
+                    "Object",
+                    "Active object"
+                ],
+                [
+                    "Integer",
+                    "Animation number of object to load from"
+                ],
+                [
+                    "Integer",
+                    "Direction number in animation (0->32)"
+                ]
+            ]
+        },
     ],
     "Conditions": [
         {

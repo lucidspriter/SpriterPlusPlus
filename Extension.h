@@ -73,7 +73,8 @@ public:
 	void SetScale(float scale);
 	void SetAngle(float angle);
 	void LoadSpriteFromActive(string SpriteName, LPRO pObj, int nAmim, int nDir, int nFrame);
-	void LoadOrderedSprites(LPRO pObj, int nAnim);
+	void LoadOrderedSpritesPerAnimation(LPRO pObj, int nAnim);
+	void LoadOrderedSpritesPerDirection(LPRO pObj, int nAnim, int nDir);
 	void LoadSoundFromSoundBank(TCHAR* soundPath, TCHAR* soundName);
 	void BoundBoxToObject(TCHAR* boxName, LPRO object);
 	void UnboundBoxFromObject(TCHAR* boxName);

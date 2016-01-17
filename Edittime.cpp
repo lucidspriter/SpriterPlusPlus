@@ -19,6 +19,7 @@ enum {
 	PROPID_SETTINGS = PROPID_EXTITEM_CUSTOM_FIRST,
 	PROPID_FILEPARAMETER_TITLE,
 	PROPID_SPRITER_FILE_PATH,
+	PROPID_SPRITER_FILE_RELOAD,
 // Example
 // -------
 //	PROPID_TEXTTITLE,	
@@ -55,6 +56,7 @@ PropData Properties[] = {
 //	PropData_Color		(PROPID_COLOR,		IDS_PROP_COLOR,			IDS_PROP_COLOR_INFO),
 	PropData_Group		(PROPID_FILEPARAMETER_TITLE, (int)_T("Spriter File"), (int)_T("Spriter File")),
 	PropData_Filename	(PROPID_SPRITER_FILE_PATH,(int)_T("File path"),(int)_T("Set the path for the spriter file"),&fcpScml),
+	PropData_Button		(PROPID_SPRITER_FILE_RELOAD, (int)_T("Reload file"), (int)_T("Reload the scml file from the same path"), (int)_T("Reload")),
 
 	// End of table (required)
 	PropData_End()
@@ -104,7 +106,7 @@ static wstring GetDirectory(wchar_t* scmlFilename)
 	return directory;
 }
 
-static bool CopySprites(wchar_t* scmlFilename, string scmlFile)
+static bool CopySpritesWithFolders(wchar_t* scmlFilename, string scmlFile)
 {
 	wstringstream outStr;
 	int id = 0;
@@ -166,6 +168,55 @@ static bool CopySprites(wchar_t* scmlFilename, string scmlFile)
 	return true;
 }
 
+static bool CopySpritesTogether(wchar_t* scmlFilename, string scmlFile)
+{
+	wstringstream outStr;
+	int id = 0;
+	wstring inDirectory = GetDirectory(scmlFilename);
+	wstring outDirectory = inDirectory + L"CF25Import";
+	tinyxml2::XMLDocument doc;
+	int nFolder = 0;
+	int nFile = 0;
+
+	if (doc.LoadFileFromBuffer(scmlFile.c_str()) == tinyxml2::XML_SUCCESS)
+	{
+		//create out directory
+		if (!CreateDirectory(outDirectory.c_str(), NULL))
+		{
+			if (GetLastError() != ERROR_ALREADY_EXISTS)
+			{
+				return false;
+			}
+		}
+		tinyxml2::XMLElement* root = doc.FirstChildElement("spriter_data");
+		if (root != NULL)
+		{
+			for (tinyxml2::XMLElement* folderChild = root->FirstChildElement("folder"); folderChild != NULL; folderChild = folderChild->NextSiblingElement("folder"))
+			{
+				for (tinyxml2::XMLElement* fileChild = folderChild->FirstChildElement("file"); fileChild != NULL; fileChild = fileChild->NextSiblingElement("file"))
+				{
+					wstring fileIn;
+					string sName = fileChild->Attribute("name");
+					fileIn.assign(sName.begin(), sName.end());
+					fileIn = inDirectory + fileIn;
+					outStr << outDirectory << "\\sprite." << nFile << L".png";
+					wstring fileOut = outStr.str();
+
+					if (!CopyFileW(fileIn.c_str(), fileOut.c_str(), false))
+					{
+						DWORD error = GetLastError();
+						return false;
+					}
+					outStr.str(std::wstring());
+					outStr.clear();
+					nFile++;
+				}
+			}
+		}
+	}
+	return true;
+}
+
 // --------------------
 // CreateFromFile
 // --------------------
@@ -187,9 +238,21 @@ void WINAPI	DLLExport CreateFromFile(LPMV mV, LPTSTR fileName, LPEDATA edPtr)
 		int copy = MessageBox(0, _T("Do you want to copy all sprites to import in CF2.5?"), _T("Warning"), MB_YESNO | MB_ICONWARNING);
 		if (copy == IDYES)
 		{
-			if (!CopySprites(fileName, scmlFile))
+			int copy = MessageBox(0, _T("Do you want to order sprites per folder?"), _T("Question"), MB_YESNO | MB_ICONQUESTION);
+			if (copy == IDYES)
 			{
+				if (!CopySpritesWithFolders(fileName, scmlFile))
+				{
 					MessageBox(0, _T("Error by copying sprites."), _T("Error"), MB_OK | MB_ICONERROR);
+				}
+			}
+			else
+			{
+				MessageBox(0, _T("Sprites will be copied all together"), _T("Info"), MB_OK | MB_ICONINFORMATION);
+				if (!CopySpritesTogether(fileName, scmlFile))
+				{
+					MessageBox(0, _T("Error by copying sprites."), _T("Error"), MB_OK | MB_ICONERROR);
+				}
 			}
 		}
 				
@@ -205,7 +268,6 @@ void WINAPI	DLLExport CreateFromFile(LPMV mV, LPTSTR fileName, LPEDATA edPtr)
 			edPtr=pNewPtr;
 			strcpy(edPtr->scmlFile, scmlFile);
 		}
-		
 		//delete temporary buffer
 		delete[] scmlFile;
 		scmlFile = nullptr;
@@ -214,7 +276,7 @@ void WINAPI	DLLExport CreateFromFile(LPMV mV, LPTSTR fileName, LPEDATA edPtr)
 	{
 		_tcscpy(edPtr->scmlFilename, _T(""));
 	}
-
+	
 #endif // !defined(RUN_ONLY)
 }
 
@@ -237,7 +299,6 @@ int WINAPI DLLExport CreateObject(mv _far *mV, fpLevObj loPtr, LPEDATA edPtr)
 //		edPtr->swidth = 48;
 //		edPtr->sheight = 48;
 		CreateFromFile(mV, NULL, edPtr);
-
         return 0;
 	}
 #endif // !defined(RUN_ONLY)
@@ -331,8 +392,10 @@ void WINAPI DLLExport EditorDisplay(mv _far *mV, fpObjInfo oiPtr, fpLevObj loPtr
 
 	LPSURFACE winSurf = WinGetSurface((int) mV->mvIdEditWin);
 
-	if(!winSurf)
-        return;
+	if (!winSurf)
+	{
+		return;
+	}
 	SDK->Icon->Blit(*winSurf, rc->left, rc->top, BMODE_TRANSP, BOP_COPY, 0);
 #endif // !defined(RUN_ONLY)
 }
@@ -648,7 +711,7 @@ BOOL WINAPI DLLExport EditProp(LPMV mV, LPEDATA edPtr, UINT nPropID)
 {
 #ifndef RUN_ONLY
 
-	if (nPropID == PROPID_SPRITER_FILE_PATH)
+	if (nPropID == PROPID_SPRITER_FILE_PATH  || nPropID == PROPID_SPRITER_FILE_RELOAD)
 	{
 		CreateFromFile(mV, edPtr->scmlFilename, edPtr);
 	}
