@@ -9,18 +9,18 @@ SpriterPlusPlusCF25 is based on the original template provided by BrashMonkey:
 Simple example with all ACEs
 
 ## Supported Features
-Basic animations
-Bone animations
-All curve types (Instant, Linear, Quadratic, Cubic, Quartic, Quintic, Bezier)
-Points
-Collision Rectangles
-SubEntities
-Events (Triggers)
-Sounds
-Variables
-Tags
-Character Maps
-Animation Blending
+* Basic animations
+* Bone animations
+* All curve types (Instant, Linear, Quadratic, Cubic, Quartic, Quintic, Bezier)
+* Points
+* Collision Rectangles
+* SubEntities
+* Events (Triggers)
+* Sounds
+* Variables
+* Tags
+* Character Maps
+* Animation Blending
 
 ## How to use
 
