@@ -20,6 +20,7 @@ enum {
 	PROPID_FILEPARAMETER_TITLE,
 	PROPID_SPRITER_FILE_PATH,
 	PROPID_SPRITER_FILE_RELOAD,
+	PROPID_SPRITER_FILE_INFOS,
 // Example
 // -------
 //	PROPID_TEXTTITLE,	
@@ -57,6 +58,7 @@ PropData Properties[] = {
 	PropData_Group		(PROPID_FILEPARAMETER_TITLE, (int)_T("Spriter File"), (int)_T("Spriter File")),
 	PropData_Filename	(PROPID_SPRITER_FILE_PATH,(int)_T("File path"),(int)_T("Set the path for the spriter file"),&fcpScml),
 	PropData_Button		(PROPID_SPRITER_FILE_RELOAD, (int)_T("Reload file"), (int)_T("Reload the scml file from the same path"), (int)_T("Reload")),
+	PropData_Button		(PROPID_SPRITER_FILE_INFOS, (int)_T("Get Infos"), (int)_T("Get infos from the scml file"), (int)_T("Infos")),
 
 	// End of table (required)
 	PropData_End()
@@ -71,6 +73,107 @@ PropData Properties[] = {
 // ROUTINES USED UNDER FRAME EDITOR
 // 
 // ============================================================================
+
+// Structure defined to pass edptr and mv into setup box
+typedef struct tagSetP
+{
+	EDITDATA _far *	edpt;
+	mv _far	*		kv;
+} infosParams;
+
+// --------------------
+// SetupProc
+// --------------------
+// This routine is yours. You may even not need a setup dialog box.
+// I have put it as an example...
+
+#ifndef RUN_ONLY
+
+BOOL CALLBACK DLLExport infosProc(HWND hDlg, uint msgType, WPARAM wParam, LPARAM lParam)
+{
+	infosParams	_far *	spa;
+	EDITDATA _far *		edPtr;
+	tinyxml2::XMLDocument doc;
+	wstringstream outStr;
+
+	switch (msgType)
+	{
+	case WM_INITDIALOG: // Init dialog
+		SetWindowLong(hDlg, DWL_USER, lParam);
+		spa = (infosParams far *)lParam;
+		edPtr = spa->edpt;
+		if (doc.LoadFileFromBuffer(edPtr->scmlFile) == tinyxml2::XML_SUCCESS)
+		{
+			tinyxml2::XMLElement* root = doc.FirstChildElement("spriter_data");
+			string gen = "Generator version: ";
+			gen += root->Attribute("generator_version");
+			wstring wgen;
+			wgen.assign(gen.begin(), gen.end());
+			SetDlgItemText(hDlg, IDC_INFOBOX_OTHER_ID, wgen.c_str());
+			tinyxml2::XMLElement* entity = root->FirstChildElement("entity");
+			if (entity != NULL)
+			{
+				for (tinyxml2::XMLElement* animationChild = entity->FirstChildElement("animation"); animationChild != NULL; animationChild = animationChild->NextSiblingElement("animation"))
+				{
+					string name = animationChild->Attribute("name");
+					string length = animationChild->Attribute("length");;
+					wstring wname;
+					wstring wlength;
+					wname.assign(name.begin(), name.end());
+					wlength.assign(length.begin(), length.end());
+					outStr << wname << L": " << wlength << L"ms\n";
+				}
+			}
+			wstring msg = outStr.str();
+			SetDlgItemText(hDlg, IDC_INFOBOX_ANIM_ID, msg.c_str());
+			doc.Clear();
+		}
+		
+		return TRUE;
+
+	case WM_COMMAND: // Command
+		spa = (infosParams far *)GetWindowLong(hDlg, DWL_USER);
+		edPtr = spa->edpt;
+
+		switch (wmCommandID)
+		{
+		case IDOK:
+			// Close the dialog
+			EndDialog(hDlg, IDOK);
+			return 0;
+
+		case IDCANCEL:
+			// User pressed cancel, don't save anything
+			// Close the dialog
+			EndDialog(hDlg, IDCANCEL);
+			return 0;
+
+		return 0;
+
+		/*
+		If you have a button or checkbox which, when clicked, will change
+		something on the dialog, add them like so:
+
+		case IDC_YOUR_CLICKED_CONTROL:
+		// your code here
+		return 0;
+
+		You can use any of the commands added previously, (including the Help code,)
+		but it's a good idea NOT to save data to edPtr until the user presses OK.
+		*/
+
+		default:
+			break;
+		}
+		break;
+
+	default:
+		break;
+	}
+	return FALSE;
+}
+
+#endif // !defined(RUN_ONLY)
 
 
 // --------------------
@@ -226,7 +329,7 @@ void WINAPI	DLLExport CreateFromFile(LPMV mV, LPTSTR fileName, LPEDATA edPtr)
 {
 #ifndef RUN_ONLY
 	// Initialize your extension data from the given file
-	
+	Edif::Init(mV, edPtr);
 	if (fileName)
 	{
 		//Load the whole scml object
@@ -299,6 +402,7 @@ int WINAPI DLLExport CreateObject(mv _far *mV, fpLevObj loPtr, LPEDATA edPtr)
 //		edPtr->swidth = 48;
 //		edPtr->sheight = 48;
 		CreateFromFile(mV, NULL, edPtr);
+
         return 0;
 	}
 #endif // !defined(RUN_ONLY)
@@ -709,11 +813,22 @@ void WINAPI DLLExport SetPropCheck(LPMV mV, LPEDATA edPtr, UINT nPropID, BOOL nC
 //
 BOOL WINAPI DLLExport EditProp(LPMV mV, LPEDATA edPtr, UINT nPropID)
 {
+	DWORD test;
 #ifndef RUN_ONLY
 
 	if (nPropID == PROPID_SPRITER_FILE_PATH  || nPropID == PROPID_SPRITER_FILE_RELOAD)
 	{
 		CreateFromFile(mV, edPtr->scmlFilename, edPtr);
+	}
+	else if (nPropID == PROPID_SPRITER_FILE_INFOS)
+	{
+		infosParams	spa;
+		spa.edpt = edPtr;
+		spa.kv = mV;
+		if (DialogBoxParam(hInstLib, MAKEINTRESOURCE(DB_SETUP), mV->mvHEditWin, infosProc, (LPARAM)(LPBYTE)&spa) == IDOK)
+		{
+			return 0;	// No error
+		}
 	}
 
 #endif // !defined(RUN_ONLY)

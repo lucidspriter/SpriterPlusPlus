@@ -6,6 +6,9 @@
 #define IDR_EDIF_ICON                   101
 #define IDR_EDIF_JSON                   102
 #define IDS_SPRITERFILEFILTER           200
+#define IDC_INFOBOX_ANIM_ID				2000
+#define IDC_INFOBOX_OTHER_ID			2001
+#define DB_SETUP						20003
 
 // Next default values for new objects
 // 

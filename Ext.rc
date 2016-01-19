@@ -71,6 +71,28 @@ BEGIN
     0x2516, 0x5908
 END
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+#if defined(APSTUDIO_INVOKED) || defined(EDITOR)
+#if defined(APSTUDIO_INVOKED)
+DB_SETUP$(EDITOR) DIALOG DISCARDABLE  0, 4, 260, 372
+#else
+DB_SETUP DIALOG DISCARDABLE  0, 4, 260, 372
+#endif
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Spriter Infos"
+FONT 8, "Helv"
+BEGIN
+DEFPUSHBUTTON   "OK", IDOK, 5, 350, 50, 14
+GROUPBOX        "Animations", -1, 5, 6, 100, 335
+LTEXT           "N/A", IDC_INFOBOX_ANIM_ID, 10, 20, 90, 300
+GROUPBOX        "Others", -1, 110, 6, 140, 335
+LTEXT           "N/A", IDC_INFOBOX_OTHER_ID, 115, 20, 100, 300
+END
+#endif
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
