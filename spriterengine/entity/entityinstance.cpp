@@ -219,7 +219,7 @@ namespace SpriterEngine
 
 	bool EntityInstance::isAnimationPlaying()
 	{
-		return ((getCurrentTime() - currentAnimation->length())< 0.0001 && !currentAnimation->looping());
+		return (abs(getCurrentTime() - currentAnimation->length())> 0.0001 || currentAnimation->looping());
 	}
 
 	VariableInstanceNameAndIdMap *EntityInstance::getVariables()

@@ -45,11 +45,10 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
     
 	LinkCondition(0, IsAnimationPlayingByName);
 	LinkCondition(1, HasCurrentAnimationFinished);
-	LinkCondition(2, CompareCurrentTimeToValue);
-	LinkCondition(3, IsTagActive);
-	LinkCondition(4, IsObjectTagActive);
-	LinkCondition(5, OnSoundEvent);
-	LinkCondition(6, OnTriggerEvent);
+	LinkCondition(2, IsTagActive);
+	LinkCondition(3, IsObjectTagActive);
+	LinkCondition(4, OnSoundEvent);
+	LinkCondition(5, OnTriggerEvent);
 
 	LinkExpression(0, LastError);
 	LinkExpression(1, GetScale);
@@ -82,8 +81,8 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	flipX = false;
 	speedRatio = 1.0f;
 	displayRect = { 0, 0, 0, 0 };
-	currentAnimationName = "";
-		
+	currentAnimationName = "unknown";
+
 	scmlObj = scmlModel.getNewEntityInstance(0);//assume first entity at start
 }
 
@@ -148,8 +147,8 @@ short Extension::Display()
 	if (IsScmlObjectValid())
 	{
 		LPSURFACE psw = WinGetSurface((int)rhPtr->rhIdEditWin);
-		deltaTime = GetTickCount() - currentSystemTime;
-		currentSystemTime = GetTickCount();
+		deltaTime = GetTickCount64() - currentSystemTime;
+		currentSystemTime = GetTickCount64();
 		int posX = rdPtr->rHo.hoX - rhPtr->rhWindowX;
 		int posY = rdPtr->rHo.hoY - rhPtr->rhWindowY;
 		if (!animPlaying)
@@ -208,7 +207,6 @@ short Extension::Display()
 				}
 			}
 		}
-			
 	}
 	return 0;
 }

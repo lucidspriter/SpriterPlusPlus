@@ -110,6 +110,7 @@
         "Separator"
     ],
     "ConditionMenu": [
+        "Separator",
         [
             "Animation",
             [
@@ -122,30 +123,28 @@
             ],
             [
                 2,
-                "Compare current time to value"
-            ],
-            [
-                3,
                 "Is tag active?"
             ],
             [
-                4,
+                3,
                 "Is object tag active?"
             ]
         ],
         [
             "Events",
             [
-                5,
+                4,
                 "On Sound Event"
             ],
             [
-                6,
+                5,
                 "On Trigger Event"
             ]
-        ]
+        ],
+        "Separator"
     ],
     "ExpressionMenu": [
+        "Separator",
         [
             "Scale / Angle",
             [
@@ -158,8 +157,8 @@
             ]
         ],
         [
-           0,
-           "Last Error"
+            0,
+            "Last Error"
         ],
         [
             "Animation",
@@ -217,7 +216,8 @@
                 14,
                 "Direction"
             ]
-        ]
+        ],
+        "Separator"
     ],
     "Actions": [
         {
@@ -412,7 +412,7 @@
                     "Direction number in animation (0->32)"
                 ]
             ]
-        },
+        }
     ],
     "Conditions": [
         {
@@ -427,16 +427,6 @@
         },
         {
             "Title": "%o : Has current animation finished?",
-            "Triggered": false
-        },
-        {
-            "Title": "%o : Is Current Time %0?",
-            "Parameters": [
-                [
-                    "Comparison",
-                    "Time (ms)"
-                ]
-            ],
             "Triggered": false
         },
         {
@@ -490,10 +480,6 @@
             "Returns": "Text"
         },
         {
-            "Title": "CurrentAnim(",
-            "Returns": "Integer"
-        },
-        {
             "Title": "Scale(",
             "Returns": "Float"
         },
@@ -503,7 +489,7 @@
         },
         {
             "Title": "CurrentTime(",
-            "Returns": "Float"
+            "Returns": "Integer"
         },
         {
             "Title": "CurrentSpeedRatio(",

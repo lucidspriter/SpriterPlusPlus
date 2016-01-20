@@ -25,7 +25,7 @@ bool Extension::HasCurrentAnimationFinished()
 {
 	if (IsScmlObjectValid())
 	{
-		if (scmlObj->isAnimationPlaying())
+		if (!scmlObj->isAnimationPlaying())
 		{
 			return true;
 		}
@@ -38,11 +38,6 @@ bool Extension::HasCurrentAnimationFinished()
 	{
 		return false;
 	}
-}
-
-long Extension::CompareCurrentTimeToValue(int val)
-{
-	return static_cast<int>(scmlObj->getCurrentTime());
 }
 
 bool Extension::IsScmlObjectValid()
