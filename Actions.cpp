@@ -43,9 +43,12 @@ void Extension::ChangeAnimationByName(TCHAR* name)
 	{
 		wstring ws = wstring(name);
 		string s(ws.begin(), ws.end());
-		scmlObj->setCurrentAnimation(s);
-		scmlObj->startResumePlayback();
-		currentAnimationName = s;
+		if (scmlObj->getEntity(0)->animationExists(s))
+		{
+			scmlObj->setCurrentAnimation(s);
+			scmlObj->startResumePlayback();
+			currentAnimationName = s;
+		}
 	}
 	else
 	{
@@ -67,9 +70,12 @@ void Extension::ChangeAnimationByNameWithBlending(TCHAR* name, int blendingTime)
 	{
 		wstring ws = wstring(name);
 		string s(ws.begin(), ws.end());
-		scmlObj->setCurrentAnimation(s,blendingTime);
-		scmlObj->startResumePlayback();
-		currentAnimationName = s;
+		if (scmlObj->getEntity(0)->animationExists(s))
+		{
+			scmlObj->setCurrentAnimation(s, blendingTime);
+			scmlObj->startResumePlayback();
+			currentAnimationName = s;
+		}
 	}
 	else
 	{

@@ -57,7 +57,8 @@ public:
         numeric IDs in the class constructor (Extension.cpp)
     */
 	bool IsScmlObjectValid();
-	
+	string getFirstAnimationName();
+
     /// Actions
 	void StopAnimation();
 	void StartAnimation();

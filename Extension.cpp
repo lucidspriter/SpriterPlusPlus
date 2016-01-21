@@ -81,9 +81,23 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	flipX = false;
 	speedRatio = 1.0f;
 	displayRect = { 0, 0, 0, 0 };
-	currentAnimationName = "unknown";
-
 	scmlObj = scmlModel.getNewEntityInstance(0);//assume first entity at start
+	currentAnimationName = getFirstAnimationName();
+}
+
+string Extension::getFirstAnimationName()
+{
+	tinyxml2::XMLDocument doc;
+	if (doc.LoadFileFromBuffer(scmlFileString.c_str()) == tinyxml2::XML_SUCCESS)
+	{
+		tinyxml2::XMLElement* firstAnim = doc.FirstChildElement("spriter_data")->FirstChildElement("entity")->FirstChildElement("animation");
+		string name = firstAnim->Attribute("name");
+		return name;
+	}
+	else
+	{
+		return "N/A";
+	}
 }
 
 Extension::~Extension()
