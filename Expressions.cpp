@@ -10,8 +10,10 @@ TCHAR * Extension::LastError()
 
 TCHAR * Extension::CurrentAnimationName()
 {
+	TCHAR name[256];
 	CA2T resStr(currentAnimationName.c_str());
-	return resStr;
+	_tcscpy(name, resStr);
+	return name;
 }
 
 int Extension::CurrentTime()
@@ -92,7 +94,7 @@ int Extension::GetPointPosX(TCHAR* pointName)
 	int res = 0;
 	if (point != NULL)
 	{
-		res = (int)(point->getPosition().x);
+		res = (int)(point->getPosition().x + rhPtr->rhWindowX);
 	}
 	return res;
 }
@@ -105,7 +107,7 @@ int Extension::GetPointPosY(TCHAR* pointName)
 	int res = 0;
 	if (point != NULL)
 	{
-		res = (int)(point->getPosition().y);
+		res = (int)(point->getPosition().y + rhPtr->rhWindowY);
 	}
 	return res;
 }
