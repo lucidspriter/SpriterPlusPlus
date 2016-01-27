@@ -328,56 +328,60 @@ static bool CopySpritesTogether(wchar_t* scmlFilename, string scmlFile)
 void WINAPI	DLLExport CreateFromFile(LPMV mV, LPTSTR fileName, LPEDATA edPtr)
 {
 #ifndef RUN_ONLY
-	// Initialize your extension data from the given file
-	Edif::Init(mV, edPtr);
-	if (fileName)
+	// Check compatibility
+	if (IS_COMPATIBLE(mV))
 	{
-		//Load the whole scml object
-		char* scmlFile = nullptr;
-		_tcscpy(edPtr->scmlFilename, fileName);
-		tinyxml2::XMLDocument doc;
-		doc.LoadFileToBuffer(fileName, &scmlFile);
-		doc.Clear();
-		int copy = MessageBox(0, _T("Do you want to copy all sprites to import in CF2.5?"), _T("Warning"), MB_YESNO | MB_ICONWARNING);
-		if (copy == IDYES)
+		// Initialize your extension data from the given file
+		Edif::Init(mV, edPtr);
+		if (fileName)
 		{
-			int copy = MessageBox(0, _T("Do you want to order sprites per folder?"), _T("Question"), MB_YESNO | MB_ICONQUESTION);
+			//Load the whole scml object
+			char* scmlFile = nullptr;
+			_tcscpy(edPtr->scmlFilename, fileName);
+			tinyxml2::XMLDocument doc;
+			doc.LoadFileToBuffer(fileName, &scmlFile);
+			doc.Clear();
+			int copy = MessageBox(0, _T("Do you want to copy all sprites to import in CF2.5?"), _T("Warning"), MB_YESNO | MB_ICONWARNING);
 			if (copy == IDYES)
 			{
-				if (!CopySpritesWithFolders(fileName, scmlFile))
+				int copy = MessageBox(0, _T("Do you want to order sprites per folder?"), _T("Question"), MB_YESNO | MB_ICONQUESTION);
+				if (copy == IDYES)
 				{
-					MessageBox(0, _T("Error by copying sprites."), _T("Error"), MB_OK | MB_ICONERROR);
+					if (!CopySpritesWithFolders(fileName, scmlFile))
+					{
+						MessageBox(0, _T("Error by copying sprites."), _T("Error"), MB_OK | MB_ICONERROR);
+					}
+				}
+				else
+				{
+					MessageBox(0, _T("Sprites will be copied all together"), _T("Info"), MB_OK | MB_ICONINFORMATION);
+					if (!CopySpritesTogether(fileName, scmlFile))
+					{
+						MessageBox(0, _T("Error by copying sprites."), _T("Error"), MB_OK | MB_ICONERROR);
+					}
 				}
 			}
-			else
+
+			//Update EDIDATA Structure
+			DWORD dwNewSize = sizeof(EDITDATA) + strlen(scmlFile) + 1;
+			// Asks MMF to reallocate the structure with the new size
+			LPEDATA pNewPtr = (LPEDATA)mvReAllocEditData(mV, edPtr, dwNewSize);
+
+			// If reallocation worked
+			if (pNewPtr != NULL)
 			{
-				MessageBox(0, _T("Sprites will be copied all together"), _T("Info"), MB_OK | MB_ICONINFORMATION);
-				if (!CopySpritesTogether(fileName, scmlFile))
-				{
-					MessageBox(0, _T("Error by copying sprites."), _T("Error"), MB_OK | MB_ICONERROR);
-				}
+				// Copy the string
+				edPtr = pNewPtr;
+				strcpy(edPtr->scmlFile, scmlFile);
 			}
+			//delete temporary buffer
+			delete[] scmlFile;
+			scmlFile = nullptr;
 		}
-				
-		//Update EDIDATA Structure
-		DWORD dwNewSize = sizeof(EDITDATA) + strlen(scmlFile)+1;
-		// Asks MMF to reallocate the structure with the new size
-		LPEDATA pNewPtr = (LPEDATA)mvReAllocEditData(mV, edPtr, dwNewSize);
-			
-		// If reallocation worked
-		if (pNewPtr!=NULL)
+		else
 		{
-			// Copy the string
-			edPtr=pNewPtr;
-			strcpy(edPtr->scmlFile, scmlFile);
+			_tcscpy(edPtr->scmlFilename, _T(""));
 		}
-		//delete temporary buffer
-		delete[] scmlFile;
-		scmlFile = nullptr;
-	}
-	else
-	{
-		_tcscpy(edPtr->scmlFilename, _T(""));
 	}
 	
 #endif // !defined(RUN_ONLY)
@@ -819,16 +823,14 @@ BOOL WINAPI DLLExport EditProp(LPMV mV, LPEDATA edPtr, UINT nPropID)
 	if (nPropID == PROPID_SPRITER_FILE_PATH  || nPropID == PROPID_SPRITER_FILE_RELOAD)
 	{
 		CreateFromFile(mV, edPtr->scmlFilename, edPtr);
+		return TRUE;
 	}
 	else if (nPropID == PROPID_SPRITER_FILE_INFOS)
 	{
 		infosParams	spa;
 		spa.edpt = edPtr;
 		spa.kv = mV;
-		if (DialogBoxParam(hInstLib, MAKEINTRESOURCE(DB_SETUP), mV->mvHEditWin, infosProc, (LPARAM)(LPBYTE)&spa) == IDOK)
-		{
-			return 0;	// No error
-		}
+		DialogBoxParam(hInstLib, MAKEINTRESOURCE(DB_SETUP), mV->mvHEditWin, infosProc, (LPARAM)(LPBYTE)&spa);
 	}
 
 #endif // !defined(RUN_ONLY)

@@ -63,6 +63,7 @@ struct EDITDATA
 	// Object's data
 	wchar_t			scmlFilename[_MAX_PATH];
 	char			scmlFile[1];//scml file buffer, dynamic size
+
 };
 
 typedef struct 
