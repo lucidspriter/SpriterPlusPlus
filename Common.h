@@ -15,21 +15,20 @@
 enum ErrorN
 {
 	noError,
-	ScmlOpenFileError,
-	ScmlNoSpriterDataError,
-	ScmlLoadFolderError,
-	ScmlLoadEntityError,
+	PointUnknown,
+	AnimationUnknown,
+	ActiveUnknown,
+	ObjectUnknown,
 	ScmlObjectInvalid,
 };
 
-static TCHAR* ErrorS[7] = {
+static TCHAR* ErrorS[6] = {
 	_T("[00] No Error"),
-	_T("[01] Failed to load scml file: couldn't open file."),
-	_T("[02] Failed to load scml file: no spriter_data XML element."),
-	_T("[03] Failed to load scml file: no spriter_data XML element."),
-	_T("[04] Failed to folder from scml file."),
-	_T("[05] Failed to entity from scml file."),
-	_T("[06] ScmlObject is invalid."),
+	_T("[01] Point does not exist or is invalid."),
+	_T("[02] Animation does not exist or is invalid."),
+	_T("[03] Active object does not exist or is invalid."),
+	_T("[04] Spriter object does not exist or is invalid"),
+	_T("[05] ScmlObject is invalid."),
 };
 
 #include	<map>

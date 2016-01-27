@@ -49,6 +49,10 @@ void Extension::ChangeAnimationByName(TCHAR* name)
 			scmlObj->startResumePlayback();
 			currentAnimationName = s;
 		}
+		else
+		{
+			_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[AnimationUnknown]);
+		}
 	}
 	else
 	{
@@ -76,6 +80,10 @@ void Extension::ChangeAnimationByNameWithBlending(TCHAR* name, int blendingTime)
 			scmlObj->startResumePlayback();
 			currentAnimationName = s;
 		}
+		else
+		{
+			_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[AnimationUnknown]);
+		}
 	}
 	else
 	{
@@ -83,6 +91,13 @@ void Extension::ChangeAnimationByNameWithBlending(TCHAR* name, int blendingTime)
 	}
 }
 
+/*!
+*  \brief ChangeAnimationTime
+*
+*  Change the time in current animation
+*
+*  \param timeMs : time in ms to set
+*/
 void Extension::ChangeAnimationTime(int timeMs)
 {
 	if (timeMs >= 0)
@@ -91,6 +106,13 @@ void Extension::ChangeAnimationTime(int timeMs)
 	}
 }
 
+/*!
+*  \brief ChangeEntityByNumber
+*
+*  Change the entity
+*
+*  \param num : entity number to set
+*/
 void Extension::ChangeEntityByNumber(int num)
 {
 	if (IsScmlObjectValid())
@@ -103,11 +125,25 @@ void Extension::ChangeEntityByNumber(int num)
 	}
 }
 
+/*!
+*  \brief SetFlipX
+*
+*  Flip the whole rendering of the object on the X axis
+*
+*  \param enable : <=0 means disabled, >0 means enabled
+*/
 void Extension::SetFlipX(int enable)
 {
 	flipX = (enable>0);
 }
 
+/*!
+*  \brief SetAnimationSpeed
+*
+*  Set the speed ratio of the current animation 
+*
+*  \param speed : <0 is an invalid value (no change), >=0 set the speed ratio (2 => twice faster, 0.5 => twice slower) 
+*/
 void Extension::SetAnimationSpeed(float speed)
 {
 	if (speed >= 0)
@@ -116,6 +152,13 @@ void Extension::SetAnimationSpeed(float speed)
 	}
 }
 
+/*!
+*  \brief ApplyCharacterMap
+*
+*  Apply the specified character map
+*
+*  \param name : name of the character map to apply (see RemoveCharacterMap to undo)
+*/
 void Extension::ApplyCharacterMap(TCHAR* name)
 {
 	if (IsScmlObjectValid())
@@ -130,6 +173,13 @@ void Extension::ApplyCharacterMap(TCHAR* name)
 	}
 }
 
+/*!
+*  \brief RemoveCharacterMap
+*
+*  Remove the specified character map
+*
+*  \param name : name of the character map to remove (see ApplyCharacterMap to apply a new one)
+*/
 void Extension::RemoveCharacterMap(TCHAR* name)
 {
 	if (IsScmlObjectValid())
@@ -143,6 +193,13 @@ void Extension::RemoveCharacterMap(TCHAR* name)
 		_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[ScmlObjectInvalid]);
 	}
 }
+
+/*!
+*  \brief RemoveAllCharacterMaps
+*
+*  Remove all applied character maps
+*
+*/
 void Extension::RemoveAllCharacterMaps()
 {
 	if (IsScmlObjectValid())
@@ -155,6 +212,13 @@ void Extension::RemoveAllCharacterMaps()
 	}
 }
 
+/*!
+*  \brief SetScale
+*
+*  Set scale on both X and Y axis
+*
+*  \param scale : scale value to apply
+*/
 void Extension::SetScale(float scale)
 {
 	if (IsScmlObjectValid())
@@ -167,6 +231,13 @@ void Extension::SetScale(float scale)
 	}
 }
 
+/*!
+*  \brief SetAngle
+*
+*  Rotate the whole object of the specified angle in degree
+*
+*  \param scale : angle in degree
+*/
 void Extension::SetAngle(float angle)
 {
 	if (IsScmlObjectValid())
@@ -179,6 +250,17 @@ void Extension::SetAngle(float angle)
 	}
 }
 
+/*!
+*  \brief LoadSpriteFromActive
+*
+*  Load one sprite from an active object by a specific animation on a specific direction from a specific frame number
+*
+*  \param spriteName : sprite name in the spriter file
+*  \param pObj : active object to use as library
+*  \param nAnim : animation number to choose from
+*  \param nDir : direction to choose from
+*  \param nFrame : frame number of the sprite to clone in spriter object
+*/
 void Extension::LoadSpriteFromActive(string spriteName, LPRO pObj, int nAnim, int nDir, int nFrame)
 {
 	if (pObj != NULL)
@@ -214,8 +296,21 @@ void Extension::LoadSpriteFromActive(string spriteName, LPRO pObj, int nAnim, in
 			}
 		}
 	}
+	else
+	{
+		_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[ActiveUnknown]);
+	}
 }
 
+/*!
+*  \brief LoadOrderedSpritesPerAnimation
+*
+*  Load all sprites from an active object in the specified animation given that the sprites are ordered 
+*  by direction for folder and per frame for sprites
+*
+*  \param pObj : active object to use as library
+*  \param nAnim : animation number to choose from
+*/
 void Extension::LoadOrderedSpritesPerAnimation(LPRO pObj, int nAnim)
 {
 	tinyxml2::XMLDocument doc;
@@ -240,6 +335,16 @@ void Extension::LoadOrderedSpritesPerAnimation(LPRO pObj, int nAnim)
 	}
 }
 
+/*!
+*  \brief LoadOrderedSpritesPerDirection
+*
+*  Load all sprites from an active object in the specified animation 
+*  given that the sprites are ordered one after each other in one direction only
+*
+*  \param pObj : active object to use as library
+*  \param nAnim : animation number to choose from
+*  \param nDir : direction to choose from
+*/
 void Extension::LoadOrderedSpritesPerDirection(LPRO pObj, int nAnim, int nDir)
 {
 	tinyxml2::XMLDocument doc;
@@ -261,6 +366,14 @@ void Extension::LoadOrderedSpritesPerDirection(LPRO pObj, int nAnim, int nDir)
 	}
 }
 
+/*!
+*  \brief BoundBoxToObject
+*
+*  Bound position(x and y), scale and angle from an active object to a box object in spriter
+*
+*  \param boxName : box name in spriter file
+*  \param pObj : active object to use as box
+*/
 void Extension::BoundBoxToObject(TCHAR* boxName, LPRO object)
 {
 	if (object != NULL)
@@ -269,8 +382,19 @@ void Extension::BoundBoxToObject(TCHAR* boxName, LPRO object)
 		string name(ws.begin(), ws.end());
 		BoxLink[name] = object;
 	}
+	else
+	{
+		_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[ObjectUnknown]);
+	}
 }
 
+/*!
+*  \brief UnboundBoxFromObject
+*
+*  Unbound position(x and y), scale and angle of a box object from the corresponding active object
+*
+*  \param boxName : box name in spriter file
+*/
 void Extension::UnboundBoxFromObject(TCHAR* boxName)
 {
 	wstring ws = wstring(boxName);
@@ -278,6 +402,15 @@ void Extension::UnboundBoxFromObject(TCHAR* boxName)
 	BoxLink[name] = nullptr;
 }
 
+/*!
+*  \brief SetDebug
+*
+*  Unbound position(x and y), scale and angle of a box object from the corresponding active object
+*
+*  \param showBones : !=0 means show bones on screen
+*  \param showBoxes : !=0 means show boxes on screen
+*  \param showPoints : !=0 means show points on screen
+*/
 void Extension::SetDebug(int showBones, int showBoxes, int showPoints)
 {
 	SpriterEngine::Settings::renderDebugBones = (bool)showBones;

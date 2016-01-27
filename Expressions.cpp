@@ -96,6 +96,10 @@ int Extension::GetPointPosX(TCHAR* pointName)
 	{
 		res = (int)(point->getPosition().x + rhPtr->rhWindowX);
 	}
+	else
+	{
+		_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[PointUnknown]);
+	}
 	return res;
 }
 
@@ -109,6 +113,10 @@ int Extension::GetPointPosY(TCHAR* pointName)
 	{
 		res = (int)(point->getPosition().y + rhPtr->rhWindowY);
 	}
+	else
+	{
+		_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[PointUnknown]);
+	}
 	return res;
 }
 
@@ -121,6 +129,10 @@ float Extension::GetPointDirection(TCHAR* pointName)
 	if (point != NULL)
 	{
 		res = (float)point->getAngle();
+	}
+	else
+	{
+		_snwprintf_s(lastError, _countof(lastError), ERRORSIZE, ErrorS[PointUnknown]);
 	}
 	return res;
 }
