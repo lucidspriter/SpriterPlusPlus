@@ -48,6 +48,7 @@ void Extension::ChangeAnimationByName(TCHAR* name)
 			scmlObj->setCurrentAnimation(s);
 			scmlObj->startResumePlayback();
 			currentAnimationName = s;
+			printf("%d: set current anim %s\n", currentSystemTime, currentAnimationName.c_str());
 		}
 		else
 		{
@@ -79,6 +80,7 @@ void Extension::ChangeAnimationByNameWithBlending(TCHAR* name, int blendingTime)
 			scmlObj->setCurrentAnimation(s, blendingTime);
 			scmlObj->startResumePlayback();
 			currentAnimationName = s;
+			printf("%d: set current blend anim %s\n", currentSystemTime, s.c_str());
 		}
 		else
 		{

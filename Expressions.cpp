@@ -120,7 +120,7 @@ int Extension::GetPointPosY(TCHAR* pointName)
 	return res;
 }
 
-float Extension::GetPointDirection(TCHAR* pointName)
+float Extension::GetPointAngle(TCHAR* pointName)
 {
 	wstring wsVar = wstring(pointName);
 	string sVar(wsVar.begin(), wsVar.end());
@@ -128,7 +128,15 @@ float Extension::GetPointDirection(TCHAR* pointName)
 	float res = 0.0;
 	if (point != NULL)
 	{
-		res = (float)point->getAngle();
+		if (flipX)
+		{
+			res = (float)(point->getAngle()+180);
+		}
+		else
+		{
+			res = (float)point->getAngle();
+		}
+		
 	}
 	else
 	{

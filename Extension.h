@@ -48,7 +48,7 @@ public:
 	RECT displayRect;
 
 	string currentAnimationName; //TODO: replace by a direct access to spriter engine
-	
+
 	/*  Add your actions, conditions and expressions as real class member
         functions here. The arguments (and return type for expressions) must
         match EXACTLY what you defined in the JSON.
@@ -104,7 +104,7 @@ public:
 	TCHAR* GetObjectStringVariable(TCHAR* objectName, TCHAR* variableName);
 	int GetPointPosX(TCHAR* pointName);
 	int GetPointPosY(TCHAR* pointName);
-	float GetPointDirection(TCHAR* pointName);
+	float GetPointAngle(TCHAR* pointName);
 
     /* These are called if there's no function linked to an ID */
 

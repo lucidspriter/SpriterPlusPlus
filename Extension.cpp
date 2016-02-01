@@ -64,7 +64,7 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	LinkExpression(11, GetObjectStringVariable);
 	LinkExpression(12, GetPointPosX);
 	LinkExpression(13, GetPointPosY);
-	LinkExpression(14, GetPointDirection);
+	LinkExpression(14, GetPointAngle);
 	
     /*
         This is where you'd do anything you'd do in CreateRunObject in the original SDK
@@ -200,21 +200,23 @@ short Extension::Display()
 					float h = colBox->getSize().y;
 					float pivx = colBox->getPivot().x;
 					float pivy = colBox->getPivot().y;
-					float scalex = colBox->getScale().x;
-					float scaley = colBox->getScale().y;
+					float scalex = abs(colBox->getScale().x);
+					float scaley = abs(colBox->getScale().y);
+					float angle = colBox->getAngle();
 					LPRO testObj = it->second;
-					it->second->roc.rcAngle = SpriterEngine::toDegrees(colBox->getAngle());
+					it->second->roc.rcAngle = SpriterEngine::toDegrees(angle);
 					it->second->roc.rcScaleX = (w / it->second->roHo.hoImgWidth)*scalex;
 					it->second->roc.rcScaleY = (h / it->second->roHo.hoImgHeight)*scaley;
 					//rotate original object hot spot point
 					float cx = it->second->roHo.hoImgXSpot*scalex*(w / it->second->roHo.hoImgWidth);
 					float cy = it->second->roHo.hoImgYSpot*scaley*(h / it->second->roHo.hoImgHeight);
-					float pcx = cx * std::cos(colBox->getAngle()) + cy * std::sin(colBox->getAngle()); 
-					float pcy = -cx * std::sin(colBox->getAngle()) + cy * std::cos(colBox->getAngle());
+					float pcx = cx * std::cos(angle) + cy * std::sin(angle);
+					float pcy = -cx * std::sin(angle) + cy * std::cos(angle);
 					//rotate spriter colision box pivot point
-					float positionX = w*pivx * scalex * std::cos(colBox->getAngle()) + h*pivy * scaley  * std::sin(colBox->getAngle());
-					float positionY = -w*pivx * scalex *std::sin(colBox->getAngle()) + h*pivy * scaley  * std::cos(colBox->getAngle());
+					float positionX = w*pivx * scalex * std::cos(angle) + h*pivy * scaley  * std::sin(angle);
+					float positionY = -w*pivx * scalex *std::sin(angle) + h*pivy * scaley  * std::cos(angle);
 					// combine both of them
+					float XNoFlip = pcx + colBox->getPosition().x - positionX + rhPtr->rhWindowX;;
 					it->second->roHo.hoX = pcx + colBox->getPosition().x - positionX + rhPtr->rhWindowX;
 					it->second->roHo.hoY = pcy + colBox->getPosition().y - positionY + rhPtr->rhWindowY;
 					it->second->roc.rcChanged = true;

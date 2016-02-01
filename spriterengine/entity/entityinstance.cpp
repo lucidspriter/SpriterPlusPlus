@@ -219,6 +219,7 @@ namespace SpriterEngine
 
 	bool EntityInstance::isAnimationPlaying()
 	{
+		//return isPlaying;
 		return (abs(getCurrentTime() - currentAnimation->length())> 0.0001 || currentAnimation->looping());
 	}
 
@@ -453,6 +454,9 @@ namespace SpriterEngine
 	void EntityInstance::setCurrentAnimation(const std::string & animationName)
 	{
 		currentEntity->setCurrentAnimation(animationName, &currentAnimation);
+		blendedAnimation = 0;
+		blendCurrentTime = 0;
+		blendTotalTime = 0;
 		isPlaying = true;
 	}
 

@@ -27,6 +27,7 @@ bool Extension::HasCurrentAnimationFinished()
 	{
 		if (!scmlObj->isAnimationPlaying())
 		{
+			printf("%d: end of animation %s\n",currentSystemTime, currentAnimationName.c_str());
 			return true;
 		}
 		else
