@@ -203,7 +203,8 @@ short Extension::Display()
 					float scalex = abs(colBox->getScale().x);
 					float scaley = abs(colBox->getScale().y);
 					float angle = colBox->getAngle();
-					LPRO testObj = it->second;
+					float colPosX = colBox->getPosition().x;
+					float colPosY = colBox->getPosition().y;
 					it->second->roc.rcAngle = SpriterEngine::toDegrees(angle);
 					it->second->roc.rcScaleX = (w / it->second->roHo.hoImgWidth)*scalex;
 					it->second->roc.rcScaleY = (h / it->second->roHo.hoImgHeight)*scaley;
@@ -213,12 +214,16 @@ short Extension::Display()
 					float pcx = cx * std::cos(angle) + cy * std::sin(angle);
 					float pcy = -cx * std::sin(angle) + cy * std::cos(angle);
 					//rotate spriter colision box pivot point
-					float positionX = w*pivx * scalex * std::cos(angle) + h*pivy * scaley  * std::sin(angle);
-					float positionY = -w*pivx * scalex *std::sin(angle) + h*pivy * scaley  * std::cos(angle);
+					float objPivX = w*pivx * scalex * std::cos(angle) + h*pivy * scaley  * std::sin(angle);
+					float objPivY = -w*pivx * scalex *std::sin(angle) + h*pivy * scaley  * std::cos(angle);
 					// combine both of them
-					float XNoFlip = pcx + colBox->getPosition().x - positionX + rhPtr->rhWindowX;;
-					it->second->roHo.hoX = pcx + colBox->getPosition().x - positionX + rhPtr->rhWindowX;
-					it->second->roHo.hoY = pcy + colBox->getPosition().y - positionY + rhPtr->rhWindowY;
+					it->second->roHo.hoX = pcx + colPosX - objPivX + rhPtr->rhWindowX;
+					it->second->roHo.hoY = pcy + colPosY - objPivY + rhPtr->rhWindowY;
+					if (flipX)
+					{
+						it->second->roHo.hoX -= it->second->roc.rcScaleX*it->second->roHo.hoImgWidth*std::cos(angle);
+						it->second->roHo.hoY += it->second->roc.rcScaleY*it->second->roHo.hoImgHeight*std::sin(angle);
+					}
 					it->second->roc.rcChanged = true;
 				}
 			}
