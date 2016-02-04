@@ -43,7 +43,7 @@ bool Extension::HasCurrentAnimationFinished()
 
 bool Extension::IsScmlObjectValid()
 {
-	return (scmlModel.fileCount()>0 && scmlObj != NULL);
+	return (scmlModel->fileCount()>0 && scmlObj != NULL);
 }
 
 bool Extension::IsTagActive(TCHAR* tagName)
@@ -74,6 +74,11 @@ bool Extension::OnTriggerEvent(TCHAR* triggerName)
 	wstring wstr = wstring(triggerName);
 	string name(wstr.begin(), wstr.end());
 	return (TriggerEvent.erase(name));
+}
+
+bool Extension::IsAnimationFlipped()
+{
+	return flipX;
 }
 
 

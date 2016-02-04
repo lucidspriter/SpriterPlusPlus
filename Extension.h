@@ -32,7 +32,7 @@ public:
 
     string scmlFileString;
 	SpriterEngine::EntityInstance *scmlObj;
-	SpriterEngine::SpriterModel scmlModel;
+	SpriterEngine::SpriterModel *scmlModel;
 	unordered_map<string, Sprite> SpriteSource;
 	unordered_map<string, UINT> SoundBank; // unordered_map<sound path in spriter file, sound id in CF25 sound bank>
 	unordered_map<string, LPRO> BoxLink;
@@ -80,6 +80,7 @@ public:
 	void BoundBoxToObject(TCHAR* boxName, LPRO object);
 	void UnboundBoxFromObject(TCHAR* boxName);
 	void SetDebug(int showBones, int showBoxes, int showPoints);
+	void LoadScmlFile(TCHAR* filename);
 
     /// Conditions
 	bool IsAnimationPlayingByName(TCHAR* name);
@@ -89,6 +90,7 @@ public:
 	bool IsObjectTagActive(TCHAR* objectName, TCHAR* tagName);
 	bool OnSoundEvent(TCHAR* soundName);
 	bool OnTriggerEvent(TCHAR* triggerName);
+	bool IsAnimationFlipped();
     /// Expressions
 	TCHAR * LastError();
 	TCHAR * CurrentAnimationName();

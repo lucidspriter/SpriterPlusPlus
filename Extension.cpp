@@ -8,7 +8,7 @@
 
 Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	: rdPtr(_rdPtr), rhPtr(_rdPtr->rHo.hoAdRunHeader), Runtime(_rdPtr), scmlFileString(edPtr->scmlFile),
-	scmlModel("dummy.scml", new SpriterEngine::Cf25FileFactory(rdPtr,this), new SpriterEngine::Cf25ObjectFactory(rdPtr,this))
+	scmlModel(new SpriterEngine::SpriterModel("dummy.scml", new SpriterEngine::Cf25FileFactory(rdPtr,this), new SpriterEngine::Cf25ObjectFactory(rdPtr,this)))
 {
 	#ifdef _DEBUG
 		AllocConsole();
@@ -42,6 +42,7 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	LinkAction(16, UnboundBoxFromObject);
 	LinkAction(17, SetDebug);
 	LinkAction(18, LoadOrderedSpritesPerDirection);
+	LinkAction(19, LoadScmlFile);
     
 	LinkCondition(0, IsAnimationPlayingByName);
 	LinkCondition(1, HasCurrentAnimationFinished);
@@ -49,7 +50,8 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	LinkCondition(3, IsObjectTagActive);
 	LinkCondition(4, OnSoundEvent);
 	LinkCondition(5, OnTriggerEvent);
-
+	LinkCondition(6, IsAnimationFlipped);
+	
 	LinkExpression(0, LastError);
 	LinkExpression(1, GetScale);
 	LinkExpression(2, GetAngle);
@@ -81,7 +83,7 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	flipX = false;
 	speedRatio = 1.0f;
 	displayRect = { 0, 0, 0, 0 };
-	scmlObj = scmlModel.getNewEntityInstance(0);//assume first entity at start
+	scmlObj = scmlModel->getNewEntityInstance(0);//assume first entity at start
 	currentAnimationName = getFirstAnimationName();
 }
 
@@ -106,6 +108,7 @@ Extension::~Extension()
         This is where you'd do anything you'd do in DestroyRunObject in the original SDK.
         (except calling destructors and other such atrocities, because that's automatic in Edif)
     */
+	delete scmlModel;
 }
 
 

@@ -107,6 +107,13 @@
                 "Set debug display"
             ]
         ],
+        [
+            "File",
+            [
+                19,
+                "Load Scml File"
+            ]
+        ],
         "Separator"
     ],
     "ConditionMenu": [
@@ -128,6 +135,10 @@
             [
                 3,
                 "Is object tag active?"
+            ],
+            [
+                6,
+                "Is animation flipped?"
             ]
         ],
         [
@@ -412,6 +423,15 @@
                     "Direction number in animation (0->32)"
                 ]
             ]
+        },
+        {
+            "Title": "Load file %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "File Name"
+                ]
+            ]
         }
     ],
     "Conditions": [
@@ -471,6 +491,10 @@
                     "trigger name"
                 ]
             ],
+            "Triggered": false
+        },
+        {
+            "Title": "%o : Is animation flipped",
             "Triggered": false
         }
     ],

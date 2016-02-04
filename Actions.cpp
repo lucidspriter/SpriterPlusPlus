@@ -419,3 +419,32 @@ void Extension::SetDebug(int showBones, int showBoxes, int showPoints)
 	SpriterEngine::Settings::renderDebugBoxes = (bool)showBoxes;
 	SpriterEngine::Settings::renderDebugPoints = (bool)showPoints;
 }
+
+/*!
+*  \brief LoadScmlFile
+*
+*  Load animation from a scml file. 
+*  All sprite, box and sound bindings are reset and should be set again according the new file.
+*  Same thing for events.
+*
+*  \param filename : file name
+*/
+void Extension::LoadScmlFile(TCHAR* filename)
+{
+	wstring ws = wstring(filename);
+	tinyxml2::XMLDocument doc;
+	char*  scmlFile = nullptr;
+	doc.LoadFileToBuffer(ws.c_str(), &scmlFile);
+	scmlFileString = scmlFile;
+	delete scmlModel;
+	scmlModel = new SpriterEngine::SpriterModel("dummy.scml", new SpriterEngine::Cf25FileFactory(rdPtr, this),
+		new SpriterEngine::Cf25ObjectFactory(rdPtr, this));
+	scmlObj = scmlModel->getNewEntityInstance(0);//assume first entity at start
+	currentAnimationName = getFirstAnimationName();
+	doc.Clear();
+	SpriteSource.clear();
+	SoundBank.clear();
+	BoxLink.clear();
+	SoundEvent.clear();
+	TriggerEvent.clear();
+}
