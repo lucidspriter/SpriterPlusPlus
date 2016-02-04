@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['startanimation',['StartAnimation',['../class_extension.html#a40e26bedf573c80385113da336188424',1,'Extension']]],
-  ['stopanimation',['StopAnimation',['../class_extension.html#a71c39f47f592d16e7bb54bcfa6f8ea2b',1,'Extension']]]
+  ['isanimationplayingbyname',['IsAnimationPlayingByName',['../class_extension.html#ae141f8e068861014a1016e75637477db',1,'Extension']]]
 ];

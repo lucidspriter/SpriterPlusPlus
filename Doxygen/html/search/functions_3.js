@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lasterror',['LastError',['../class_extension.html#a61421b0c869222085767e2dc7db4c0f1',1,'Extension']]]
+  ['extension',['Extension',['../class_extension.html#ab29b268765da35b39a9288e699cf484a',1,'Extension']]]
 ];
