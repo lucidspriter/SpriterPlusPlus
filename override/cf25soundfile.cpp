@@ -22,7 +22,7 @@ namespace SpriterEngine
 		}
 		CA2T wstr(name.c_str());
 		soundId = FindSndFromName(rdPtr->rHo.hoAdRunHeader->rhIdAppli, SP_WAVE, wstr);
-		if (soundId <= 0)//if not found
+		if (soundId < 0)//if not found
 		{
 			soundId = -1;
 		}

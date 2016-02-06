@@ -40,7 +40,14 @@ float Extension::GetRealVariable(TCHAR* variableName)
 {
 	wstring wsVar = wstring(variableName);
 	string sVar(wsVar.begin(), wsVar.end());
-	return scmlObj->getVariable(sVar)->getRealValue();
+	if (scmlObj->getVariable(sVar))
+	{
+		return scmlObj->getVariable(sVar)->getRealValue();
+	}
+	else
+	{
+		return 0.0;
+	}
 }
 
 float Extension::GetObjectRealVariable(TCHAR* objectName, TCHAR* variableName)
@@ -49,14 +56,28 @@ float Extension::GetObjectRealVariable(TCHAR* objectName, TCHAR* variableName)
 	string sObj(wsObj.begin(), wsObj.end());
 	wstring wsVar = wstring(variableName);
 	string sVar(wsVar.begin(), wsVar.end());
-	return scmlObj->getVariable(sObj,sVar)->getRealValue();
+	if (scmlObj->getVariable(sObj, sVar))
+	{
+		return scmlObj->getVariable(sObj, sVar)->getRealValue();
+	}
+	else
+	{
+		return 0.0;
+	}
 }
 
 int Extension::GetIntVariable(TCHAR* variableName)
 {
 	wstring wsVar = wstring(variableName);
 	string sVar(wsVar.begin(), wsVar.end());
-	return scmlObj->getVariable(sVar)->getIntValue();
+	if (scmlObj->getVariable(sVar))
+	{
+		return scmlObj->getVariable(sVar)->getIntValue();
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int Extension::GetObjectIntVariable(TCHAR* objectName, TCHAR* variableName)
@@ -65,15 +86,29 @@ int Extension::GetObjectIntVariable(TCHAR* objectName, TCHAR* variableName)
 	string sObj(wsObj.begin(), wsObj.end());
 	wstring wsVar = wstring(variableName);
 	string sVar(wsVar.begin(), wsVar.end());
-	return scmlObj->getVariable(sObj, sVar)->getIntValue();
+	if (scmlObj->getVariable(sObj, sVar))
+	{
+		return scmlObj->getVariable(sObj, sVar)->getIntValue();
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 TCHAR* Extension::GetStringVariable(TCHAR* variableName)
 {
 	wstring wsVar = wstring(variableName);
 	string sVar(wsVar.begin(), wsVar.end());
-	CA2T res(scmlObj->getVariable(sVar)->getStringValue().c_str());
-	return res;
+	if (scmlObj->getVariable(sVar))
+	{
+		CA2T res(scmlObj->getVariable(sVar)->getStringValue().c_str());
+		return res;
+	}
+	else
+	{
+		return _T("");
+	}
 }
 
 TCHAR* Extension::GetObjectStringVariable(TCHAR* objectName, TCHAR* variableName)
@@ -82,8 +117,15 @@ TCHAR* Extension::GetObjectStringVariable(TCHAR* objectName, TCHAR* variableName
 	string sObj(wsObj.begin(), wsObj.end());
 	wstring wsVar = wstring(variableName);
 	string sVar(wsVar.begin(), wsVar.end());
-	CA2T res(scmlObj->getVariable(sObj, sVar)->getStringValue().c_str());
-	return res;
+	if (scmlObj->getVariable(sObj, sVar))
+	{
+		CA2T res(scmlObj->getVariable(sObj, sVar)->getStringValue().c_str());
+		return res;
+	}
+	else
+	{
+		return _T("");
+	}
 }
 
 int Extension::GetPointPosX(TCHAR* pointName)
