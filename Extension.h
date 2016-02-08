@@ -73,7 +73,8 @@ public:
 	void RemoveAllCharacterMaps();
 	void SetScale(float scale);
 	void SetAngle(float angle);
-	void LoadSpriteFromActive(string SpriteName, LPRO pObj, int nAmim, int nDir, int nFrame);
+	void LoadSpriteFromActive(string spriteName, LPRO pObj, int nAmim, int nDir, int nFrame);
+	void LoadOneSpriteFromActive(TCHAR* spriteName, LPRO pObj, int nAmim, int nDir, int nFrame);
 	void LoadOrderedSpritesPerAnimation(LPRO pObj, int nAnim);
 	void LoadOrderedSpritesPerDirection(LPRO pObj, int nAnim, int nDir);
 	void LoadSoundFromSoundBank(TCHAR* soundPath, TCHAR* soundName);

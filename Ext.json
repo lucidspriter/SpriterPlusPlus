@@ -301,8 +301,12 @@
             ]
         },
         {
-            "Title": "Load 1 sprite from %0 by animation %1 at %2 on frame %3",
+            "Title": "Load sprite %0 from %1 by animation %2 at %3 on frame %4",
             "Parameters": [
+                [
+                    "Text",
+                    "Sprite name"
+                ],
                 [
                     "Object",
                     "Active object"

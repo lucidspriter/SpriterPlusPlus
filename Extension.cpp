@@ -32,7 +32,7 @@ Extension::Extension(LPRDATA _rdPtr, LPEDATA edPtr, fpcob cobPtr)
 	LinkAction(6, ApplyCharacterMap);
 	LinkAction(7, SetScale);
 	LinkAction(8, SetAngle);
-	LinkAction(9, LoadSpriteFromActive);
+	LinkAction(9, LoadOneSpriteFromActive);
 	LinkAction(10, LoadOrderedSpritesPerAnimation);
 	LinkAction(11, ChangeEntityByNumber);
 	LinkAction(12, ChangeAnimationByNameWithBlending);
@@ -181,9 +181,9 @@ short Extension::Display()
 		scmlObj->playAllTriggers();
 		//update CF25 display properties
 		rdPtr->rHo.hoRect = displayRect;
-		/*#ifdef DEBUG
+		#ifdef DEBUG
 		psw->Rectangle(rdPtr->rHo.hoRect.left, rdPtr->rHo.hoRect.top, rdPtr->rHo.hoRect.right, rdPtr->rHo.hoRect.bottom, 3, BLUE);
-		#endif*/
+		#endif
 		rdPtr->rHo.hoImgWidth = rdPtr->rHo.hoRect.right - rdPtr->rHo.hoRect.left;
 		rdPtr->rHo.hoImgHeight = rdPtr->rHo.hoRect.bottom - rdPtr->rHo.hoRect.top;
 		rdPtr->rHo.hoImgXSpot = posX - rdPtr->rHo.hoRect.left;
@@ -208,9 +208,9 @@ short Extension::Display()
 					float angle = colBox->getAngle();
 					float colPosX = colBox->getPosition().x;
 					float colPosY = colBox->getPosition().y;
-					it->second->roc.rcAngle = SpriterEngine::toDegrees(angle);
-					it->second->roc.rcScaleX = (w / it->second->roHo.hoImgWidth)*scalex;
-					it->second->roc.rcScaleY = (h / it->second->roHo.hoImgHeight)*scaley;
+					float objAngle = SpriterEngine::toDegrees(angle);
+					float objScaleX = (w / it->second->roHo.hoImgWidth)*scalex;
+					float objScaleY = (h / it->second->roHo.hoImgHeight)*scaley;
 					//rotate original object hot spot point
 					float cx = it->second->roHo.hoImgXSpot*scalex*(w / it->second->roHo.hoImgWidth);
 					float cy = it->second->roHo.hoImgYSpot*scaley*(h / it->second->roHo.hoImgHeight);
@@ -220,13 +220,18 @@ short Extension::Display()
 					float objPivX = w*pivx * scalex * std::cos(angle) + h*pivy * scaley  * std::sin(angle);
 					float objPivY = -w*pivx * scalex *std::sin(angle) + h*pivy * scaley  * std::cos(angle);
 					// combine both of them
-					it->second->roHo.hoX = pcx + colPosX - objPivX + rhPtr->rhWindowX;
-					it->second->roHo.hoY = pcy + colPosY - objPivY + rhPtr->rhWindowY;
+					float objPosX = pcx + colPosX - objPivX + rhPtr->rhWindowX;
+					float objPosY = pcy + colPosY - objPivY + rhPtr->rhWindowY;
 					if (flipX)
 					{
-						it->second->roHo.hoX -= it->second->roc.rcScaleX*it->second->roHo.hoImgWidth*std::cos(angle);
-						it->second->roHo.hoY += it->second->roc.rcScaleY*it->second->roHo.hoImgHeight*std::sin(angle);
+						objPosX = objPosX - it->second->roc.rcScaleX*it->second->roHo.hoImgWidth*std::cos(angle);
+						objPosY = objPosY + it->second->roc.rcScaleY*it->second->roHo.hoImgHeight*std::sin(angle);
 					}
+					it->second->roc.rcAngle = objAngle;
+					it->second->roc.rcScaleX = objScaleX;
+					it->second->roc.rcScaleY = objScaleY;
+					it->second->roHo.hoX = objPosX;
+					it->second->roHo.hoY = objPosY;
 					it->second->roc.rcChanged = true;
 				}
 			}

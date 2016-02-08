@@ -253,6 +253,24 @@ void Extension::SetAngle(float angle)
 }
 
 /*!
+*  \brief LoadOneSpriteFromActive
+*
+*  Load one sprite from an active object by a specific animation on a specific direction from a specific frame number
+*
+*  \param spriteName : sprite name in the spriter file
+*  \param pObj : active object to use as library
+*  \param nAnim : animation number to choose from
+*  \param nDir : direction to choose from
+*  \param nFrame : frame number of the sprite to clone in spriter object
+*/
+void Extension::LoadOneSpriteFromActive(TCHAR* spriteName, LPRO pObj, int nAnim, int nDir, int nFrame)
+{
+	wstring ws = wstring(spriteName);
+	string s(ws.begin(), ws.end());
+	LoadSpriteFromActive(s, pObj, nAnim, nDir, nFrame);
+}
+
+/*!
 *  \brief LoadSpriteFromActive
 *
 *  Load one sprite from an active object by a specific animation on a specific direction from a specific frame number
