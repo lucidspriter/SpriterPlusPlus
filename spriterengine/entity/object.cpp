@@ -144,7 +144,7 @@ namespace SpriterEngine
 			break;
 
 		case OBJECTTYPE_ENTITY:
-			entityInstanceData->setObjectInstance(objectId, name, model->getNewEntityInstance(&this->initializationIds));
+			entityInstanceData->setObjectInstance(objectId, name, model->getNewEntityInstance(&initializationIds));
 			break;
 
 		case OBJECTTYPE_SOUND:

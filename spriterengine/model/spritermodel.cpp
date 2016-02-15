@@ -80,6 +80,26 @@ namespace SpriterEngine
 		return newEntityInstance;
 	}
 
+	void SpriterModel::appendEntityToInstanceByName(EntityInstance *entityInstance, std::string entityName)
+	{
+		if (entityInstance)
+		{
+			Entity *entity = getEntity(entityName);
+			if (entity)
+			{
+				entityInstance->appendEntity(this, entity, objectFactory);
+			}
+			else
+			{
+				Settings::error("SpriterModel::appendEntityToInstanceByName - no entityInstance provided \"" + entityName + "\"");
+			}
+		}
+		else
+		{
+			Settings::error("SpriterModel::appendEntityToInstanceByName - no entityInstance provided \"" + entityName + "\"");
+		}
+	}
+
 	EntityInstance * SpriterModel::getNewEntityInstance(std::string entityName)
 	{
 		for (auto& it : entities)
@@ -168,6 +188,19 @@ namespace SpriterEngine
 			Settings::error("SpriterModel::getEntity - entity id " + std::to_string(entityId) + " out of range");
 			return 0;
 		}
+	}
+
+	Entity * SpriterModel::getEntity(std::string entityName)
+	{
+		for (auto& it : entities)
+		{
+			if (it->getName() == entityName)
+			{
+				return it;
+			}
+		}
+		Settings::error("SpriterModel::getEntity - could not find entity with name \"" + entityName + "\"");
+		return 0;
 	}
 
 }

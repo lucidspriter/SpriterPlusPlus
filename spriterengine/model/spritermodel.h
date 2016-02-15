@@ -34,6 +34,7 @@ namespace SpriterEngine
 		EntityInstance *getNewEntityInstance(int entityId);
 		EntityInstance *getNewEntityInstance(EntityIdVector *entityIds);
 		EntityInstance *getNewEntityInstance(std::string entityName);
+		void appendEntityToInstanceByName(EntityInstance * entityInstance, std::string entityName);
 		void setupFileReferences(FileReferenceVector *fileReferences);
 
 		Entity *pushBackEntity(std::string entityName);
@@ -60,6 +61,7 @@ namespace SpriterEngine
 		ObjectFactory *objectFactory;
 
 		Entity *getEntity(int entityId);
+		Entity *getEntity(std::string entityName);
 	};
 
 }

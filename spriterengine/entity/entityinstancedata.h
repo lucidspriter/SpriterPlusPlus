@@ -94,7 +94,13 @@ namespace SpriterEngine
 
 		void updateTransformProcessor();
 
+		std::string getName();
+
+		int animationCount();
+
 	protected:
+		std::string entityName;
+
 		AnimationInstanceIdMap animations;
 		AnimationInstanceNameMap animationNameMap;
 
