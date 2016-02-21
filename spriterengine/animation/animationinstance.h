@@ -28,11 +28,20 @@ namespace SpriterEngine
 		void findCurrentKeys(real newTime, bool forward);
 		void processCurrentKeys(real newTime, ObjectInterfaceVector **instanceZOrder);
 
+		std::string getName();
+
 		bool looping();
 
 		real length();
 
 		real currentTime();
+
+		int currentMainlineKeyIndex();
+
+		void setCurrentTimeToPreviousKeyFrame(ObjectInterfaceVector **instanceZOrder);
+		void setCurrentTimeToNextKeyFrame(ObjectInterfaceVector **instanceZOrder);
+		void setCurrentTimeToKeyAtIndex(int newIndex, ObjectInterfaceVector **instanceZOrder);
+
 
 		real processRefKeys(real newTime);
 		void blendRefKeys(real newTime, real blendRatio);
@@ -42,6 +51,8 @@ namespace SpriterEngine
 		void processCurrentTimelineKeys(real newTime);
 
 		void blendCurrentTimelineKeys(real newTime, real blendRatio);
+
+		int mainlineKeyCount();
 
 	private:
 		void findCurrentTimelineKeys(real newTime, bool forward);
@@ -57,7 +68,11 @@ namespace SpriterEngine
 		MainlineKeyInstanceVector mainlineKeys;
 		MainlineKeyInstanceVectorIterator mainlineKeyIterator;
 
+		MainlineKeyInstance *mainlineKeyAtIndex(int index);
+
 		TimelineInstanceVector timelines;
+
+		std::string name;
 
 		real animationLength;
 		bool isLooping;

@@ -14,6 +14,7 @@ namespace SpriterEngine
 	{
 		animation->setupAnimationInstance(entityInstance, entityInstanceData, &mainlineKeys, &timelines, &animationLength, &isLooping);
 		mainlineKeyIterator = mainlineKeys.begin();
+		name = animation->getName();
 	}
 
 	AnimationInstance::~AnimationInstance()
@@ -46,6 +47,11 @@ namespace SpriterEngine
 		processCurrentTimelineKeys(newTime);
 	}
 
+	std::string AnimationInstance::getName()
+	{
+		return name;
+	}
+
 	bool AnimationInstance::looping()
 	{
 		return isLooping;
@@ -59,6 +65,58 @@ namespace SpriterEngine
 	real AnimationInstance::currentTime()
 	{
 		return time;
+	}
+
+	int AnimationInstance::currentMainlineKeyIndex()
+	{
+		return mainlineKeyIterator - mainlineKeys.begin();
+	}
+
+	void AnimationInstance::setCurrentTimeToNextKeyFrame(ObjectInterfaceVector **instanceZOrder)
+	{
+		int oldIndex = currentMainlineKeyIndex();
+		int newIndex = oldIndex + 1;
+		if (isLooping)
+		{
+			while (newIndex >= mainlineKeyCount())
+			{
+				newIndex -= mainlineKeyCount();
+			}
+		}
+
+		MainlineKeyInstance *mainKey = mainlineKeyAtIndex(newIndex);
+		if (mainKey)
+		{
+			findAndProcessKeys(mainKey->getTime(), true, instanceZOrder);
+		}
+	}
+
+	void AnimationInstance::setCurrentTimeToPreviousKeyFrame(ObjectInterfaceVector **instanceZOrder)
+	{
+		int oldIndex = currentMainlineKeyIndex();
+		int newIndex = oldIndex - 1;
+		if (isLooping)
+		{
+			while (newIndex < 0)
+			{
+				newIndex += mainlineKeyCount();
+			}
+		}
+
+		MainlineKeyInstance *mainKey = mainlineKeyAtIndex(newIndex);
+		if (mainKey)
+		{
+			findAndProcessKeys(mainKey->getTime(), false, instanceZOrder);
+		}
+	}
+
+	void AnimationInstance::setCurrentTimeToKeyAtIndex(int newIndex, ObjectInterfaceVector **instanceZOrder)
+	{
+		MainlineKeyInstance *mainKey = mainlineKeyAtIndex(newIndex);
+		if (mainKey)
+		{
+			findAndProcessKeys(mainKey->getTime(), newIndex > currentMainlineKeyIndex(), instanceZOrder);
+		}
 	}
 
 	void AnimationInstance::findCurrentTimelineKeys(real newTime, bool forward)
@@ -83,6 +141,11 @@ namespace SpriterEngine
 		{
 			it->blendCurrentTimelineKey(newTime, blendRatio);
 		}
+	}
+
+	int AnimationInstance::mainlineKeyCount()
+	{
+		return mainlineKeys.size();
 	}
 
 	void AnimationInstance::findCurrentMainlineKey(real newTime, bool forward)
@@ -211,6 +274,18 @@ namespace SpriterEngine
 			mainlineKeyIterator = mainlineKeys.begin();
 			Settings::error("AnimationInstance::findMainlineKeyTimeBackward - could not find key at time " + std::to_string(newTime) + " : falling back on first key");
 			return;
+		}
+	}
+
+	MainlineKeyInstance * AnimationInstance::mainlineKeyAtIndex(int index)
+	{
+		if (index >= 0 && index < mainlineKeys.size())
+		{
+			return mainlineKeys.at(index);
+		}
+		else
+		{
+			return 0;
 		}
 	}
 

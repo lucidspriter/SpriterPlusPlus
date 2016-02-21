@@ -54,6 +54,16 @@ namespace SpriterEngine
 		real getCurrentTime() override;
 		real getTimeRatio() override;
 
+		std::string currentEntityName();
+		std::string currentAnimationName();
+
+		int animationCount();
+
+		int currentMainlineKeyIndex();
+
+		bool animationJustFinished(bool orLooped = false);
+		bool animationJustLooped();
+
 		VariableInstanceNameAndIdMap *getVariables() override;
 		UniversalObjectInterface *getVariable(int variableId);
 		VariableInstanceNameAndIdMap *getVariables(int objectId);
@@ -94,6 +104,7 @@ namespace SpriterEngine
 
 		void setCurrentEntity(int newEntityIndex) override;
 		void setCurrentEntity(EntityInstanceData *newCurrentEntity) override;
+		void setCurrentEntity(const std::string & newEntityName, const std::string & newAnimationName = "", SpriterModel * modelForAutoAppend = 0);
 		void setCurrentAnimation(int newAnimationIndex) override;
 		void setCurrentAnimation(const std::string &animationName);
 		void setCurrentAnimation(const std::string &animationName, real blendTime);
@@ -102,6 +113,13 @@ namespace SpriterEngine
 		void setTimeRatio(real newCurrentTimeRatio) override;
 
 		void setPlaybackSpeedRatio(real newPlaybackSpeedRatio);
+
+		void setCurrentTimeToPreviousKeyFrame();
+		void setCurrentTimeToNextKeyFrame();
+		void setCurrentTimeToKeyAtIndex(int newKeyIndex);
+
+		UniversalObjectInterface *objectIfExistsOnCurrentFrame(std::string objectName);
+
 
 		void applyCharacterMap(const std::string &mapName);
 		void removeCharacterMap(const std::string &mapName);
@@ -116,6 +134,7 @@ namespace SpriterEngine
 		ObjectInterfaceVector *getZOrder() override;
 
 		void appendEntity(SpriterModel *model, Entity *entity, ObjectFactory *objectFactory);
+		void appendEntity(SpriterModel * model, std::string entityName);
 
 		EntityInstanceData *getEntity(int entityId) override;
 
@@ -139,6 +158,8 @@ namespace SpriterEngine
 		AnimationInstance *currentAnimation;
 
 		bool isPlaying;
+
+		bool justFinished;
 
 		AnimationInstance *blendedAnimation;
 		real blendTotalTime;

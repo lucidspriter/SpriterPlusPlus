@@ -28,7 +28,8 @@ namespace SpriterEngine
 		blendCurrentTime(0),
 		blendTotalTime(0),
 		blendedAnimation(0),
-		isPlaying(true)
+		isPlaying(true),
+		justFinished(false)
 	{
 	}
 	EntityInstance::EntityInstance(SpriterModel *model, Entity *entity, CharacterMapInterface *initialCharacterMapInterface, ObjectFactory *objectFactory) :
@@ -43,7 +44,8 @@ namespace SpriterEngine
 		blendCurrentTime(0),
 		blendTotalTime(0),
 		blendedAnimation(0),
-		isPlaying(true)
+		isPlaying(true),
+		justFinished(false)
 	{
 		model->setupFileReferences(&files);
 		currentEntity = (*entities.insert(std::make_pair(entity->getId(), new EntityInstanceData(model, this, entity, objectFactory))).first).second;
@@ -65,6 +67,7 @@ namespace SpriterEngine
 
 	void EntityInstance::setTimeElapsed(real timeElapsed)
 	{
+		justFinished = false;
 		if (currentAnimation)
 		{
 			if (isPlaying)
@@ -72,10 +75,14 @@ namespace SpriterEngine
 				timeElapsed *= playbackSpeedRatio;
 				real newTime = getCurrentTime() + timeElapsed;
 				
-				if (!currentAnimation->looping() && newTime >= currentAnimation->length())
+				if (newTime >= currentAnimation->length())
 				{
-					isPlaying = false;
-					newTime = currentAnimation->length();
+					justFinished = true;
+					if (!currentAnimation->looping())
+					{
+						isPlaying = false;
+						newTime = currentAnimation->length();
+					}
 				}
 
 				if (blendedAnimation)
@@ -220,7 +227,38 @@ namespace SpriterEngine
 	bool EntityInstance::isAnimationPlaying()
 	{
 		//return isPlaying;
-		return (abs(getCurrentTime() - currentAnimation->length())> 0.0001 || currentAnimation->looping());
+		return (abs(getCurrentTime() - currentAnimation->length()) > 0.0001 || currentAnimation->looping());
+	}
+
+	std::string EntityInstance::currentEntityName()
+	{
+		if (currentEntity)
+		{
+			return currentEntity->getName();
+		}
+		return "";
+	}
+
+	std::string EntityInstance::currentAnimationName()
+	{
+		if (currentAnimation)
+		{
+			return currentAnimation->getName();
+		}
+		return "";
+	}
+
+	int EntityInstance::animationCount()
+	{
+		if (currentEntity)
+		{
+			return currentEntity->animationCount();
+		}
+		else
+		{
+			Settings::error("EntityInstance::animationCount() - no current entity");
+			return 0;
+		}
 	}
 
 	VariableInstanceNameAndIdMap *EntityInstance::getVariables()
@@ -445,6 +483,31 @@ namespace SpriterEngine
 		}
 	}
 
+	void EntityInstance::setCurrentEntity(const std::string & newEntityName, const std::string & newAnimationName, SpriterModel * modelForAutoAppend)
+	{
+		for (auto& it : entities)
+		{
+			if (it.second->getName() == newEntityName)
+			{
+				setCurrentEntity(it.second);
+				if (!newAnimationName.empty())
+				{
+					setCurrentAnimation(newAnimationName);
+				}
+				else
+				{
+					setCurrentAnimation(0);
+				}
+				return;
+			}
+		}
+		if (modelForAutoAppend)
+		{
+			appendEntity(modelForAutoAppend, newEntityName);
+			setCurrentEntity(newEntityName, newAnimationName);
+		}
+	}
+
 	void EntityInstance::setCurrentAnimation(int newAnimationIndex)
 	{
 		currentEntity->setCurrentAnimation(newAnimationIndex, &currentAnimation);
@@ -476,6 +539,7 @@ namespace SpriterEngine
 
 	void EntityInstance::setCurrentTime(real newCurrentTime)
 	{
+		justFinished = false;
 		if (currentAnimation)
 		{
 			currentAnimation->findAndProcessKeys(newCurrentTime, newCurrentTime > getCurrentTime(), &zOrder);
@@ -488,12 +552,116 @@ namespace SpriterEngine
 
 	void EntityInstance::setTimeRatio(real newCurrentTimeRatio)
 	{
+		justFinished = false;
 		currentAnimation->findCurrentKeys(newCurrentTimeRatio * currentAnimation->length(), newCurrentTimeRatio >= inverseLinear(0, currentAnimation->length(), getCurrentTime()));
 	}
 
 	void EntityInstance::setPlaybackSpeedRatio(real newPlaybackSpeedRatio)
 	{
 		playbackSpeedRatio = newPlaybackSpeedRatio;
+	}
+
+	int EntityInstance::currentMainlineKeyIndex()
+	{
+		if (currentAnimation)
+		{
+			return currentAnimation->currentMainlineKeyIndex();
+		}
+		else
+		{
+			Settings::error("EntityInstance::currentMainlineKeyIndex - current animation not set");
+			return 0;
+		}
+	}
+
+	bool EntityInstance::animationJustFinished(bool orLooped)
+	{
+		if(currentAnimation)
+		{
+			if (orLooped || !currentAnimation->looping())
+			{
+				return justFinished;
+			}
+		}
+		else
+		{
+			Settings::error("EntityInstance::animationJustFinished - current animation not set");
+		}
+		return false;
+	}
+
+	bool EntityInstance::animationJustLooped()
+	{
+		if (currentAnimation)
+		{
+			if (currentAnimation->looping())
+			{
+				return justFinished;
+			}
+		}
+		else
+		{
+			Settings::error("EntityInstance::animationJustFinished - current animation not set");
+		}
+		return false;
+	}
+
+	void EntityInstance::setCurrentTimeToNextKeyFrame()
+	{
+		justFinished = false;
+		if (currentAnimation)
+		{
+			currentAnimation->setCurrentTimeToNextKeyFrame(&zOrder);
+		}
+		else
+		{
+			Settings::error("EntityInstance::setCurrentTimeToNextKeyFrame - current animation not set");
+		}
+	}
+
+	void EntityInstance::setCurrentTimeToPreviousKeyFrame()
+	{
+		justFinished = false;
+		if (currentAnimation)
+		{
+			currentAnimation->setCurrentTimeToPreviousKeyFrame(&zOrder);
+		}
+		else
+		{
+			Settings::error("EntityInstance::setCurrentTimeToPreviousKeyFrame - current animation not set");
+		}
+	}
+
+	void EntityInstance::setCurrentTimeToKeyAtIndex(int newKeyIndex)
+	{
+		justFinished = false;
+		if (currentAnimation)
+		{
+			currentAnimation->setCurrentTimeToKeyAtIndex(newKeyIndex, &zOrder);
+		}
+		else
+		{
+			Settings::error("EntityInstance::setCurrentTimeToKeyAtIndex - current animation not set");
+		}
+	}
+
+	UniversalObjectInterface *EntityInstance::objectIfExistsOnCurrentFrame(std::string objectName)
+	{
+		if (zOrder)
+		{
+			UniversalObjectInterface *object = getObjectInstance(objectName);
+			if (object)
+			{
+				for (auto& it : *zOrder)
+				{
+					if (it == object)
+					{
+						return object;
+					}
+				}
+			}
+		}
+		return 0;
 	}
 
 	void EntityInstance::applyCharacterMap(const std::string &mapName)
@@ -554,7 +722,11 @@ namespace SpriterEngine
 	{
 		model->setupFileReferences(&files);
 		EntityInstanceData *newEntityData = (*entities.insert(std::make_pair(entity->getId(), new EntityInstanceData(model, this, entity, objectFactory))).first).second;
-		entity->setupInstance(model, this, newEntityData, objectFactory);
+	}
+
+	void EntityInstance::appendEntity(SpriterModel * model, std::string entityName)
+	{
+		model->appendEntityToInstanceByName(this, entityName);
 	}
 
 	EntityInstanceData * EntityInstance::getEntity(int entityId)
