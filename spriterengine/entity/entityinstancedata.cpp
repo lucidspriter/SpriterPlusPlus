@@ -321,6 +321,11 @@ namespace SpriterEngine
 		}
 	}
 
+	bool EntityInstanceData::animationExists(const std::string & animationName)
+	{
+		return animationNameMap.count(animationName);
+	}
+
 
 	void EntityInstanceData::pushBackAnimationInstance(const std::string &name, AnimationInstance * newAnimationInstance)
 	{

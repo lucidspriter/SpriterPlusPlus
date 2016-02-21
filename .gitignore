@@ -62,3 +62,16 @@ ipch/
 
 # Log Files
 *.tlog
+DebugUnicode/Ext.res
+DebugUnicode/Template.exp
+DebugUnicode/Template.lib
+DebugUnicode/vc120.idb
+*.001
+ReleaseEditorUnicode/Ext.res
+ReleaseEditorUnicode/vc120.idb
+ReleaseRuntimeUnicode/vc120.idb
+ReleaseEditorUnicode/Template.lib
+ReleaseRuntimeUnicode/Ext.res
+ReleaseRuntimeUnicode/Template.exp
+ReleaseEditorUnicode/Template.exp
+ReleaseRuntimeUnicode/Template.lib

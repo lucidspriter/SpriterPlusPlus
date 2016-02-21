@@ -139,6 +139,8 @@ namespace SpriterEngine
 		EntityInstanceData *getEntity(int entityId) override;
 
 		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0) override;
+		
+		bool isAnimationPlaying();
 
 	private:
 		EntityInstanceDataMap entities;

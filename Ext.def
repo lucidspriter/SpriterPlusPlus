@@ -1,0 +1,110 @@
+
+EXPORTS
+	GetInfos				@2
+	LoadObject				@6
+	UnloadObject			@7
+	PutObject				@8
+	RemoveObject			@9
+	MakeIconEx				@11
+
+	CreateObject			@14
+	GetHelpFileName			@16
+	EditObject				@18
+	GetObjectRect			@19
+	EditorDisplay			@20
+	IsTransparent			@21
+	PrepareToWriteObject	@22
+	UpdateFileNames			@23
+	EnumElts				@24
+	Initialize				@25
+	Free					@26
+;	ExportTexts				@27
+;	ImportTexts				@28
+;	GetSubType				@29
+	UsesFile				@30
+	CreateFromFile			@31
+	DuplicateObject			@32
+	GetObjInfos				@36
+
+	GetTextCaps				@37
+	GetTextAlignment		@38
+	SetTextAlignment		@39
+	GetTextFont				@40
+	SetTextFont				@41
+	GetTextClr				@42
+	SetTextClr				@43
+
+	GetDependencies			@44
+	GetFilters				@45
+
+;	conditionsTable			@47
+;	actionsTable			@48
+;	expressionsTable		@49
+
+	CreateRunObject			@50
+	DestroyRunObject		@51
+	HandleRunObject			@52
+	DisplayRunObject		@53
+	PauseRunObject			@57
+	ContinueRunObject		@58
+	GetRunObjectInfos		@59
+
+	GetConditionMenu		@60
+	GetActionMenu			@61
+	GetExpressionMenu		@62
+	GetConditionCodeFromMenu	@63
+	GetActionCodeFromMenu		@64
+	GetExpressionCodeFromMenu	@65
+	GetConditionString      @66
+	GetActionString     	@67
+	GetExpressionString     @68
+	InitParameter			@69
+	EditParameter			@70
+	GetParameterString		@71
+	GetConditionTitle	    @72
+	GetActionTitle     		@73
+	GetExpressionTitle     	@74
+	GetConditionInfos	    @75
+	GetActionInfos     		@76
+	GetExpressionInfos     	@77
+	UpdateEditStructure		@78
+	GetRunObjectDataSize	@80
+;	SaveBackground			@81
+;	RestoreBackground		@82
+;	KillBackground			@83
+; 	WindowProc				@84
+	StartApp				@85
+	EndApp					@86
+	StartFrame				@87
+	EndFrame				@88
+ 	GetExpressionParam		@89
+
+;	GetRunObjectSurface		@90
+;	GetRunObjectCollisionMask		@91
+
+;	GetRunObjectFont		@92
+;	SetRunObjectFont		@93
+;	GetRunObjectTextColor	@94
+;	SetRunObjectTextColor	@95
+
+ 	SetEditSize				@99
+	GetProperties			@100
+	ReleaseProperties		@101
+	GetPropValue			@102
+	SetPropValue			@103
+	IsPropEnabled			@104
+	GetPropCheck			@105
+	SetPropCheck			@106
+	GetPropCreateParam		@107
+	ReleasePropCreateParam	@108
+	EditProp				@109
+	GetDebugTree			@110
+	GetDebugItem			@111
+	EditDebugItem			@112
+
+	SaveRunObject			@113
+	LoadRunObject			@114
+
+	PrepareFlexBuild		@115
+	
+	

@@ -870,6 +870,7 @@ namespace SpriterEngine
 		{
 			spin = spinAtt->getIntValue();
 		}
+		spin *= -1;
 
 		UniversalObjectInterface *objectInfo = 0;
 		SpriterFileElementWrapper *objectInfoElement = keyElement->getFirstChildElement();

@@ -1,0 +1,639 @@
+{
+    "About": {
+        "Name": "Spriter Object",
+        "Author": "ConceptGame",
+        "Copyright": "Copyright (C) 2014 ConceptGame",
+        "Comment": "Procedural animation object based on Spriter format (v0.8)",
+        "URL": "http://www.example.com",
+        "Help": "Help/Spriter.chm",
+        "Identifier": "SPRI"
+    },
+    "ActionMenu": [
+        [
+            "Scale / Angle",
+            [
+                7,
+                "Set Scale"
+            ],
+            [
+                8,
+                "Set Angle"
+            ]
+        ],
+        "Separator",
+        [
+            "Entity",
+            [
+                11,
+                "Change Entity by number"
+            ]
+        ],
+        [
+            "Animation",
+            [
+                0,
+                "Stop Animation"
+            ],
+            [
+                1,
+                "Start Animation"
+            ],
+            [
+                2,
+                "Change Animation by name"
+            ],
+            [
+                12,
+                "Change Animation by name with blending"
+            ],
+            [
+                3,
+                "Change Animation Time"
+            ],
+            [
+                4,
+                "Change horizontal flipping"
+            ],
+            [
+                5,
+                "Set speed ratio"
+            ]
+        ],
+        [
+            "Character Map",
+            [
+                6,
+                "Apply Character Map"
+            ],
+            [
+                13,
+                "Remove Character Map"
+            ],
+            [
+                14,
+                "Remove All Character Maps"
+            ]
+        ],
+        [
+            "Sprites",
+            [
+                9,
+                "Load 1 Sprite from Active"
+            ],
+            [
+                10,
+                "Load Ordered Sprites from active per animation"
+            ],
+            [
+                18,
+                "Load Ordered Sprites from active per direction"
+            ]
+        ],
+        [
+            "Boxes",
+            [
+                15,
+                "Bound Box to Object"
+            ],
+            [
+                16,
+                "Unbound Box from Object"
+            ]
+        ],
+        [
+            "Debug",
+            [
+                17,
+                "Set debug display"
+            ]
+        ],
+        [
+            "File",
+            [
+                19,
+                "Load Scml File"
+            ]
+        ],
+        "Separator"
+    ],
+    "ConditionMenu": [
+        "Separator",
+        [
+            "Animation",
+            [
+                0,
+                "Is animation playing (by name)?"
+            ],
+            [
+                1,
+                "Has animation finished?"
+            ],
+            [
+                2,
+                "Is tag active?"
+            ],
+            [
+                3,
+                "Is object tag active?"
+            ],
+            [
+                6,
+                "Is animation flipped?"
+            ]
+        ],
+        [
+            "Events",
+            [
+                4,
+                "On Sound Event"
+            ],
+            [
+                5,
+                "On Trigger Event"
+            ]
+        ],
+        "Separator"
+    ],
+    "ExpressionMenu": [
+        "Separator",
+        [
+            "Scale / Angle",
+            [
+                1,
+                "Scale"
+            ],
+            [
+                2,
+                "Angle"
+            ]
+        ],
+        [
+            0,
+            "Last Error"
+        ],
+        [
+            "Animation",
+            [
+                3,
+                "Current Time"
+            ],
+            [
+                4,
+                "Current Speed Ratio"
+            ],
+            [
+                5,
+                "Current Animation Name"
+            ]
+        ],
+        [
+            "Variable",
+            [
+                6,
+                "Real Value"
+            ],
+            [
+                7,
+                "Object Real Value"
+            ],
+            [
+                8,
+                "Integer Value"
+            ],
+            [
+                9,
+                "Object Integer Value"
+            ],
+            [
+                10,
+                "String Value"
+            ],
+            [
+                11,
+                "Object String Value"
+            ]
+        ],
+        [
+            "Point",
+            [
+                12,
+                "Position X"
+            ],
+            [
+                13,
+                "Position Y"
+            ],
+            [
+                14,
+                "Angle"
+            ]
+        ],
+        "Separator"
+    ],
+    "Actions": [
+        {
+            "Title": "Stop Animation"
+        },
+        {
+            "Title": "Start Animation"
+        },
+        {
+            "Title": "Change Animation to %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "Animation Name"
+                ]
+            ]
+        },
+        {
+            "Title": "Change Current Animation Time to %0",
+            "Parameters": [
+                [
+                    "Integer",
+                    "Time (ms)"
+                ]
+            ]
+        },
+        {
+            "Title": "Set FlipX to %0",
+            "Parameters": [
+                [
+                    "Integer",
+                    "FlipX status (0=disabled, >0=enabled)"
+                ]
+            ]
+        },
+        {
+            "Title": "Set animation speed ratio to %0",
+            "Parameters": [
+                [
+                    "Float",
+                    "Speed ratio (1=normal, ]0,1]=slower, >1=faster)"
+                ]
+            ]
+        },
+        {
+            "Title": "Apply Character Map %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "Character Map Name"
+                ]
+            ]
+        },
+        {
+            "Title": "Set scale to %0",
+            "Parameters": [
+                [
+                    "Float",
+                    "Scale (both X and Y axes)"
+                ]
+            ]
+        },
+        {
+            "Title": "Set angle to %0",
+            "Parameters": [
+                [
+                    "Float",
+                    "Angle"
+                ]
+            ]
+        },
+        {
+            "Title": "Load sprite %0 from %1 by animation %2 at %3 on frame %4",
+            "Parameters": [
+                [
+                    "Text",
+                    "Sprite name"
+                ],
+                [
+                    "Object",
+                    "Active object"
+                ],
+                [
+                    "Integer",
+                    "Animation number of object to load from"
+                ],
+                [
+                    "NewDirection",
+                    "Direction of object to load from"
+                ],
+                [
+                    "Integer",
+                    "Animation frame number to load from"
+                ]
+            ]
+        },
+        {
+            "Title": "Load ordered sprites from %0 by animation %1",
+            "Parameters": [
+                [
+                    "Object",
+                    "Active object"
+                ],
+                [
+                    "Integer",
+                    "Animation number of object to load from"
+                ]
+            ]
+        },
+        {
+            "Title": "Change Entity to %0",
+            "Parameters": [
+                [
+                    "Integer",
+                    "Entity Number"
+                ]
+            ]
+        },
+        {
+            "Title": "Change Animation to %0 in %1 ms",
+            "Parameters": [
+                [
+                    "Text",
+                    "Animation Name"
+                ],
+                [
+                    "Integer",
+                    "Blending time in ms"
+                ]
+            ]
+        },
+        {
+            "Title": "Remove Character Map %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "Character Map Name"
+                ]
+            ]
+        },
+        {
+            "Title": "Remove All Character Maps"
+        },
+        {
+            "Title": "Bound box %0 to %1",
+            "Parameters": [
+                [
+                    "Text",
+                    "Box Name"
+                ],
+                [
+                    "Object",
+                    "Active object"
+                ]
+            ]
+        },
+        {
+            "Title": "Unbound box %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "Box Name"
+                ]
+            ]
+        },
+        {
+            "Title": "Set Debug to ShowBones=%0, ShowBoxes=%1, ShowPoints=%2",
+            "Parameters": [
+                [
+                    "Integer",
+                    "Show Bones (0=hide, >0=display)"
+                ],
+                [
+                    "Integer",
+                    "Show Boxes (0=hide, >0=display)"
+                ],
+                [
+                    "Integer",
+                    "Show Points (0=hide, >0=display)"
+                ]
+            ]
+        },
+        {
+            "Title": "Load ordered sprites from %0 by animation %1 and direction %2",
+            "Parameters": [
+                [
+                    "Object",
+                    "Active object"
+                ],
+                [
+                    "Integer",
+                    "Animation number of object to load from"
+                ],
+                [
+                    "Integer",
+                    "Direction number in animation (0->32)"
+                ]
+            ]
+        },
+        {
+            "Title": "Load file %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "File Name"
+                ]
+            ]
+        }
+    ],
+    "Conditions": [
+        {
+            "Title": "%o : Is %0 animation playing?",
+            "Parameters": [
+                [
+                    "Text",
+                    "Animation name"
+                ]
+            ],
+            "Triggered": false
+        },
+        {
+            "Title": "%o : Has current animation finished?",
+            "Triggered": false
+        },
+        {
+            "Title": "%o : Is tag %0 active?",
+            "Parameters": [
+                [
+                    "Text",
+                    "tag name"
+                ]
+            ],
+            "Triggered": false
+        },
+        {
+            "Title": "%o : Is %0 tag %1 active?",
+            "Parameters": [
+                [
+                    "Text",
+                    "object name"
+                ],
+                [
+                    "Text",
+                    "tag name"
+                ]
+            ],
+            "Triggered": false
+        },
+        {
+            "Title": "%o : On Sound %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "sound name"
+                ]
+            ],
+            "Triggered": false
+        },
+        {
+            "Title": "%o : On Trigger %0",
+            "Parameters": [
+                [
+                    "Text",
+                    "trigger name"
+                ]
+            ],
+            "Triggered": false
+        },
+        {
+            "Title": "%o : Is animation flipped",
+            "Triggered": false
+        }
+    ],
+    "Expressions": [
+        {
+            "Title": "LastError$(",
+            "Returns": "Text"
+        },
+        {
+            "Title": "Scale(",
+            "Returns": "Float"
+        },
+        {
+            "Title": "Angle(",
+            "Returns": "Float"
+        },
+        {
+            "Title": "CurrentTime(",
+            "Returns": "Integer"
+        },
+        {
+            "Title": "CurrentSpeedRatio(",
+            "Returns": "Float"
+        },
+        {
+            "Title": "CurrentAnimation$(",
+            "Returns": "Text"
+        },
+        {
+            "Title": "RealValue(",
+            "Parameters": [
+                [
+                    "Text",
+                    "variable name"
+                ]
+            ],
+            "Returns": "Float"
+        },
+        {
+            "Title": "ObjectRealValue(",
+            "Parameters": [
+                [
+                    "Text",
+                    "object name"
+                ]
+            ],
+            "Parameters": [
+                [
+                    "Text",
+                    "variable name"
+                ]
+            ],
+            "Returns": "Float"
+        },
+        {
+            "Title": "IntValue(",
+            "Parameters": [
+                [
+                    "Text",
+                    "variable name"
+                ]
+            ],
+            "Returns": "Integer"
+        },
+        {
+            "Title": "ObjectIntValue(",
+            "Parameters": [
+                [
+                    "Text",
+                    "object name"
+                ]
+            ],
+            "Parameters": [
+                [
+                    "Text",
+                    "variable name"
+                ]
+            ],
+            "Returns": "Integer"
+        },
+        {
+            "Title": "StringValue$(",
+            "Parameters": [
+                [
+                    "Text",
+                    "variable name"
+                ]
+            ],
+            "Returns": "Text"
+        },
+        {
+            "Title": "ObjectStringValue$(",
+            "Parameters": [
+                [
+                    "Text",
+                    "object name"
+                ]
+            ],
+            "Parameters": [
+                [
+                    "Text",
+                    "variable name"
+                ]
+            ],
+            "Returns": "Text"
+        },
+        {
+            "Title": "PointX(",
+            "Parameters": [
+                [
+                    "Text",
+                    "point name"
+                ]
+            ],
+            "Returns": "Integer"
+        },
+        {
+            "Title": "PointY(",
+            "Parameters": [
+                [
+                    "Text",
+                    "point name"
+                ]
+            ],
+            "Returns": "Integer"
+        },
+        {
+            "Title": "PointAngle(",
+            "Parameters": [
+                [
+                    "Text",
+                    "point name"
+                ]
+            ],
+            "Returns": "Float"
+        }
+    ]
+}

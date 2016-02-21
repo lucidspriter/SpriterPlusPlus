@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug Edit Unicode|Win32">
+      <Configuration>Debug Edit Unicode</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Unicode|Win32">
+      <Configuration>Debug Unicode</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Edittime Unicode|Win32">
+      <Configuration>Edittime Unicode</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Runtime Unicode|Win32">
+      <Configuration>Runtime Unicode</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Spriter</ProjectName>
+    <ProjectGuid>{3BCB4C73-71F6-43B6-803D-41411F92652A}</ProjectGuid>
+    <RootNamespace>Template</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">.\DebugUnicode\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">.\DebugUnicode\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">.\DebugUnicode\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">.\DebugUnicode\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">false</GenerateManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">false</EmbedManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">.\ReleaseEditorUnicode\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">.\ReleaseEditorUnicode\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">false</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">.\ReleaseRuntimeUnicode\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">.\ReleaseRuntimeUnicode\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/Template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Inc;.\;.\Backend;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HWABETA;COXSDK; IN_EXT_VERSION2; _CRT_SECURE_NO_WARNINGS; _CRT_SECURE_NO_DEPRECATE; _WINDOWS;EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(IntDir)Ext.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;..\..\lib\mmfs2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>C:\Program Files (x86)\Clickteam Fusion Developer 2.5\Extensions\Unicode\$(ProjectName).mfx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)Template.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(IntDir)Template.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)Template.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>..\AutoInstall.bat $(TargetPath) \Extensions\Unicode</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/Template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Inc;.\;.\Backend;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HWABETA;COXSDK; IN_EXT_VERSION2; _CRT_SECURE_NO_WARNINGS; _CRT_SECURE_NO_DEPRECATE; _WINDOWS;EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(IntDir)Ext.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;..\..\lib\mmfs2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>C:\Program Files (x86)\Clickteam Fusion Developer 2.5\Extensions\Unicode\$(ProjectName).mfx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\Ext.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)Template.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(IntDir)Template.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)Template.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>..\AutoInstall.bat $(TargetPath) \Extensions\Unicode</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release_Small/Template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\Inc;.\;.\Backend;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HWABETA;COXSDK; IN_EXT_VERSION2; _CRT_SECURE_NO_WARNINGS; _CRT_SECURE_NO_DEPRECATE; _WINDOWS;EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;EDITOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(IntDir)Ext.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;..\..\lib\mmfs2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)\MFX\Extensions\Unicode\$(ProjectName).mfx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>.\Ext.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>$(IntDir)Template.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(IntDir)Template.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)Template.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>..\AutoInstall.bat $(TargetPath) \Extensions\Unicode</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;RUN_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Run_Only_Small/Template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\Inc;.\;.\Backend;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HWABETA;COXSDK; IN_EXT_VERSION2; _CRT_SECURE_NO_WARNINGS; _CRT_SECURE_NO_DEPRECATE; _WINDOWS;RUN_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;RUN_ONLY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(IntDir)Ext.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;..\..\lib\mmfs2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)\MFX\Data\Runtime\Unicode\$(ProjectName).mfx</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>.\Ext.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>$(IntDir)Template.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(IntDir)Template.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(IntDir)Template.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>..\AutoInstall.bat $(TargetPath) \Data\Runtime\Unicode</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Actions.cpp" />
+    <ClCompile Include="Conditions.cpp" />
+    <ClCompile Include="Edittime.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Expressions.cpp" />
+    <ClCompile Include="Extension.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="General.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="override\cf25boneinstanceinfo.cpp" />
+    <ClCompile Include="override\cf25boxinstanceinfo.cpp" />
+    <ClCompile Include="override\cf25filefactory.cpp" />
+    <ClCompile Include="override\cf25imagefile.cpp" />
+    <ClCompile Include="override\cf25objectfactory.cpp" />
+    <ClCompile Include="override\cf25pointinstanceinfo.cpp" />
+    <ClCompile Include="override\cf25soundfile.cpp" />
+    <ClCompile Include="override\cf25soundobjectinforeference.cpp" />
+    <ClCompile Include="override\cf25triggerobjectinfo.cpp" />
+    <ClCompile Include="override\tinyxmlspriterfileattributewrapper.cpp" />
+    <ClCompile Include="override\tinyxmlspriterfiledocumentwrapper.cpp" />
+    <ClCompile Include="override\tinyxmlspriterfileelementwrapper.cpp" />
+    <ClCompile Include="Runtime.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\Lib\ObjectSelection.cpp" />
+    <ClCompile Include="..\..\Lib\Edif.cpp" />
+    <ClCompile Include="..\..\Lib\Edif.Edittime.cpp" />
+    <ClCompile Include="..\..\Lib\Edif.General.cpp" />
+    <ClCompile Include="..\..\Lib\Edif.Runtime.cpp" />
+    <ClCompile Include="..\..\Lib\json.c" />
+    <ClCompile Include="spriterengine\animation\animation.cpp" />
+    <ClCompile Include="spriterengine\animation\animationinstance.cpp" />
+    <ClCompile Include="spriterengine\animation\mainlinekey.cpp" />
+    <ClCompile Include="spriterengine\animation\mainlinekeyinstance.cpp" />
+    <ClCompile Include="spriterengine\charactermap\charactermap.cpp" />
+    <ClCompile Include="spriterengine\charactermap\charactermapinstruction.cpp" />
+    <ClCompile Include="spriterengine\entity\entity.cpp" />
+    <ClCompile Include="spriterengine\entity\entityinstance.cpp" />
+    <ClCompile Include="spriterengine\entity\entityinstancedata.cpp" />
+    <ClCompile Include="spriterengine\entity\object.cpp" />
+    <ClCompile Include="spriterengine\file\file.cpp" />
+    <ClCompile Include="spriterengine\file\filereference.cpp" />
+    <ClCompile Include="spriterengine\global\settings.cpp" />
+    <ClCompile Include="spriterengine\loading\loader.cpp" />
+    <ClCompile Include="spriterengine\loading\loadinghelpers.cpp" />
+    <ClCompile Include="spriterengine\loading\spriterdocumentloader.cpp" />
+    <ClCompile Include="spriterengine\model\spritermodel.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\angleinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\boneinstanceinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\boneobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\boxinstanceinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\boxobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\entityobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\eventobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\intvariableinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\pointinstanceinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\pointobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\realvariableinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\soundobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\spriteobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\stringvariableinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\stringvariableinforeference.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\taglist.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\tagobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\tagobjectinforeference.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\triggerobjectinfo.cpp" />
+    <ClCompile Include="spriterengine\objectinfo\universalobjectinterface.cpp" />
+    <ClCompile Include="spriterengine\objectref\boneref.cpp" />
+    <ClCompile Include="spriterengine\objectref\bonerefinstance.cpp" />
+    <ClCompile Include="spriterengine\objectref\entityref.cpp" />
+    <ClCompile Include="spriterengine\objectref\entityrefinstance.cpp" />
+    <ClCompile Include="spriterengine\objectref\objectref.cpp" />
+    <ClCompile Include="spriterengine\objectref\objectrefinstance.cpp" />
+    <ClCompile Include="spriterengine\objectref\spriteref.cpp" />
+    <ClCompile Include="spriterengine\objectref\spriterefinstance.cpp" />
+    <ClCompile Include="spriterengine\objectref\transformprocessor.cpp" />
+    <ClCompile Include="spriterengine\override\filefactory.cpp" />
+    <ClCompile Include="spriterengine\override\imagefile.cpp" />
+    <ClCompile Include="spriterengine\override\objectfactory.cpp" />
+    <ClCompile Include="spriterengine\override\soundfile.cpp" />
+    <ClCompile Include="spriterengine\override\soundobjectinforeference.cpp" />
+    <ClCompile Include="spriterengine\override\spriterfileattributewrapper.cpp" />
+    <ClCompile Include="spriterengine\override\spriterfiledocumentwrapper.cpp" />
+    <ClCompile Include="spriterengine\override\spriterfileelementwrapper.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\beziereasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\cubiceasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\easingcurveinterface.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\instanteasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\lineareasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\quadraticeasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\quarticeasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\quinticeasingcurve.cpp" />
+    <ClCompile Include="spriterengine\timeinfo\timeinfo.cpp" />
+    <ClCompile Include="spriterengine\timeline\proxytimelinekey.cpp" />
+    <ClCompile Include="spriterengine\timeline\soundtimelineinstance.cpp" />
+    <ClCompile Include="spriterengine\timeline\tagtimelineinstance.cpp" />
+    <ClCompile Include="spriterengine\timeline\timeline.cpp" />
+    <ClCompile Include="spriterengine\timeline\timelineinstance.cpp" />
+    <ClCompile Include="spriterengine\timeline\timelinekey.cpp" />
+    <ClCompile Include="spriterengine\timeline\triggertimelineinstance.cpp" />
+    <ClCompile Include="spriterengine\timeline\variabletimelineinstance.cpp" />
+    <ClCompile Include="spriterengine\variable\variable.cpp" />
+    <ClCompile Include="spriterengine\variable\variablecontainer.cpp" />
+    <ClCompile Include="spriterengine\variable\variableinstancenameandidmap.cpp" />
+    <ClCompile Include="tinyxml2\tinyxml2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ext.def" />
+    <None Include="Ext.json" />
+    <None Include="Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Extension.h" />
+    <ClInclude Include="override\cf25boneinstanceinfo.h" />
+    <ClInclude Include="override\cf25boxinstanceinfo.h" />
+    <ClInclude Include="override\cf25filefactory.h" />
+    <ClInclude Include="override\cf25imagefile.h" />
+    <ClInclude Include="override\cf25objectfactory.h" />
+    <ClInclude Include="override\cf25pointinstanceinfo.h" />
+    <ClInclude Include="override\cf25soundfile.h" />
+    <ClInclude Include="override\cf25soundobjectinforeference.h" />
+    <ClInclude Include="override\cf25triggerobjectinfo.h" />
+    <ClInclude Include="override\tinyxmlspriterfileattributewrapper.h" />
+    <ClInclude Include="override\tinyxmlspriterfiledocumentwrapper.h" />
+    <ClInclude Include="override\tinyxmlspriterfileelementwrapper.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="..\..\Inc\Ccx.h" />
+    <ClInclude Include="..\..\Inc\Ccxhdr.h" />
+    <ClInclude Include="..\..\Inc\CfcError.h" />
+    <ClInclude Include="..\..\Inc\CfcFile.h" />
+    <ClInclude Include="..\..\Inc\Cncf.h" />
+    <ClInclude Include="..\..\Inc\cncr.h" />
+    <ClInclude Include="..\..\Inc\Cncy.h" />
+    <ClInclude Include="..\..\Inc\Cnpdll.h" />
+    <ClInclude Include="..\..\Inc\colors.h" />
+    <ClInclude Include="..\..\Inc\EVTCCX.H" />
+    <ClInclude Include="..\..\Inc\Fill.h" />
+    <ClInclude Include="..\..\Inc\FilterMgr.h" />
+    <ClInclude Include="..\..\Inc\ImageFlt.h" />
+    <ClInclude Include="..\..\Inc\ImgFlt.h" />
+    <ClInclude Include="..\..\Inc\ObjectSelection.h" />
+    <ClInclude Include="..\..\Inc\Palet.h" />
+    <ClInclude Include="..\..\Inc\Patch.h" />
+    <ClInclude Include="..\..\Inc\PictEdDefs.h" />
+    <ClInclude Include="..\..\Inc\Props.h" />
+    <ClInclude Include="..\..\Inc\PTYPE.H" />
+    <ClInclude Include="..\..\Inc\SoundFilter.h" />
+    <ClInclude Include="..\..\Inc\SoundFilterMgr.h" />
+    <ClInclude Include="..\..\Inc\Surface.h" />
+    <ClInclude Include="..\..\Inc\WinMacro.h" />
+    <ClInclude Include="..\..\Inc\Edif.h" />
+    <ClInclude Include="..\..\Inc\json.h" />
+    <ClInclude Include="spriterengine\animation\animation.h" />
+    <ClInclude Include="spriterengine\animation\animationinstance.h" />
+    <ClInclude Include="spriterengine\animation\mainlinekey.h" />
+    <ClInclude Include="spriterengine\animation\mainlinekeyinstance.h" />
+    <ClInclude Include="spriterengine\charactermap\charactermap.h" />
+    <ClInclude Include="spriterengine\charactermap\charactermapinstruction.h" />
+    <ClInclude Include="spriterengine\charactermap\charactermapinterface.h" />
+    <ClInclude Include="spriterengine\entity\entity.h" />
+    <ClInclude Include="spriterengine\entity\entityinstance.h" />
+    <ClInclude Include="spriterengine\entity\entityinstancedata.h" />
+    <ClInclude Include="spriterengine\entity\object.h" />
+    <ClInclude Include="spriterengine\file\file.h" />
+    <ClInclude Include="spriterengine\file\filereference.h" />
+    <ClInclude Include="spriterengine\global\global.h" />
+    <ClInclude Include="spriterengine\global\settings.h" />
+    <ClInclude Include="spriterengine\loading\loader.h" />
+    <ClInclude Include="spriterengine\loading\loadinghelpers.h" />
+    <ClInclude Include="spriterengine\loading\spriterdocumentloader.h" />
+    <ClInclude Include="spriterengine\model\spritermodel.h" />
+    <ClInclude Include="spriterengine\objectinfo\angleinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\boneinstanceinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\boneobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\boxinstanceinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\boxobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\entityobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\eventobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\intvariableinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\pointinstanceinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\pointobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\realvariableinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\soundobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\spriteobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\stringvariableinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\stringvariableinforeference.h" />
+    <ClInclude Include="spriterengine\objectinfo\taglist.h" />
+    <ClInclude Include="spriterengine\objectinfo\tagobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\tagobjectinforeference.h" />
+    <ClInclude Include="spriterengine\objectinfo\triggerobjectinfo.h" />
+    <ClInclude Include="spriterengine\objectinfo\universalobjectinterface.h" />
+    <ClInclude Include="spriterengine\objectref\boneref.h" />
+    <ClInclude Include="spriterengine\objectref\bonerefinstance.h" />
+    <ClInclude Include="spriterengine\objectref\entityref.h" />
+    <ClInclude Include="spriterengine\objectref\entityrefinstance.h" />
+    <ClInclude Include="spriterengine\objectref\objectref.h" />
+    <ClInclude Include="spriterengine\objectref\objectrefinstance.h" />
+    <ClInclude Include="spriterengine\objectref\spriteref.h" />
+    <ClInclude Include="spriterengine\objectref\spriterefinstance.h" />
+    <ClInclude Include="spriterengine\objectref\transformprocessor.h" />
+    <ClInclude Include="spriterengine\override\filefactory.h" />
+    <ClInclude Include="spriterengine\override\imagefile.h" />
+    <ClInclude Include="spriterengine\override\objectfactory.h" />
+    <ClInclude Include="spriterengine\override\soundfile.h" />
+    <ClInclude Include="spriterengine\override\soundobjectinforeference.h" />
+    <ClInclude Include="spriterengine\override\spriterfileattributewrapper.h" />
+    <ClInclude Include="spriterengine\override\spriterfiledocumentwrapper.h" />
+    <ClInclude Include="spriterengine\override\spriterfileelementwrapper.h" />
+    <ClInclude Include="spriterengine\timeinfo\beziereasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\cubiceasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\easingcurveinterface.h" />
+    <ClInclude Include="spriterengine\timeinfo\instanteasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\lineareasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\quadraticeasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\quarticeasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\quinticeasingcurve.h" />
+    <ClInclude Include="spriterengine\timeinfo\timeinfo.h" />
+    <ClInclude Include="spriterengine\timeline\proxytimelinekey.h" />
+    <ClInclude Include="spriterengine\timeline\soundtimelineinstance.h" />
+    <ClInclude Include="spriterengine\timeline\tagtimelineinstance.h" />
+    <ClInclude Include="spriterengine\timeline\timeline.h" />
+    <ClInclude Include="spriterengine\timeline\timelineinstance.h" />
+    <ClInclude Include="spriterengine\timeline\timelinekey.h" />
+    <ClInclude Include="spriterengine\timeline\triggertimelineinstance.h" />
+    <ClInclude Include="spriterengine\timeline\variabletimelineinstance.h" />
+    <ClInclude Include="spriterengine\variable\variable.h" />
+    <ClInclude Include="spriterengine\variable\variablecontainer.h" />
+    <ClInclude Include="spriterengine\variable\variableinstancenameandidmap.h" />
+    <ClInclude Include="tinyxml2\tinyxml2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ext.rc">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug Edit Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Edittime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Runtime Unicode|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
