@@ -45,7 +45,7 @@ namespace SpriterEngine
 			BlitOp((rdPtr->rs->rsEffect & EFFECT_MASK)|BOP_BLEND),
 			alpha, flags);
 		
-		//calculate collision rectangle
+		//calculate display rectangle
 		RECT minR = { 0, 0, 0, 0 };
 		POINT inPoints[4];
 		POINT outPoints[4];
