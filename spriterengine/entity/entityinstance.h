@@ -118,7 +118,7 @@ namespace SpriterEngine
 		void setCurrentTimeToNextKeyFrame();
 		void setCurrentTimeToKeyAtIndex(int newKeyIndex);
 
-		UniversalObjectInterface *objectIfExistsOnCurrentFrame(std::string objectName);
+		UniversalObjectInterface *objectIfExistsOnCurrentFrame(const std::string & objectName);
 
 
 		void applyCharacterMap(const std::string &mapName);

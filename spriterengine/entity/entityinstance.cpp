@@ -121,6 +121,10 @@ namespace SpriterEngine
 					currentAnimation->findAndProcessKeys(newTime, timeElapsed >= 0, &zOrder);
 				}
 			}
+			else
+			{
+				reprocessCurrentTime();
+			}
 		}
 		else
 		{
@@ -641,7 +645,7 @@ namespace SpriterEngine
 		}
 	}
 
-	UniversalObjectInterface *EntityInstance::objectIfExistsOnCurrentFrame(std::string objectName)
+	UniversalObjectInterface *EntityInstance::objectIfExistsOnCurrentFrame(const std::string & objectName)
 	{
 		if (zOrder)
 		{
