@@ -844,18 +844,20 @@ namespace SpriterEngine
 			curveType = curveTypeNameToType(att->getStringValue());
 			if (curveType > CURVETYPE_LINEAR)
 			{
-				//TODO: check
 				int i = 0;
 				while (i < MAX_CONTROL_POINTS)
 				{
 					att = element->getFirstAttribute("c"+std::to_string(i+1));
-					if(att->isValid()) {
-						controlPoints[i] = att->getIntValue();
+					if(att->isValid()) 
+					{
+						controlPoints[i] = att->getRealValue();
 					}
+					i++;
 				}
 			}
 		}
-		else {
+		else 
+		{
 			Settings::error("SpriterDocumentLoader::getEasingCurveFromKeyElement - \"curve_type\" attribute missing");
 		}
 

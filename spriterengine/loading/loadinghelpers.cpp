@@ -97,19 +97,19 @@ namespace SpriterEngine
 			return new LinearEasingCurve();
 
 		case CURVETYPE_QUADRATIC:
-			return new QuadraticEasingCurve(*controlPoints[0]);
+			return new QuadraticEasingCurve((*controlPoints)[0]);
 
 		case CURVETYPE_CUBIC:
-			return new CubicEasingCurve(*controlPoints[0], *controlPoints[1]);
+			return new CubicEasingCurve((*controlPoints)[0], (*controlPoints)[1]);
 
 		case CURVETYPE_QUARTIC:
-			return new QuarticEasingCurve(*controlPoints[0], *controlPoints[1], *controlPoints[2]);
+			return new QuarticEasingCurve((*controlPoints)[0], (*controlPoints)[1], (*controlPoints)[2]);
 
 		case CURVETYPE_QUINTIC:
-			return new QuinticEasingCurve(*controlPoints[0], *controlPoints[1], *controlPoints[2], *controlPoints[3]);
+			return new QuinticEasingCurve((*controlPoints)[0], (*controlPoints)[1], (*controlPoints)[2], (*controlPoints)[3]);
 
 		case CURVETYPE_BEZIER:
-			return new BezierEasingCurve(*controlPoints[0], *controlPoints[1], *controlPoints[2], *controlPoints[3]);
+			return new BezierEasingCurve((*controlPoints)[0], (*controlPoints)[1], (*controlPoints)[2], (*controlPoints)[3]);
 
 		default:
 			Settings::error("loadinghelpers - getNewEasingCurve - invalid curve type : falling back on linear easing curve");
