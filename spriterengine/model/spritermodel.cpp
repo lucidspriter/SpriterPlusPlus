@@ -127,9 +127,9 @@ namespace SpriterEngine
 		return entities.back();
 	}
 
-	void SpriterModel::pushBackImageFile(std::string initialFilePath, point initialDefaultPivot)
+	void SpriterModel::pushBackImageFile(std::string initialFilePath, point initialDefaultPivot, atlasdata atlasData)
 	{
-		files.push_back(fileFactory->newImageFile(initialFilePath, initialDefaultPivot));
+		files.push_back(fileFactory->newImageFile(initialFilePath, initialDefaultPivot, atlasData));
 	}
 
 	void SpriterModel::pushBackSoundFile(std::string initialFilePath)
