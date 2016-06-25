@@ -18,7 +18,7 @@ namespace SpriterEngine
 		FileFactory();
 		virtual ~FileFactory();
 
-		virtual ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot);
+		virtual ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData);
 		virtual SoundFile *newSoundFile(const std::string &initialFilePath);
 
 		virtual SpriterFileDocumentWrapper *newScmlDocumentWrapper();

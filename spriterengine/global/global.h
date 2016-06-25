@@ -104,6 +104,34 @@ namespace SpriterEngine
 		real y;
 	};
 
+	struct atlasdata
+	{
+		atlasdata(real initialX = 0, real initialY = 0, real initialW = 0, real initialH = 0, real initialOW = 0, real initialOH = 0, real initialXoff = 0, real initialYoff = 0, bool initialRotated = false, bool initialActive = false) :
+			x(initialX),
+			y(initialY),
+			w(initialW),
+			h(initialH),
+			ow(initialOW),
+			oh(initialOH),
+			xoff(initialXoff),
+			yoff(initialYoff),
+			rotated(initialRotated),
+			active(initialActive)
+		{
+		}
+
+		real x;
+		real y;
+		real w;
+		real h;
+		real ow;
+		real oh;
+		real xoff;
+		real yoff;
+		bool rotated;
+		bool active;
+	};
+
 	inline point linear(const point &a, const point &b, real t)
 	{
 		return point(linear(a.x, b.x, t), linear(a.y, b.y, t));

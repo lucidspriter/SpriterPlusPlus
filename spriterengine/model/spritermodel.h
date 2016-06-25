@@ -38,7 +38,7 @@ namespace SpriterEngine
 		void setupFileReferences(FileReferenceVector *fileReferences);
 
 		Entity *pushBackEntity(std::string entityName);
-		void pushBackImageFile(std::string initialFilePath, point initialDefaultPivot);
+		void pushBackImageFile(std::string initialFilePath, point initialDefaultPivot, atlasdata atlasData);
 		void pushBackSoundFile(std::string initialFilePath);
 		void pushBackTag(std::string newTag);
 
