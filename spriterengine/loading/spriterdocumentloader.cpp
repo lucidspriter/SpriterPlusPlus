@@ -1,10 +1,12 @@
 #include "spriterdocumentloader.h"
 
 #include "../global/settings.h"
+#include "../global/atlas.h"
 
 #include "../override/spriterfiledocumentwrapper.h"
 #include "../override/spriterfileelementwrapper.h"
 #include "../override/spriterfileattributewrapper.h"
+#include "../override/filefactory.h"
 
 #include "../../spriterengine/model/spritermodel.h"
 #include "../../spriterengine/global/global.h"
@@ -36,6 +38,7 @@ namespace SpriterEngine
 		{
 			FileFlattener fileFlattener;
 			getFolderFileStructureFromElement(spriterDataElement, model, fileName, &fileFlattener);
+			getAtlasFromElement(spriterDataElement, model, fileName);
 			getTagListFromElement(spriterDataElement, model);
 			getEntitiesFromElement(spriterDataElement, model, &fileFlattener);
 		}
@@ -43,6 +46,245 @@ namespace SpriterEngine
 		{
 			Settings::error("SpriterDocumentLoader::loadFile - invalid Spriter file : missing \"spriter_data\" element");
 			return;
+		}
+	}
+
+	void SpriterDocumentLoader::getAtlasFromElement(SpriterFileElementWrapper *spriterDataElement, SpriterModel *model, std::string scmlFileName)
+	{
+		std::string filePath = extractFilePath(scmlFileName);
+		SpriterFileElementWrapper *atlasElement = spriterDataElement->getFirstChildElement("atlas");
+		if(atlasElement->isValid()) {
+			SpriterFileElementWrapper *atlasIElement = atlasElement->getFirstChildElement("i");
+			while(atlasIElement->isValid()) {
+				SpriterFileAttributeWrapper *att = atlasIElement->getFirstAttribute("name");
+				std::string jsonFileName;
+				if (att->isValid())
+				{
+					jsonFileName = att->getStringValue();
+				}
+				else
+				{
+					Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"atlas/i\" element missing \"name\" attribute");
+					return;
+				}
+
+				SpriterFileDocumentWrapper *sconWrapper = model->getFileFactory()->newSconDocumentWrapper();
+				if(!sconWrapper) {
+					Settings::error("SpriterDocumentLoader::getAtlasFromElement - attempting to load json file \"" + filePath + jsonFileName + "\" : no scon document wrapper found");
+					return;
+				}
+				sconWrapper->loadFile(filePath + jsonFileName);
+
+				std::string atlasImagePath;
+				SpriterFileElementWrapper *rootElement = sconWrapper->getFirstChildElement();
+				if(!rootElement->isValid()) {
+					Settings::error("SpriterDocumentLoader::getAtlasFromElement - couldn't load root object from " + filePath + jsonFileName);
+					return;
+				}
+				SpriterFileElementWrapper *metaElement = rootElement->getFirstChildElement("meta");
+				if(metaElement->isValid()) {
+					SpriterFileAttributeWrapper *att = metaElement->getFirstAttribute("image");
+					if (att->isValid())
+					{
+						atlasImagePath = att->getStringValue();
+					}
+					else
+					{
+						Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"meta\" element is missing \"image\" attribute");
+						return;
+					}
+				}
+				else
+				{
+					Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"meta\" element missing or invalid json");
+					return;
+				}
+				model->pushBackAtlas(filePath + atlasImagePath);
+				SpriterFileElementWrapper *framesElement = rootElement->getFirstChildElement("frames");
+				if(framesElement->isValid()) {
+					SpriterFileElementWrapper *frameElement = framesElement->getFirstChildElement();
+					while(frameElement->isValid()) {
+						std::string frameImagePath = frameElement->getName();
+						point frameSize;
+						point framePosition;
+						SpriterFileElementWrapper *elem = frameElement->getFirstChildElement("frame");
+						if (elem->isValid())
+						{
+							SpriterFileAttributeWrapper *att = elem->getFirstAttribute("h");
+							if (att->isValid())
+							{
+								frameSize.y = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frame\" element missing \"h\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("w");
+							if (att->isValid())
+							{
+								frameSize.x = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frame\" element missing \"w\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("x");
+							if (att->isValid())
+							{
+								framePosition.x = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frame\" element missing \"x\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("y");
+							if (att->isValid())
+							{
+								framePosition.y = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frame\" element missing \"y\" attribute");
+								return;
+							}
+						}
+						else
+						{
+							Settings::error("SpriterDocumentLoader::getFolderFileStructureFromElement - \"file\" element missing \"name\" attribute");
+							return;
+						}
+
+						point sourceSize;
+						elem = frameElement->getFirstChildElement("sourceSize");
+						if (elem->isValid())
+						{
+							SpriterFileAttributeWrapper *att = elem->getFirstAttribute("h");
+							if (att->isValid())
+							{
+								sourceSize.y = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"sourceSize\" element missing \"h\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("w");
+							if (att->isValid())
+							{
+								sourceSize.x = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"sourceSize\" element missing \"w\" attribute");
+								return;
+							}
+						}
+						else
+						{
+							Settings::error("SpriterDocumentLoader::getFolderFileStructureFromElement - \"file\" element missing \"name\" attribute");
+							return;
+						}
+
+						point spriteSourceSize;
+						point spriteSourcePosition;
+						elem = frameElement->getFirstChildElement("spriteSourceSize");
+						if (elem->isValid())
+						{
+							SpriterFileAttributeWrapper *att = elem->getFirstAttribute("h");
+							if (att->isValid())
+							{
+								spriteSourceSize.y = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"spriteSourceSize\" element missing \"x\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("w");
+							if (att->isValid())
+							{
+								spriteSourceSize.x = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"spriteSourceSize\" element missing \"y\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("x");
+							if (att->isValid())
+							{
+								spriteSourcePosition.x = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"spriteSourceSize\" element missing \"x\" attribute");
+								return;
+							}
+
+							att = elem->getFirstAttribute("y");
+							if (att->isValid())
+							{
+								spriteSourcePosition.y = att->getRealValue();
+							}
+							else
+							{
+								Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"spriteSourceSize\" element missing \"y\" attribute");
+								return;
+							}
+						}
+						else
+						{
+							Settings::error("SpriterDocumentLoader::getFolderFileStructureFromElement - \"file\" element missing \"name\" attribute");
+							return;
+						}
+
+						bool rotated = false;
+						SpriterFileAttributeWrapper *att = frameElement->getFirstAttribute("rotated");
+						if (att->isValid())
+						{
+							rotated = att->getStringValue().compare("true")==0;
+						}
+						else
+						{
+							Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frame\" element missing \"rotated\" attribute");
+							return;
+						}
+
+						bool trimmed = false;
+						att = frameElement->getFirstAttribute("trimmed");
+						if (att->isValid())
+						{
+							trimmed = att->getStringValue().compare("true")==0;
+						}
+						else
+						{
+							Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frame\" element missing \"trimmed\" attribute");
+							return;
+						}
+
+						model->addAtlasFrameData(filePath + frameImagePath, atlasframedata(frameSize, framePosition, sourceSize, spriteSourceSize, spriteSourcePosition, rotated, trimmed));
+
+
+						frameElement->advanceToNextSiblingElement();
+					}
+				}
+				else
+				{
+					Settings::error("SpriterDocumentLoader::getAtlasFromElement - \"frames\" element missing from json");
+					return;
+				}
+				delete sconWrapper;
+				atlasIElement->advanceToNextSiblingElementOfSameName();
+			}
 		}
 	}
 

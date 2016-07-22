@@ -19,6 +19,11 @@ namespace SpriterEngine
 		return 0;
 	}
 
+	AtlasFile *File::atlasFile()
+	{
+		return 0;
+	}
+
 	std::string File::path()
 	{
 		return filePath;

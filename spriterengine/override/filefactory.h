@@ -4,12 +4,14 @@
 #include <string>
 
 #include "../global/global.h"
+#include "../global/atlas.h"
 
 namespace SpriterEngine
 {
 
 	class ImageFile;
 	class SoundFile;
+	class AtlasFile;
 	class SpriterFileDocumentWrapper;
 
 	class FileFactory
@@ -20,6 +22,7 @@ namespace SpriterEngine
 
 		virtual ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData);
 		virtual SoundFile *newSoundFile(const std::string &initialFilePath);
+		virtual AtlasFile *newAtlasFile(const std::string &initialFilePath);
 
 		virtual SpriterFileDocumentWrapper *newScmlDocumentWrapper();
 		virtual SpriterFileDocumentWrapper *newSconDocumentWrapper();

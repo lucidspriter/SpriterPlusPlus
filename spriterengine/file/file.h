@@ -8,6 +8,7 @@ namespace SpriterEngine
 
 	class ImageFile;
 	class SoundFile;
+	class AtlasFile;
 
 	class File
 	{
@@ -17,8 +18,8 @@ namespace SpriterEngine
 
 		virtual ImageFile *imageFile();
 		virtual SoundFile *soundFile();
+		virtual AtlasFile *atlasFile();
 
-	protected:
 		std::string path();
 
 	private:
