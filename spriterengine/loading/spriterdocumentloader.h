@@ -31,6 +31,7 @@ namespace SpriterEngine
 		void loadFile(SpriterModel *model, SpriterFileDocumentWrapper *documentWrapper, const std::string &fileName);
 
 	private:
+		void getAtlasFromElement(SpriterFileElementWrapper * spriterDataElement, SpriterModel * model, std::string scmlFileName);
 		void getFolderFileStructureFromElement(SpriterFileElementWrapper * spriterDataElement, SpriterModel * model, std::string scmlFileName, FileFlattener * fileFlattener);
 		void getTagListFromElement(SpriterFileElementWrapper * spriterDataElement, SpriterModel * model);
 

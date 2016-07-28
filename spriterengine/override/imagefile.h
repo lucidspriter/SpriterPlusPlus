@@ -6,10 +6,12 @@
 #include "../file/file.h"
 
 #include "../global/global.h"
+#include "../global/atlas.h"
 
 namespace SpriterEngine
 {
 	class UniversalObjectInterface;
+	class AtlasFile;
 
 	class ImageFile : public File
 	{
@@ -18,9 +20,15 @@ namespace SpriterEngine
 
 		ImageFile *imageFile() override;
 
+		virtual void setAtlasFile(AtlasFile* initialAtlasFile, atlasframedata initialAtlasFrameData);
+
 		point defaultPivot;
 
 		virtual void renderSprite(UniversalObjectInterface *spriteInfo);
+
+	protected:
+		AtlasFile* atlasFile;
+		atlasframedata atlasFrameData;
 	};
 
 }
