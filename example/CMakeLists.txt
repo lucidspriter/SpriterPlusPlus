@@ -13,9 +13,7 @@ endif()
 
 find_package(SFML 2 COMPONENTS graphics window system audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
-include_directories(${PUGIXML_INCLUDE_DIR})
-include_directories(${TINYXML2_INCLUDE_DIR})
-include_directories(${SPRITER_ENGINE_INCLUDE_DIR})
+include_directories(${JSON_SOURCE_DIR})
 
 set(SPRITER_EXAMPLE_SRCS
     main.cpp
