@@ -21,7 +21,7 @@ namespace SpriterEngine
 	{
 	}
 
-	ImageFile * ExampleFileFactory::newImageFile(const std::string &initialFilePath, point initialDefaultPivot)
+	ImageFile * ExampleFileFactory::newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData)
 	{
 		return new SfmlImageFile(initialFilePath, initialDefaultPivot, renderWindow);
 	}

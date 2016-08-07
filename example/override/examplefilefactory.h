@@ -13,7 +13,7 @@ namespace SpriterEngine
 	public:
 		ExampleFileFactory(sf::RenderWindow *validRenderWindow);
 		
-		ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot) override;
+		ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData) override;
 
 		SoundFile *newSoundFile(const std::string &initialFilePath) override;
 
