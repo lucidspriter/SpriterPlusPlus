@@ -41,7 +41,8 @@ int main()
 
 
 	// load Spriter file into SpriterModel object using our custom factories
-	SpriterEngine::SpriterModel scmlModel("./GreyGuy/player.scml", new SpriterEngine::ExampleFileFactory(&window), new SpriterEngine::ExampleObjectFactory(&window));
+	//SpriterEngine::SpriterModel scmlModel("./GreyGuy/player.scml", new SpriterEngine::ExampleFileFactory(&window), new SpriterEngine::ExampleObjectFactory(&window));
+	SpriterEngine::SpriterModel scmlModel("./GreyGuy/player.scon", new SpriterEngine::ExampleFileFactory(&window), new SpriterEngine::ExampleObjectFactory(&window));
 
 	// create an array to hold instances of our character
 	std::vector<SpriterEngine::EntityInstance*> instances;

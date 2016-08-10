@@ -41,6 +41,15 @@ set(SPRITER_TINYXML2_IMPL_HDRS
     override/tinyxmlspriterfiledocumentwrapper.h
     override/tinyxmlspriterfileelementwrapper.h)
 
+set(SPRITER_JSON_IMPL_SRCS
+    override/jsonspriterfileattributewrapper.cpp
+    override/jsonspriterfiledocumentwrapper.cpp
+    override/jsonspriterfileelementwrapper.cpp)
+set(SPRITER_JSON_IMPL_HDRS
+    override/jsonspriterfileattributewrapper.h
+    override/jsonspriterfiledocumentwrapper.h
+    override/jsonspriterfileelementwrapper.h)
+
 set(SPRITER_SFML_IMPL_SRCS
     override/sfmlboneinstanceinfo.cpp
     override/sfmlimagefile.cpp
@@ -60,11 +69,13 @@ set(SPRITER_EXAMPLE_SRCS
     ${SPRITER_EXAMPLE_SRCS}
     ${SPRITER_PUGIXML_IMPL_SRCS}
     ${SPRITER_TINYXML2_IMPL_SRCS}
+    ${SPRITER_JSON_IMPL_SRCS}
     ${SPRITER_SFML_IMPL_SRCS})
 set(SPRITER_EXAMPLE_HDRS
     ${SPRITER_EXAMPLE_HDRS}
     ${SPRITER_PUGIXML_IMPL_HDRS}
     ${SPRITER_TINYXML2_IMPL_HDRS}
+    ${SPRITER_JSON_IMPL_HDRS}
     ${SPRITER_SFML_IMPL_HDRS})
 
 add_executable(SpriterPlusPlus ${SPRITER_EXAMPLE_SRCS})

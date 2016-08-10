@@ -19,6 +19,8 @@ namespace SpriterEngine
 
 		SpriterFileDocumentWrapper *newScmlDocumentWrapper() override;
 
+		SpriterFileDocumentWrapper *newSconDocumentWrapper() override;
+
 	private:
 		sf::RenderWindow *renderWindow;
 	};

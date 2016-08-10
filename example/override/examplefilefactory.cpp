@@ -10,6 +10,8 @@
 #include "pugixmlspriterfiledocumentwrapper.h"
 #endif
 
+#include "jsonspriterfiledocumentwrapper.h"
+
 #include "sfmlimagefile.h"
 #include "sfmlsoundfile.h"
 
@@ -38,5 +40,10 @@ namespace SpriterEngine
 #else
 		return new PugiXmlSpriterFileDocumentWrapper();		
 #endif
+	}
+
+	SpriterFileDocumentWrapper *ExampleFileFactory::newSconDocumentWrapper()
+	{
+		return new JSONSpriterFileDocumentWrapper();
 	}
 }
