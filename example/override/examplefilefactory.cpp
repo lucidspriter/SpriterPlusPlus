@@ -10,6 +10,8 @@
 #include "pugixmlspriterfiledocumentwrapper.h"
 #endif
 
+#include "jsonspriterfiledocumentwrapper.h"
+
 #include "sfmlimagefile.h"
 #include "sfmlsoundfile.h"
 
@@ -21,7 +23,7 @@ namespace SpriterEngine
 	{
 	}
 
-	ImageFile * ExampleFileFactory::newImageFile(const std::string &initialFilePath, point initialDefaultPivot)
+	ImageFile * ExampleFileFactory::newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData)
 	{
 		return new SfmlImageFile(initialFilePath, initialDefaultPivot, renderWindow);
 	}
@@ -38,5 +40,10 @@ namespace SpriterEngine
 #else
 		return new PugiXmlSpriterFileDocumentWrapper();		
 #endif
+	}
+
+	SpriterFileDocumentWrapper *ExampleFileFactory::newSconDocumentWrapper()
+	{
+		return new JSONSpriterFileDocumentWrapper();
 	}
 }
