@@ -1,0 +1,275 @@
+{
+	"frames": {
+		"head/p_head_blink_0.png": {
+			"frame": {
+				"h": 128,
+				"w": 140,
+				"x": 0,
+				"y": 128
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 140,
+				"x": 48,
+				"y": 33
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_blink_1.png": {
+			"frame": {
+				"h": 128,
+				"w": 140,
+				"x": 140,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 140,
+				"x": 48,
+				"y": 33
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_concern.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 419,
+				"y": 128
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_concern_blink_0.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 550,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_concern_blink_1.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 550,
+				"y": 128
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_die.png": {
+			"frame": {
+				"h": 134,
+				"w": 133,
+				"x": 140,
+				"y": 128
+			},
+			"rotated": "true",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 134,
+				"w": 133,
+				"x": 52,
+				"y": 46
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_hurt.png": {
+			"frame": {
+				"h": 134,
+				"w": 139,
+				"x": 280,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 134,
+				"w": 139,
+				"x": 48,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_idle.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 812,
+				"y": 128
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_idle_blink_0.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 681,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_idle_blink_1.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 812,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_push.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 419,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_turn_0.png": {
+			"frame": {
+				"h": 128,
+				"w": 131,
+				"x": 681,
+				"y": 128
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 131,
+				"x": 52,
+				"y": 38
+			},
+			"trimmed": "true"
+		},
+		"head/p_head_walk.png": {
+			"frame": {
+				"h": 128,
+				"w": 140,
+				"x": 0,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 214,
+				"w": 212
+			},
+			"spriteSourceSize": {
+				"h": 128,
+				"w": 140,
+				"x": 48,
+				"y": 33
+			},
+			"trimmed": "true"
+		}
+	},
+	"meta": {
+		"app": "Spriter",
+		"format": "RGBA8888",
+		"image": "GreyGuy_head.png",
+		"scale": 1,
+		"size": {
+			"h": 261,
+			"w": 943
+		},
+		"version": "r7"
+	}
+}

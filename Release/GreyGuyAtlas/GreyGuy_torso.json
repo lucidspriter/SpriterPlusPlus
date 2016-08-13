@@ -1,0 +1,115 @@
+{
+	"frames": {
+		"torso/p_torso_front.png": {
+			"frame": {
+				"h": 63,
+				"w": 75,
+				"x": 157,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 88,
+				"w": 88
+			},
+			"spriteSourceSize": {
+				"h": 63,
+				"w": 75,
+				"x": 9,
+				"y": 11
+			},
+			"trimmed": "true"
+		},
+		"torso/p_torso_idle.png": {
+			"frame": {
+				"h": 71,
+				"w": 77,
+				"x": 80,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 88,
+				"w": 88
+			},
+			"spriteSourceSize": {
+				"h": 71,
+				"w": 77,
+				"x": 7,
+				"y": 11
+			},
+			"trimmed": "true"
+		},
+		"torso/p_torso_jump.png": {
+			"frame": {
+				"h": 65,
+				"w": 72,
+				"x": 232,
+				"y": 0
+			},
+			"rotated": "true",
+			"sourceSize": {
+				"h": 88,
+				"w": 88
+			},
+			"spriteSourceSize": {
+				"h": 65,
+				"w": 72,
+				"x": 13,
+				"y": 11
+			},
+			"trimmed": "true"
+		},
+		"torso/p_torso_punch_0.png": {
+			"frame": {
+				"h": 66,
+				"w": 71,
+				"x": 297,
+				"y": 0
+			},
+			"rotated": "true",
+			"sourceSize": {
+				"h": 88,
+				"w": 88
+			},
+			"spriteSourceSize": {
+				"h": 66,
+				"w": 71,
+				"x": 12,
+				"y": 4
+			},
+			"trimmed": "true"
+		},
+		"torso/p_torso_walk.png": {
+			"frame": {
+				"h": 57,
+				"w": 80,
+				"x": 0,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 88,
+				"w": 88
+			},
+			"spriteSourceSize": {
+				"h": 57,
+				"w": 80,
+				"x": 4,
+				"y": 11
+			},
+			"trimmed": "true"
+		}
+	},
+	"meta": {
+		"app": "Spriter",
+		"format": "RGBA8888",
+		"image": "GreyGuy_torso.png",
+		"scale": 1,
+		"size": {
+			"h": 73,
+			"w": 363
+		},
+		"version": "r7"
+	}
+}
