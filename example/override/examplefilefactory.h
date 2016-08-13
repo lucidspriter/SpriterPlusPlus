@@ -15,6 +15,8 @@ namespace SpriterEngine
 		
 		ImageFile *newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData) override;
 
+		AtlasFile *newAtlasFile(const std::string &initialFilePath) override;
+
 		SoundFile *newSoundFile(const std::string &initialFilePath) override;
 
 		SpriterFileDocumentWrapper *newScmlDocumentWrapper() override;

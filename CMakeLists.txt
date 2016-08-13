@@ -13,6 +13,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wno-sign-compare -Wno-
 option(SKIP_EXAMPLES "Only build the spriterengine and skip all examples" OFF)
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Release/GreyGuy
+    ${CMAKE_CURRENT_SOURCE_DIR}/Release/GreyGuyAtlas
     ${CMAKE_CURRENT_SOURCE_DIR}/Release/PT-Sans
     DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
