@@ -1,6 +1,7 @@
 #include "imagefile.h"
 
 #include "../objectinfo/universalobjectinterface.h"
+#include "atlasfile.h"
 
 namespace SpriterEngine
 {
@@ -25,6 +26,9 @@ namespace SpriterEngine
 
 	void ImageFile::renderSprite(UniversalObjectInterface * spriteInfo)
 	{
+		if(atlasFile) {
+			atlasFile->renderSprite(spriteInfo, atlasFrameData);
+		}
 		// TODO: override and add custom rendering code here using:
 
 		// spriteInfo->getAlpha()

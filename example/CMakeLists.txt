@@ -53,6 +53,7 @@ set(SPRITER_JSON_IMPL_HDRS
 set(SPRITER_SFML_IMPL_SRCS
     override/sfmlboneinstanceinfo.cpp
     override/sfmlimagefile.cpp
+    override/sfmlatlasfile.cpp
     override/sfmlsoundfile.cpp
     override/sfmlboxinstanceinfo.cpp
     override/sfmlpointinstanceinfo.cpp
@@ -60,6 +61,7 @@ set(SPRITER_SFML_IMPL_SRCS
 set(SPRITER_SFML_IMPL_HDRS
     override/sfmlboneinstanceinfo.h
     override/sfmlimagefile.h
+    override/sfmlatlasfile.h
     override/sfmlsoundfile.h
     override/sfmlboxinstanceinfo.h
     override/sfmlpointinstanceinfo.h

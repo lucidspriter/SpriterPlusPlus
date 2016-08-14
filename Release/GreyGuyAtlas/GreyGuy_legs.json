@@ -1,0 +1,195 @@
+{
+	"frames": {
+		"legs/p_leg_a.png": {
+			"frame": {
+				"h": 31,
+				"w": 50,
+				"x": 230,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 45,
+				"w": 61
+			},
+			"spriteSourceSize": {
+				"h": 31,
+				"w": 50,
+				"x": 6,
+				"y": 8
+			},
+			"trimmed": "true"
+		},
+		"legs/p_leg_idle_0.png": {
+			"frame": {
+				"h": 35,
+				"w": 61,
+				"x": 0,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 52,
+				"w": 65
+			},
+			"spriteSourceSize": {
+				"h": 35,
+				"w": 61,
+				"x": 2,
+				"y": 9
+			},
+			"trimmed": "true"
+		},
+		"legs/p_leg_walk_0.png": {
+			"frame": {
+				"h": 40,
+				"w": 60,
+				"x": 61,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 52,
+				"w": 65
+			},
+			"spriteSourceSize": {
+				"h": 40,
+				"w": 60,
+				"x": 2,
+				"y": 5
+			},
+			"trimmed": "true"
+		},
+		"legs/p_pelvis_die.png": {
+			"frame": {
+				"h": 40,
+				"w": 32,
+				"x": 410,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 63,
+				"w": 48
+			},
+			"spriteSourceSize": {
+				"h": 40,
+				"w": 32,
+				"x": 0,
+				"y": 13
+			},
+			"trimmed": "true"
+		},
+		"legs/p_pelvis_idle.png": {
+			"frame": {
+				"h": 45,
+				"w": 30,
+				"x": 280,
+				"y": 0
+			},
+			"rotated": "true",
+			"sourceSize": {
+				"h": 63,
+				"w": 48
+			},
+			"spriteSourceSize": {
+				"h": 45,
+				"w": 30,
+				"x": 4,
+				"y": 8
+			},
+			"trimmed": "true"
+		},
+		"legs/p_pelvis_walk.png": {
+			"frame": {
+				"h": 42,
+				"w": 31,
+				"x": 368,
+				"y": 0
+			},
+			"rotated": "true",
+			"sourceSize": {
+				"h": 63,
+				"w": 48
+			},
+			"spriteSourceSize": {
+				"h": 42,
+				"w": 31,
+				"x": 3,
+				"y": 12
+			},
+			"trimmed": "true"
+		},
+		"legs/p_thigh_a.png": {
+			"frame": {
+				"h": 24,
+				"w": 43,
+				"x": 325,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 38,
+				"w": 53
+			},
+			"spriteSourceSize": {
+				"h": 24,
+				"w": 43,
+				"x": 4,
+				"y": 8
+			},
+			"trimmed": "true"
+		},
+		"legs/p_thigh_idle_0.png": {
+			"frame": {
+				"h": 32,
+				"w": 53,
+				"x": 177,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 42,
+				"w": 58
+			},
+			"spriteSourceSize": {
+				"h": 32,
+				"w": 53,
+				"x": 3,
+				"y": 7
+			},
+			"trimmed": "true"
+		},
+		"legs/p_thigh_walk_0.png": {
+			"frame": {
+				"h": 32,
+				"w": 56,
+				"x": 121,
+				"y": 0
+			},
+			"rotated": "false",
+			"sourceSize": {
+				"h": 42,
+				"w": 58
+			},
+			"spriteSourceSize": {
+				"h": 32,
+				"w": 56,
+				"x": 2,
+				"y": 5
+			},
+			"trimmed": "true"
+		}
+	},
+	"meta": {
+		"app": "Spriter",
+		"format": "RGBA8888",
+		"image": "GreyGuy_legs.png",
+		"scale": 1,
+		"size": {
+			"h": 40,
+			"w": 442
+		},
+		"version": "r7"
+	}
+}

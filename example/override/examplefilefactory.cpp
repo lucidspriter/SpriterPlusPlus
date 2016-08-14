@@ -13,6 +13,7 @@
 #include "jsonspriterfiledocumentwrapper.h"
 
 #include "sfmlimagefile.h"
+#include "sfmlatlasfile.h"
 #include "sfmlsoundfile.h"
 
 namespace SpriterEngine
@@ -26,6 +27,12 @@ namespace SpriterEngine
 	ImageFile * ExampleFileFactory::newImageFile(const std::string &initialFilePath, point initialDefaultPivot, atlasdata atlasData)
 	{
 		return new SfmlImageFile(initialFilePath, initialDefaultPivot, renderWindow);
+	}
+
+	AtlasFile *ExampleFileFactory::newAtlasFile(const std::string &initialFilePath)
+	{
+		return new SfmlAtlasFile(initialFilePath);
+
 	}
 
 	SoundFile * ExampleFileFactory::newSoundFile(const std::string & initialFilePath)

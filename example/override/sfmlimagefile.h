@@ -14,6 +14,8 @@ namespace SpriterEngine
 
 		void renderSprite(UniversalObjectInterface *spriteInfo) override;
 
+		void setAtlasFile(AtlasFile *initialAtlasFile, atlasframedata initialAtlasFrameData) override;
+
 	private:
 		sf::Texture texture;
 		sf::Sprite sprite;
