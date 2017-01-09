@@ -537,6 +537,18 @@ namespace SpriterEngine
 		isPlaying = true;
 	}
 
+	void EntityInstance::setCurrentBlendedAnimation(const std::string &animationNameSrc, const std::string &animationNameDst, const real blendValue, const real timeElapsed)
+	{
+		const real epsilon = 0.0001;
+		currentAnimation = currentEntity->getAnimation(animationNameSrc);
+		blendedAnimation = currentEntity->getAnimation(animationNameDst);
+		blendCurrentTime = blendValue * 1.0 - timeElapsed * (1.000 + epsilon);
+		blendTotalTime = 1.0;
+		isPlaying = true;
+
+		setTimeElapsed(timeElapsed);
+	}
+	
 	void EntityInstance::setCurrentTime(real newCurrentTime)
 	{
 		justFinished = false;

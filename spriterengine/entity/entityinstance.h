@@ -109,6 +109,7 @@ namespace SpriterEngine
 		void setCurrentAnimation(const std::string &animationName);
 		void setCurrentAnimation(const std::string &animationName, real blendTime);
 		void setCurrentAnimation(AnimationInstance *newCurrentAnimation) override;
+		void setCurrentBlendedAnimation(const std::string &animationNameSrc, const std::string &animationNameDst, const real blendValue, const real timeElapsed);
 		void setCurrentTime(real newCurrentTime);
 		void setTimeRatio(real newCurrentTimeRatio) override;
 
