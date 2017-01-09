@@ -54,7 +54,12 @@ namespace SpriterEngine
 		std::string filePath = extractFilePath(scmlFileName);
 		SpriterFileElementWrapper *atlasElement = spriterDataElement->getFirstChildElement("atlas");
 		if(atlasElement->isValid()) {
-			SpriterFileElementWrapper *atlasIElement = atlasElement->getFirstChildElement("i");
+
+            SpriterFileElementWrapper *atlasIElement = atlasElement->getFirstChildElement("i");
+            if (!atlasIElement->isValid()) {
+                // JSON version is slightly different, use the atlasElement as the "i" element
+                atlasIElement = atlasElement->getCloneElement();
+            }
 			while(atlasIElement->isValid()) {
 				SpriterFileAttributeWrapper *att = atlasIElement->getFirstAttribute("name");
 				std::string jsonFileName;
