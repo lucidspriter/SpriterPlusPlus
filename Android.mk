@@ -24,6 +24,7 @@ spriterengine/override/spriterfileattributewrapper.cpp \
 spriterengine/override/filefactory.cpp \
 spriterengine/override/soundobjectinforeference.cpp \
 spriterengine/override/spriterfileelementwrapper.cpp \
+spriterengine/override/atlasfile.cpp \
 spriterengine/objectref/spriteref.cpp \
 spriterengine/objectref/boneref.cpp \
 spriterengine/objectref/transformprocessor.cpp \
