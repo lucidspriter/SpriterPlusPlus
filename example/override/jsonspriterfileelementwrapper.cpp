@@ -83,6 +83,8 @@ namespace SpriterEngine
 				m_name = it.key();
 			}
 			else if(it.value().is_array()) {
+        // Skip empty arrays.
+        if (it.value().empty()) { continue; }
 				m_array = it.value();
 				m_index = 0;
 				m_name = it.key();
@@ -230,6 +232,8 @@ namespace SpriterEngine
 				return new JSONSpriterFileElementWrapper(this, it.key(), arr, 0);
 			}
 			// It's an array
+      // Skip empty arrays.
+      if (it.value().empty()) { continue; }
 			return new JSONSpriterFileElementWrapper(this, it.key(), it.value(), 0);
 		}
 		// Not found
