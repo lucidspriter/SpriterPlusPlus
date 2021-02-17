@@ -2,6 +2,7 @@
 #define ANIMATION_H
 
 #include <vector>
+#include <string>
 
 #include "../timeline/timeline.h"
 
