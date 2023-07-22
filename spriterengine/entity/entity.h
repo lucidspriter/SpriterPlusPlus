@@ -39,6 +39,7 @@ namespace SpriterEngine
 		EntityInstance *getNewEntityInstance(SpriterModel *model, ObjectFactory *objectFactory);
 		void setupInstance(SpriterModel *model, EntityInstance *entityInstance, EntityInstanceData *entityInstanceData, ObjectFactory *objectFactory);
 
+		AnimationVector* getAnimations();
 		Animation *pushBackAnimation(std::string animationName, real length, bool looping);
 		
 		Object *setObject(std::string objectName, Object::ObjectType objectType);

@@ -699,10 +699,10 @@ namespace SpriterEngine
 
 	Animation *SpriterDocumentLoader::getNewAnimationFromAnimationElement(SpriterFileElementWrapper *animationElement, Entity *entity)
 	{
-		Animation *newAnimation = 0;
 		real animationLength = 0;
 		bool animationLooping = true;
 		SpriterFileAttributeWrapper *att = animationElement->getFirstAttribute("name");
+		SpriterFileAttributeWrapper *att2 = nullptr;
 		if (att->isValid())
 		{
 			std::string animationName = att->getStringValue();
@@ -724,7 +724,23 @@ namespace SpriterEngine
 				animationLooping = att->getStringValue() != "false";
 			}
 
-			return entity->pushBackAnimation(animationName, animationLength, animationLooping);
+			Animation *newAnimation = entity->pushBackAnimation(animationName, animationLength, animationLooping);
+			att = animationElement->getFirstAttribute("l");
+			att2 = animationElement->getFirstAttribute("t");
+			if (att->isValid() && att2->isValid())
+			{
+				real l = att->getRealValue(), t = att2->getRealValue();
+				newAnimation->setBoundsPosition({ l, t });
+				
+				att = animationElement->getFirstAttribute("r");
+				att2 = animationElement->getFirstAttribute("b");
+				if (att->isValid() && att2->isValid())
+				{
+					real r = att->getRealValue(), b = att2->getRealValue();
+					newAnimation->setBoundsSize({ r - l, b - t });
+				}
+			}
+			return newAnimation;
 		}
 		else
 		{

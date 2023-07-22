@@ -32,6 +32,11 @@ namespace SpriterEngine
 		std::string getName();
 		real getLength();
 		bool getIsLooping();
+		
+		point getBoundsPosition() const { return boundsPosition; }
+		void setBoundsPosition(point position) { boundsPosition = position; }
+		point getBoundsSize() const { return boundsSize; }
+		void setBoundsSize(point size) { boundsSize = size; }
 
 		void setupAnimationInstance(EntityInstance *entityInstance, EntityInstanceData *entityInstanceData, MainlineKeyInstanceVector *mainlineKeyInstances, TimelineInstanceVector *timelineInstances, real *length, bool *looping);
 
@@ -58,7 +63,9 @@ namespace SpriterEngine
 		TimelineVector tagTimelines;
 		TimelineVector soundTimelines;
 		TimelineVector triggerTimelines;
-
+		
+		point boundsPosition;
+		point boundsSize;
 		real animationLength;
 		bool isLooping;
 	};
