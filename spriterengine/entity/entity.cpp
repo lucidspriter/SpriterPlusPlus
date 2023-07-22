@@ -51,7 +51,12 @@ namespace SpriterEngine
 		entityInstanceData->setTagInstance(THIS_ENTITY, "");
 		setupAnimationInstances(entityInstance, entityInstanceData);
 	}
-
+	
+	AnimationVector* Entity::getAnimations()
+	{
+		return &animations;
+	}
+	
 	Object *Entity::setObject(std::string objectName, Object::ObjectType objectType)
 	{
 		switch (objectType)
