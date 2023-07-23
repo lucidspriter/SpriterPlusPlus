@@ -40,8 +40,7 @@ namespace SpriterEngine
 		void blend(real blendRatio, real timeRatio);
 
 		void reprocessCurrentTime() override;
-
-
+		
 		UniversalObjectInterface *getObjectInstance(int objectId);
 		UniversalObjectInterface * getObjectInstance(const std::string &objectName);
 		FileReference *getFile(int fileId);
@@ -125,7 +124,7 @@ namespace SpriterEngine
 		void removeCharacterMap(const std::string &mapName);
 		void removeAllCharacterMaps();
 
-		void render() override;
+		void render();
 
 		void playAllTriggers();
 		void playSoundTriggers();

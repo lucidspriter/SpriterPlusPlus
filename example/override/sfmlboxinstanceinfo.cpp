@@ -12,7 +12,7 @@ namespace SpriterEngine
 	{
 	}
 
-	void SfmlBoxInstanceInfo::render()
+	void SfmlBoxInstanceInfo::render(const EntityInstance* instance)
 	{
 		if (Settings::renderDebugBoxes)
 		{

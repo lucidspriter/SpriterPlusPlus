@@ -12,6 +12,7 @@ namespace SpriterEngine
 	class ImageFile;
 	class SoundFile;
 	class EntityInstanceData;
+	class EntityInstance;
 	class AnimationInstance;
 	class TagList;
 	class VariableInstanceNameAndIdMap;
@@ -92,7 +93,7 @@ namespace SpriterEngine
 		virtual void setObjectToLinear(UniversalObjectInterface *bObject, real t, UniversalObjectInterface *resultObject);
 		virtual void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0);
 
-		virtual void render();
+		virtual void render(const EntityInstance* instance);
 
 		virtual void playTrigger();
 	};

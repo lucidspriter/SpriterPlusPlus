@@ -121,6 +121,11 @@ namespace SpriterEngine
 			fileReferences->push_back(new FileReference(it));
 		}
 	}
+	
+	EntityVector* SpriterModel::getEntities()
+	{
+		return &entities;
+	}
 
 	Entity *SpriterModel::pushBackEntity(std::string entityName)
 	{

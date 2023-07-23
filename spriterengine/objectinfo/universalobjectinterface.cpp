@@ -257,7 +257,7 @@ namespace SpriterEngine
 		Settings::error("UniversalObjectInterface::setObjectToBlendedLinear - object does not contain this component - no action taken");
 	}
 
-	void UniversalObjectInterface::render()
+	void UniversalObjectInterface::render(const EntityInstance*)
 	{
 		Settings::error("UniversalObjectInterface::render - object does not contain this component - no action taken");
 	}

@@ -65,7 +65,7 @@ namespace SpriterEngine
 		setPosition(linear(tempPosition, position, blendRatio));
 	}
 
-	void PointInstanceInfo::render()
+	void PointInstanceInfo::render(const EntityInstance* instance)
 	{
 		// if (renderDebugPoints)
 		// TODO: override and add drawing code here to enable point debug rendering

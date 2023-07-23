@@ -29,7 +29,7 @@ namespace SpriterEngine
 		}
 	}
 
-	void SfmlImageFile::renderSprite(UniversalObjectInterface * spriteInfo)
+	void SfmlImageFile::renderSprite(const EntityInstance* instance, UniversalObjectInterface * spriteInfo)
 	{
 		sprite.setColor(sf::Color(255, 255, 255, 255 * spriteInfo->getAlpha()));
 

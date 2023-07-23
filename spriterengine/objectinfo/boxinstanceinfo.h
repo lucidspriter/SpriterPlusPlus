@@ -28,7 +28,7 @@ namespace SpriterEngine
 
 		void setToBlendedLinear(UniversalObjectInterface *aObject, UniversalObjectInterface *bObject, real t, real blendRatio, ObjectRefInstance *blendedRefInstance = 0) override;
 
-		void render() override;
+		void render(const EntityInstance* instance) override;
 
 	private:
 		point position;

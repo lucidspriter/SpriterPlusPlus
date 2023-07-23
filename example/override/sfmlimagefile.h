@@ -12,7 +12,7 @@ namespace SpriterEngine
 	public:
 		SfmlImageFile(std::string initialFilePath, point initialDefaultPivot, sf::RenderWindow *validRenderWindow);
 
-		void renderSprite(UniversalObjectInterface *spriteInfo) override;
+		void renderSprite(const EntityInstance* instance, UniversalObjectInterface *spriteInfo) override;
 
 		void setAtlasFile(AtlasFile *initialAtlasFile, atlasframedata initialAtlasFrameData) override;
 

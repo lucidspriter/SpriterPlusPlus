@@ -73,7 +73,7 @@ namespace SpriterEngine
 		setAlpha(linear(tempAlpha, alpha, blendRatio));
 	}
 
-	void BoneInstanceInfo::render()
+	void BoneInstanceInfo::render(const EntityInstance* instance)
 	{
 		// if (renderDebugBones)
 		// TODO: override and add drawing code here to enable bone debug rendering

@@ -39,6 +39,7 @@ namespace SpriterEngine
 		void appendEntityToInstanceByName(EntityInstance * entityInstance, std::string entityName);
 		void setupFileReferences(FileReferenceVector *fileReferences);
 
+		EntityVector* getEntities();
 		Entity *pushBackEntity(std::string entityName);
 		void pushBackImageFile(std::string initialFilePath, point initialDefaultPivot, atlasdata atlasData);
 		void pushBackSoundFile(std::string initialFilePath);
