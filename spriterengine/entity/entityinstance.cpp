@@ -692,7 +692,7 @@ namespace SpriterEngine
 		{
 			for (auto& it : *zOrder)
 			{
-				it->render();
+				it->render(this);
 			}
 		}
 	}

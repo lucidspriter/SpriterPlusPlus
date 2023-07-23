@@ -12,6 +12,7 @@ namespace SpriterEngine
 {
 	class UniversalObjectInterface;
 	class AtlasFile;
+	class EntityInstance;
 
 	class ImageFile : public File
 	{
@@ -24,7 +25,7 @@ namespace SpriterEngine
 
 		point defaultPivot;
 
-		virtual void renderSprite(UniversalObjectInterface *spriteInfo);
+		virtual void renderSprite(const EntityInstance* instance, UniversalObjectInterface *spriteInfo);
 
 	protected:
 		AtlasFile* atlasFile;

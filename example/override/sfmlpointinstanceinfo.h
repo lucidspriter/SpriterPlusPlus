@@ -15,7 +15,7 @@ namespace SpriterEngine
 	public:
 		SfmlPointInstanceInfo(sf::RenderWindow *validRenderWindow);
 
-		void render() override;
+		void render(const EntityInstance* instance) override;
 
 	private:
 		sf::RenderWindow *renderWindow;

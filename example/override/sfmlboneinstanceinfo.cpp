@@ -24,7 +24,7 @@ namespace SpriterEngine
 		boneShape.setOutlineThickness(1);
 	}
 
-	void SfmlBoneInstanceInfo::render()
+	void SfmlBoneInstanceInfo::render(const EntityInstance* instance)
 	{
 		if (Settings::renderDebugBones)
 		{

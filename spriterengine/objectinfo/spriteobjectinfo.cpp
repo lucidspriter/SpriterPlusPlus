@@ -102,11 +102,11 @@ namespace SpriterEngine
 		}
 	}
 
-	void SpriteObjectInfo::render()
+	void SpriteObjectInfo::render(const EntityInstance* instance)
 	{
 		if (imageFile)
 		{
-			imageFile->renderSprite(this);
+			imageFile->renderSprite(instance, this);
 		}
 	}
 

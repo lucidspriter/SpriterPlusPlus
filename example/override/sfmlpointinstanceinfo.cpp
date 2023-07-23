@@ -13,7 +13,7 @@ namespace SpriterEngine
 		circle.setOrigin(5, 5);
 	}
 
-	void SfmlPointInstanceInfo::render()
+	void SfmlPointInstanceInfo::render(const EntityInstance* instance)
 	{
 		if (Settings::renderDebugPoints)
 		{

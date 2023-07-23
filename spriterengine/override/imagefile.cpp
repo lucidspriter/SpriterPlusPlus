@@ -24,7 +24,7 @@ namespace SpriterEngine
 		atlasFrameData = initialAtlasFrameData;
 	}
 
-	void ImageFile::renderSprite(UniversalObjectInterface * spriteInfo)
+	void ImageFile::renderSprite(const EntityInstance* instance, UniversalObjectInterface * spriteInfo)
 	{
 		if(atlasFile) {
 			atlasFile->renderSprite(spriteInfo, atlasFrameData);

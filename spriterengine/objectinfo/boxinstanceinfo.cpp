@@ -78,7 +78,7 @@ namespace SpriterEngine
 		setPivot(linear(tempPivot, pivot, blendRatio));
 	}
 
-	void BoxInstanceInfo::render()
+	void BoxInstanceInfo::render(const EntityInstance* instance)
 	{
 		// if (renderDebugBoxes)
 		// TODO: add drawing code here to enable bone debug rendering
